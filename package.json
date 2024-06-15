@@ -3,8 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "targets": {
+    "default": {
+      "includeNodeModules": true
+    }
+  },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000 --host",
     "build": "vite build",
     "preview": "vite preview"
   },
