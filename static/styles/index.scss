@@ -1,2 +1,10 @@
-@import './vendor/normalize.css';
 @import './variables.scss';
+
+/* --------------- vendor --------------- */
+@import './vendor/normalize.css';
+
+/* --------------- fonts --------------- */
+@import '../fonts/index.css';
+
+/* --------------- app --------------- */
+@import './app.scss';
