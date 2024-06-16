@@ -1,1 +1,14 @@
-.input-field {}
+.input-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 500;
+  font-size: 9px;
+  color: #999;
+  padding-bottom: 16px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
