@@ -20,3 +20,6 @@ function navigate(page) {
   app.innerHTML = handlebarsFunct(args);
 }
 
+document.addEventListener('DOMContentLoaded', () => navigate('register'));
+// document.addEventListener('DOMContentLoaded', () => navigate('login'));
+
