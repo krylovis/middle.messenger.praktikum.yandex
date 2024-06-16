@@ -5,5 +5,12 @@ form-action="signin-action"
 form-name="signin-form"
 submit-text="Авторизоваться"
 }}
-<div>123</div>
+{{>
+InputField
+id="inputLogin"
+name="login"
+label="Логин"
+type="text"
+placeholder="Введите логин"
+}}
 {{/ FormContainer }}
