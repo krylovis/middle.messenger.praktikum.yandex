@@ -20,6 +20,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: 500;
+    padding-bottom: 40px;
   }
 
   &__content {
@@ -28,7 +29,9 @@
     align-items: center;
     flex: 1;
     width: 100%;
-  
-    padding: 40px 0 16px;
+  }
+
+  &__button-container {
+    margin-top: auto;
   }
 }

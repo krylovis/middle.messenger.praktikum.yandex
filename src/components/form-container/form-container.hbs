@@ -3,8 +3,11 @@
 
   <form class="form-container__content" name="{{ form-name }}" action="{{ form-action }}">
     {{> @partial-block }}
-    <button class="form-container__button" type="submit" aria-label="{{ submit-text }}">
-      {{ submit-text }}
-    </button>
+
+    <div class="form-container__button-container">
+      <button class="form-container__button" type="submit" aria-label="{{ submit-text }}">
+        {{ submit-text }}
+      </button>
+    </div>
   </form>
 </section>
