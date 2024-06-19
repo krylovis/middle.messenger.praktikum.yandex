@@ -1,4 +1,4 @@
-npm install --force
+npm install
 npm run dev
 
 Docker image для разработки:
