@@ -11,11 +11,15 @@
       "includeNodeModules": true
     }
   },
+  "main": "./src/index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "node server.js",
     "preview": "vite preview"
   },
+  "keywords": [],
+  "author": "Krylov Ivan",
   "devDependencies": {
     "@eslint/js": "^9.5.0",
     "eslint": "^9.5.0",
@@ -30,6 +34,6 @@
     "vite-plugin-handlebars": "^2.0.0"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=18"
   }
 }
