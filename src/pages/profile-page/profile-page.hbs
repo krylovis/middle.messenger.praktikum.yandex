@@ -1,1 +1,11 @@
-<section class="profile-page"></section>
+<section class="profile-page">
+  <div class="profile-page__sidebar"></div>
+
+  <div class="profile-page__content">
+    <div class="profile-page__container">
+      {{#with (profile)}}
+      {{> ProfileAvatar name=first_name avatar=avatar }}
+      {{/with}}
+    </div>
+  </div>
+</section>
