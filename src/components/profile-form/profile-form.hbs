@@ -4,7 +4,7 @@
 
     <div class="profile-form__button-container">
       {{#if editMode}}
-      {{> Button type="submit" text="Сохранить" }}
+      {{> Button type="submit" text="Сохранить" modifier="profile" }}
       {{else}}
       {{> NavLink text="Изменить данные" page="edit-profile-page" modifier="profile" }}
       {{> NavLink text="Изменить пароль" page="edit-profile-page" modifier="profile" }}

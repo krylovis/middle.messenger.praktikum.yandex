@@ -10,8 +10,7 @@
       ProfileForm
       submit-text=""
       to-page=""
-      modifier="profile"
-      editMode=false
+      editMode=true
       }}
       {{>
       InputField
@@ -21,7 +20,6 @@
       label="Почта"
       type="email"
       value=email
-      disabled=true
       }}
 
       {{>
@@ -32,7 +30,6 @@
       label="Логин"
       type="text"
       value=login
-      disabled=true
       }}
 
       {{>
@@ -43,7 +40,6 @@
       label="Имя"
       type="text"
       value=first_name
-      disabled=true
       }}
 
       {{>
@@ -54,7 +50,6 @@
       label="Фамилия"
       type="text"
       value=second_name
-      disabled=true
       }}
 
       {{>
@@ -65,7 +60,6 @@
       label="Имя&nbsp;в&nbsp;чате"
       type="text"
       value=display_name
-      disabled=true
       }}
 
       {{>
@@ -76,7 +70,6 @@
       label="Телефон"
       type="text"
       value=phone
-      disabled=true
       }}
       {{/ ProfileForm }}
       {{/with}}

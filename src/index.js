@@ -6,6 +6,7 @@ const pages = {
   'login': [ Pages.LoginPage ],
   'register': [ Pages.RegisterPage ],
   'profile-page': [ Pages.ProfilePage ],
+  'edit-profile-page': [ Pages.EditProfilePage ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
