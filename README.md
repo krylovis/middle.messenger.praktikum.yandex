@@ -2,7 +2,7 @@
 # npm run dev
 
 # Ссылка на netlify
-# https://deploy--dazzling-cobbler-8c0823.netlify.app/
+# https://middle-messenger-krylovis.netlify.app/
 
 # Ссылка на макет
 # https://www.figma.com/design/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0-1&t=nB99Rtcs35HcWbTu-0
