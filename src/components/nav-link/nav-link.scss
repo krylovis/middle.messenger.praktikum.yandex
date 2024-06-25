@@ -7,4 +7,19 @@
   font-weight: 500;
   font-size: 11px;
   width: 100%;
+
+  &_type_profile {
+    text-align: start;
+    padding: 10px 0 10px;
+    border-bottom: 1px solid #EAEAEA;
+
+    &:last-of-type {
+      padding: 10px 0 0;
+      border-bottom: none;
+    }
+  }
+
+  &_type_danger {
+    color: #FF0000;
+  }
 }

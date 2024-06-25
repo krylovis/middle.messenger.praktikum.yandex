@@ -5,10 +5,28 @@
   width: 100%;
   font-weight: 500;
   font-size: 9px;
-  color: #999;
   padding-bottom: 16px;
+  color: #1E1E1E;
 
-  &:last-child {
+  &:last-of-type {
     padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  &_type_profile {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+
+    font-size: 13px;
+    font-weight: 500;
+    border-bottom: 1px solid #EAEAEA;
+
+    &:last-of-type {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
   }
 }

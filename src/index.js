@@ -1,10 +1,14 @@
 import Handlebars from 'handlebars';
 import * as Components from './components/index';
 import * as Pages from './pages/index';
+import PopupWithForm from './components/popup/PopupWithForm';
 
 const pages = {
   'login': [ Pages.LoginPage ],
   'register': [ Pages.RegisterPage ],
+  'profile-page': [ Pages.ProfilePage ],
+  'edit-profile-page': [ Pages.EditProfilePage ],
+  'change-password-page': [ Pages.ChangePasswordPage ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
@@ -22,4 +26,23 @@ function navigate(page) {
 
 document.addEventListener('DOMContentLoaded', () => navigate('register'));
 // document.addEventListener('DOMContentLoaded', () => navigate('login'));
+
+setTimeout(() => {
+  const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
+  console.log('profileEditAvatarButton', profileEditAvatarButton);
+
+  const popupEditAvatar = new PopupWithForm({
+    selector: '.popup_type_change-avatar',
+    handleFormSubmit: (formData) => {
+      console.log('formData', formData);
+    }
+  });
+  popupEditAvatar.setEventListeners();
+
+  function openEditAvatar() {
+    popupEditAvatar.open();
+  };
+
+  profileEditAvatarButton.addEventListener('click', openEditAvatar);
+}, 1000);
 

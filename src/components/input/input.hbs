@@ -1,2 +1,3 @@
-<input class="input" id="{{ id }}" type="{{ type }}" name="{{ name }}" placeholder="{{ placeholder }}" minlength="2"
-  maxlength="30" required>
+<input class="input {{#if modifier}}input_type_{{modifier}}{{/if}}" id="{{ id }}" type="{{ type }}" name="{{ name }}"
+  {{#if value}}value="{{value}}" {{/if}} placeholder="{{ placeholder }}" minlength="2" maxlength="30" required {{#if
+  disabled}}disabled{{/if}}>

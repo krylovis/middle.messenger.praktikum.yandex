@@ -1,0 +1,64 @@
+.profile-avatar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__edit-button {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: all .3s ease;
+      background-color: transparent;
+      white-space: pre;
+    }
+
+    &:hover::before {
+      content: 'Поменять\Aаватар';
+      color: white;
+      background-color: rgba(0, 0, 0, .5);
+    }
+  }
+
+  &__avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__icon-avatar {
+    width: 100%;
+    height: 100%;
+
+    background-image: url(../../../static/icons/union.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding-top: 20px;
+  }
+}
