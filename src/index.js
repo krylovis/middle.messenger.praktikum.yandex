@@ -30,20 +30,20 @@ document.addEventListener('DOMContentLoaded', () => navigate('main-page'));
 
 setTimeout(() => {
   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
-  console.log('profileEditAvatarButton', profileEditAvatarButton);
-
-  const popupEditAvatar = new PopupWithForm({
-    selector: '.popup_type_change-avatar',
-    handleFormSubmit: (formData) => {
-      console.log('formData', formData);
-    }
-  });
-  popupEditAvatar.setEventListeners();
-
-  function openEditAvatar() {
-    popupEditAvatar.open();
-  };
-
-  profileEditAvatarButton.addEventListener('click', openEditAvatar);
+  if(profileEditAvatarButton) {
+    const popupEditAvatar = new PopupWithForm({
+      selector: '.popup_type_change-avatar',
+      handleFormSubmit: (formData) => {
+        console.log('formData', formData);
+      }
+    });
+    popupEditAvatar.setEventListeners();
+  
+    function openEditAvatar() {
+      popupEditAvatar.open();
+    };
+  
+    profileEditAvatarButton.addEventListener('click', openEditAvatar);
+  }
 }, 1000);
 
