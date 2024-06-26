@@ -9,6 +9,7 @@ const pages = {
   'profile-page': [ Pages.ProfilePage ],
   'edit-profile-page': [ Pages.EditProfilePage ],
   'change-password-page': [ Pages.ChangePasswordPage ],
+  'main-page': [ Pages.MainPage ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
@@ -24,8 +25,8 @@ function navigate(page) {
   app.innerHTML = handlebarsFunct(args);
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('register'));
-// document.addEventListener('DOMContentLoaded', () => navigate('login'));
+// document.addEventListener('DOMContentLoaded', () => navigate('profile-page'));
+document.addEventListener('DOMContentLoaded', () => navigate('main-page'));
 
 setTimeout(() => {
   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
