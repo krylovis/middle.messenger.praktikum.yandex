@@ -9,3 +9,4 @@ export { ProfileForm } from './profile-form';
 export { PopupContainer } from './popup/popup-container';
 export { PopupChangeAvatar } from './popup/popup-change-avatar';
 export { ChatItem } from './chat-item';
+export { ChatList } from './chat-list';
