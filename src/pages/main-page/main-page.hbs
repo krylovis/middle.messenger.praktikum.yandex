@@ -1,6 +1,21 @@
 <section class="main-page">
-  <div class="main-page__chat-list"></div>
-  <div class="main-page__content"></div>
+  <div class="main-page__chat-list">
+    {{#> ChatList }}
+    {{#each (chat-list-helper)}}
+    {{> ChatItem }}
+    {{/each}}
+    {{/ ChatList }}
+  </div>
+
+  <div class="main-page__chat">
+    {{#if chat}}
+    <ul class="main-page__message-list"></ul>
+    {{else }}
+    <p class="main-page__text">
+      Выберите чат чтобы отправить сообщение
+    </p>
+    {{/if}}
+  </div>
 </section>
 
 {{!-- {{#> PopupUserManagement }}{{/ PopupUserManagement }} --}}

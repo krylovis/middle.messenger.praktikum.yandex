@@ -4,12 +4,14 @@
   </div>
 
   <div class="chat-item__content">
-    <p class="chat-item__name">{{ name }}</p>
-    <p class="chat-item__message">{{ message }}</p>
-  </div>
+    <div class="chat-item__header">
+      <p class="chat-item__name">{{ name }}</p>
+      <span class="chat-item__updated">{{ updatedAt }}</span>
+    </div>
 
-  <div class="chat-item__info">
-    <p class="chat-item__updated">{{ updatedAt }}</p>
-    {{#if unread}} <p class="chat-item__counter">{{ unread }}</p> {{/if}}
+    <div class="chat-item__body">
+      <p class="chat-item__message">{{ message }}</p>
+      {{#if unread}} <div class="chat-item__counter">{{ unread }}</div> {{/if}}
+    </div>
   </div>
 </li>

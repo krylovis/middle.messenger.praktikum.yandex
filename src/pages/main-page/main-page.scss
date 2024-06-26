@@ -1,1 +1,10 @@
-.main-page {}
+.main-page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+
+  &__chat-list {
+    width: 100%;
+    background-color: #FBFBFB;
+  }
+}
