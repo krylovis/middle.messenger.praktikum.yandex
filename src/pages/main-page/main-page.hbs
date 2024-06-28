@@ -7,11 +7,11 @@
     {{/ ChatList }}
   </div>
 
-  <div class="main-page__chat">
+  <div class="main-page__content{{#if chat}} main-page__content_type_chat{{/if}}">
     {{#if chat}}
     <ul class="main-page__message-list"></ul>
     {{else }}
-    <p class="main-page__text">
+    <p class="main-page__empty-text">
       Выберите чат чтобы отправить сообщение
     </p>
     {{/if}}
