@@ -1,7 +1,5 @@
 <section class="main-page">
   <div class="main-page__chat-list-container">
-    {{> NavLink text="Профиль" page='profile-page' type='to-profile' icon=true }}
-
     {{#> ChatList }}
     {{#each (chat-list-helper)}}
     {{> ChatItem }}
