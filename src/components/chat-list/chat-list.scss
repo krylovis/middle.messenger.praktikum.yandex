@@ -13,6 +13,13 @@
     font-size: 12px;
     font-weight: 500;
 
+    &::-webkit-input-placeholder {
+      background-image: url(../../../static/icons/search-icon.svg);
+      background-repeat: no-repeat;
+      background-position: 40%;
+      text-indent: 20px;
+    }
+
     &:focus-visible {
       outline: none;
     }
