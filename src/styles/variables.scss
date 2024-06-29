@@ -13,6 +13,7 @@ $menu-icon: url(../../../static/icons/menu-icon.svg);
 
 $color-primary: #3369F3;
 $color-secondary: #999999;
+$color-input: #EFEFEF;
 
 @mixin mask-image($image, $x: 0, $y: 0) {
   mask-image: $image;
