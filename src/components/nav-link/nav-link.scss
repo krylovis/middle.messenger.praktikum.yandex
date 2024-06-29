@@ -44,15 +44,7 @@
       height: 8px;
 
       background-color: $color-secondary;
-
-      mask-image: $arrow-icon;
-      -webkit-mask-image: $arrow-icon;
-      mask-repeat: no-repeat;
-      -webkit-mask-repeat: no-repeat;
-      mask-position: center;
-      -webkit-mask-position: center;
-      mask-size: 4px 8px;
-      -webkit-mask-size: 4px 8px;
+      @include mask-image($arrow-icon, 4px, 8px);
     }
   }
 }
