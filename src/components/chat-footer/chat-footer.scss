@@ -8,6 +8,10 @@
   padding-top: 10px;
   border-top: 1px solid #EAEAEA;
 
+  &__menu-container {
+    position: relative;
+  }
+
   &__menu {
     cursor: pointer;
     border: none;
@@ -30,7 +34,7 @@
     flex: 1;
     border: none;
     padding: 10px 20px;
-    background-color: #EFEFEF;
+    background-color: $color-input;
     border-radius: 30px;
     font-size: 12px;
     font-weight: 500;

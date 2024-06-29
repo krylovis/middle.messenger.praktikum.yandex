@@ -14,3 +14,4 @@ export { ChatHeader } from './chat-header';
 export { ChatContent } from './chat-content';
 export { ChatFooter } from './chat-footer';
 export { Avatar } from './avatar';
+export { DropdownMenu } from './dropdown-menu';
