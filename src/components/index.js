@@ -11,4 +11,6 @@ export { PopupChangeAvatar } from './popup/popup-change-avatar';
 export { ChatItem } from './chat-item';
 export { ChatList } from './chat-list';
 export { ChatHeader } from './chat-header';
+export { ChatContent } from './chat-content';
+export { ChatFooter } from './chat-footer';
 export { Avatar } from './avatar';
