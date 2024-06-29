@@ -10,6 +10,7 @@ const pages = {
   'edit-profile-page': [ Pages.EditProfilePage ],
   'change-password-page': [ Pages.ChangePasswordPage ],
   'main-page': [ Pages.MainPage ],
+  'error-page': [ Pages.ErrorPage ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
