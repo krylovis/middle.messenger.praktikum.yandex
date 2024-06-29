@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .nav-link {
   box-sizing: border-box;
   text-decoration: none;
@@ -40,9 +42,17 @@
       vertical-align: middle;
       width: 4px;
       height: 8px;
-      background-image: url(../../../static/icons/arrow-icon.svg);
-      background-repeat: no-repeat;
-      background-position: center;
+
+      background-color: $color-secondary;
+
+      mask-image: $arrow-icon;
+      -webkit-mask-image: $arrow-icon;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
+      mask-size: 4px 8px;
+      -webkit-mask-size: 4px 8px;
     }
   }
 }
