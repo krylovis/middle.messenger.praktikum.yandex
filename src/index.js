@@ -9,6 +9,8 @@ const pages = {
   'profile-page': [ Pages.ProfilePage ],
   'edit-profile-page': [ Pages.EditProfilePage ],
   'change-password-page': [ Pages.ChangePasswordPage ],
+  'main-page': [ Pages.MainPage ],
+  'error-page': [ Pages.ErrorPage ],
 };
 
 Object.entries(Components).forEach(([ name, component ]) => {
@@ -24,25 +26,34 @@ function navigate(page) {
   app.innerHTML = handlebarsFunct(args);
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('register'));
-// document.addEventListener('DOMContentLoaded', () => navigate('login'));
+// document.addEventListener('DOMContentLoaded', () => navigate('profile-page'));
+document.addEventListener('DOMContentLoaded', () => navigate('main-page'));
 
 setTimeout(() => {
   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
-  console.log('profileEditAvatarButton', profileEditAvatarButton);
+  const menuButton = document.querySelector('.chat-footer__menu');
+  
+  if(menuButton) {
+    console.log('menuButton', menuButton);
+    menuButton.addEventListener('click', (event) => {
+      console.log('event', event);
+    })
+  }
 
-  const popupEditAvatar = new PopupWithForm({
-    selector: '.popup_type_change-avatar',
-    handleFormSubmit: (formData) => {
-      console.log('formData', formData);
-    }
-  });
-  popupEditAvatar.setEventListeners();
-
-  function openEditAvatar() {
-    popupEditAvatar.open();
-  };
-
-  profileEditAvatarButton.addEventListener('click', openEditAvatar);
+  if(profileEditAvatarButton) {
+    const popupEditAvatar = new PopupWithForm({
+      selector: '.popup_type_change-avatar',
+      handleFormSubmit: (formData) => {
+        console.log('formData', formData);
+      }
+    });
+    popupEditAvatar.setEventListeners();
+  
+    function openEditAvatar() {
+      popupEditAvatar.open();
+    };
+  
+    profileEditAvatarButton.addEventListener('click', openEditAvatar);
+  }
 }, 1000);
 

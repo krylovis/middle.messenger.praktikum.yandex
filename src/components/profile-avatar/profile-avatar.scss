@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .profile-avatar {
   width: 100%;
   display: flex;
@@ -48,11 +50,16 @@
   &__icon-avatar {
     width: 100%;
     height: 100%;
+    background-color: #CDCDCD;
 
-    background-image: url(../../../static/icons/union.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 26px 26px;
+    mask-image: $default-img-icon;
+    -webkit-mask-image: $default-img-icon;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-size: 26px 26px;
+    -webkit-mask-size: 26px 26px;
   }
 
   &__name {

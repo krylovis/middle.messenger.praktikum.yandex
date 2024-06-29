@@ -1,4 +1,7 @@
+@import '../../styles/variables.scss';
+
 .nav-link {
+  box-sizing: border-box;
   text-decoration: none;
   display: inline-block;
   text-align: center;
@@ -21,5 +24,27 @@
 
   &_type_danger {
     color: #FF0000;
+  }
+
+  &_type_error-page {
+    padding-top: 69px;
+  }
+
+  &_type_to-profile {
+    text-align: end;
+    padding: 10px 0 10px;
+    color: #999999;
+    padding-right: 10px;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 4px;
+      height: 8px;
+
+      background-color: $color-secondary;
+      @include mask-image($arrow-icon, 4px, 8px);
+    }
   }
 }
