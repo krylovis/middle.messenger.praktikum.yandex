@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .profile-avatar {
   width: 100%;
   display: flex;
@@ -50,15 +52,14 @@
     height: 100%;
     background-color: #CDCDCD;
 
-    mask-image: url(../../../static/icons/default-img-icon.svg);
-    -webkit-mask-image: url(../../../static/icons/default-img-icon.svg);
+    mask-image: $default-img-icon;
+    -webkit-mask-image: $default-img-icon;
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
     mask-position: center;
     -webkit-mask-position: center;
-    mask-size: 26px 26px;;
+    mask-size: 26px 26px;
     -webkit-mask-size: 26px 26px;
-    
   }
 
   &__name {
