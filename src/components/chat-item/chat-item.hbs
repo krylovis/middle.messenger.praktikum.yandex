@@ -2,9 +2,7 @@
   <span class="chat-item__line"></span>
 
   <div class="chat-item__container">
-    <div class="chat-item__avatar-container">
-      {{#if avatar}} <img class="chat-item__avatar" src={{ avatar }}><img> {{/if}}
-    </div>
+    {{> Avatar avatar=avatar }}
 
     <div class="chat-item__content">
       <div class="chat-item__header">

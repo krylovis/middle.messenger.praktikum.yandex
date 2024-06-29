@@ -21,21 +21,6 @@
     }
   }
 
-  &__avatar-container {
-    min-width: 47px;
-    width: 47px;
-    height: 47px;
-    background-color: #EFEFEF;
-    border-radius: 50%;
-  }
-
-  &__avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
   &__content {
     flex: 1;
   }
