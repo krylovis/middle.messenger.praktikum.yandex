@@ -12,10 +12,13 @@
 
   &__content {
     display: flex;
-    width: 100%;
+    max-width: 100%;
     align-items: center;
+    padding: 10px 20px;
 
-    &_type_chat {}
+    &_type_chat {
+      flex-direction: column;
+    }
   }
 
   &__empty-text {
