@@ -56,4 +56,3 @@ setTimeout(() => {
     profileEditAvatarButton.addEventListener('click', openEditAvatar);
   }
 }, 1000);
-
