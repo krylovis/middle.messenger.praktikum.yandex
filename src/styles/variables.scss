@@ -25,3 +25,10 @@ $color-input: #EFEFEF;
   mask-size: $x $y;
   -webkit-mask-size: $x $y;
 }
+
+@mixin background-image($image, $x: 0, $y: 0) {
+  background-image: $image;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $x $y;
+}

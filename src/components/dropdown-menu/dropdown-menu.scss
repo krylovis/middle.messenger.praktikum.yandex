@@ -8,11 +8,19 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  bottom: 60px;
   z-index: 20;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+
+  &_type_header {
+    top: 60px;
+    left: -190px;
+  }
+
+  &_type_footer {
+    bottom: 60px;
+  }
 
   &__item {
     position: relative;
@@ -46,17 +54,31 @@
     display: inline-block;
     width: 22px;
     height: 22px;
-    background-color: $color-primary;
+
+    &_type_add-user {
+      border: 2px solid $color-primary;
+      border-radius: 50%;
+      @include background-image($add-icon, 11px, 11px);
+    }
+
+    &_type_remove-user {
+      border: 2px solid $color-primary;
+      border-radius: 50%;
+      @include background-image($close-icon, 15px, 15px);
+    }
 
     &_type_image {
+      background-color: $color-primary;
       @include mask-image($default-img-icon, 22px, 22px);
     }
 
     &_type_file {
+      background-color: $color-primary;
       @include mask-image($file-icon, 22px, 22px);
     }
 
     &_type_location {
+      background-color: $color-primary;
       @include mask-image($location-icon, 22px, 22px);
     }
   }

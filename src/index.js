@@ -31,6 +31,15 @@ document.addEventListener('DOMContentLoaded', () => navigate('main-page'));
 
 setTimeout(() => {
   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
+  const menuButton = document.querySelector('.chat-footer__menu');
+  
+  if(menuButton) {
+    console.log('menuButton', menuButton);
+    menuButton.addEventListener('click', (event) => {
+      console.log('event', event);
+    })
+  }
+
   if(profileEditAvatarButton) {
     const popupEditAvatar = new PopupWithForm({
       selector: '.popup_type_change-avatar',

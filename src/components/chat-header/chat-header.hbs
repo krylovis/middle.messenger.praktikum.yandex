@@ -1,5 +1,19 @@
 <div class="chat-header">
   {{> Avatar type='header' }}
   <span class="chat-header__name">Опоссум</span>
-  <button class="chat-header__menu"></button>
+
+  <div class="chat-header__menu-container">
+    {{#> DropdownMenu type="header" }}
+    <li class="dropdown-menu__item">
+      <span class="dropdown-menu__icon dropdown-menu__icon_type_add-user"></span>
+      Добавить пользователя
+    </li>
+    <li class="dropdown-menu__item">
+      <span class="dropdown-menu__icon dropdown-menu__icon_type_remove-user"></span>
+      Удалить пользователя
+    </li>
+    {{/ DropdownMenu }}
+
+    <button class="chat-header__menu"></button>
+  </div>
 </div>
