@@ -1,0 +1,63 @@
+{{#>
+FormContainer
+form-title="Регистрация"
+form-action="signup-action"
+form-name="signup-form"
+submit-text="Зарегистрироваться"
+link-text="Войти"
+to-page="login"
+}}
+{{>
+InputField
+id="inputEmail"
+name="email"
+label="Почта"
+type="email"
+placeholder="Введите почту"
+}}
+
+{{>
+InputField
+id="firstName"
+name="first_name"
+label="Имя"
+type="text"
+placeholder="Введите имя"
+}}
+
+{{>
+InputField
+id="secondName"
+name="second_name"
+label="Фамилия"
+type="text"
+placeholder="Введите фамилию"
+}}
+
+{{>
+InputField
+id="inputPhone"
+name="phone"
+label="Телефон"
+type="phone"
+placeholder="Введите телефон"
+}}
+
+{{>
+InputField
+id="inputPassword"
+name="password"
+label="Пароль"
+type="password"
+placeholder="Введите пароль"
+}}
+
+{{>
+InputField
+id="inputRepeatPassword"
+name="repeat_password"
+label="Пароль (ещё раз)"
+type="password"
+placeholder="Повторите пароль"
+}}
+{{/ FormContainer }}

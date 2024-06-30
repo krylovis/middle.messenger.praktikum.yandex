@@ -1,0 +1,15 @@
+<section class="profile-form">
+  <form class="profile-form__content" name="profile-form" action="profile-action">
+    {{> @partial-block }}
+
+    <div class="profile-form__button-container">
+      {{#if editMode}}
+      {{> Button type="submit" text="Сохранить" modifier="profile" }}
+      {{else}}
+      {{> NavLink text="Изменить данные" page="edit-profile-page" modifier="profile" }}
+      {{> NavLink text="Изменить пароль" page="edit-profile-page" modifier="profile" }}
+      {{> NavLink text="Выйти" page="login" type="danger" modifier="profile" }}
+      {{/if}}
+    </div>
+  </form>
+</section>

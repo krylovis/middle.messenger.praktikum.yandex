@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__search-input {
+    text-align: center;
+    border: none;
+    padding: 10px 10px;
+    background-color: $color-input;
+    border-radius: 5px;
+    margin: 14px 10px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &::-webkit-input-placeholder {
+      background-image: $search-icon;
+      background-repeat: no-repeat;
+      background-position: 40%;
+      text-indent: 20px;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    overflow-y: scroll;
+    border-right: 1px solid #EAEAEA;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

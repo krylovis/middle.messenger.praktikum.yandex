@@ -1,0 +1,27 @@
+{{#>
+FormContainer
+form-title="Вход"
+form-action="signin-action"
+form-name="signin-form"
+submit-text="Авторизоваться"
+link-text="Нет аккаунта?"
+to-page="register"
+}}
+{{>
+InputField
+id="inputLogin"
+name="login"
+label="Логин"
+type="text"
+placeholder="Введите логин"
+}}
+
+{{>
+InputField
+id="inputPassword"
+name="password"
+label="Пароль"
+type="password"
+placeholder="Введите пароль"
+}}
+{{/ FormContainer }}

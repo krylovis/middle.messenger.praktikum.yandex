@@ -1,0 +1,60 @@
+@import '../../styles/variables.scss';
+
+.chat-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #EAEAEA;
+
+  &__menu-container {
+    position: relative;
+  }
+
+  &__menu {
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+
+    background-color: $color-primary;
+    @include mask-image($attach-icon, 20px, 20px);
+  }
+
+  &__message-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__message-input {
+    flex: 1;
+    border: none;
+    padding: 10px 20px;
+    background-color: $color-input;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__submit {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background-color: #3369f3;
+    border-radius: 50%;
+
+    background-image: url(../../../static/icons/arrow-right.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 26px 26px;
+  }
+}

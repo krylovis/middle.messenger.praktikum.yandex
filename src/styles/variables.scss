@@ -1,0 +1,34 @@
+$default-img-icon: url(../../../static/icons/default-img-icon.svg);
+$add-icon: url(../../../static/icons/add-icon.svg);
+$arrow-icon: url(../../../static/icons/arrow-icon.svg);
+$arrow-left: url(../../../static/icons/arrow-left.svg);
+$arrow-right: url(../../../static/icons/arrow-right.svg);
+$attach-icon: url(../../../static/icons/attach-icon.svg);
+$close-icon: url(../../../static/icons/close-icon.svg);
+$default-img-icon: url(../../../static/icons/default-img-icon.svg);
+$file-icon: url(../../../static/icons/file-icon.svg);
+$location-icon: url(../../../static/icons/location-icon.svg);
+$search-icon: url(../../../static/icons/search-icon.svg);
+$menu-icon: url(../../../static/icons/menu-icon.svg);
+
+$color-primary: #3369F3;
+$color-secondary: #999999;
+$color-input: #EFEFEF;
+
+@mixin mask-image($image, $x: 0, $y: 0) {
+  mask-image: $image;
+  -webkit-mask-image: $image;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-size: $x $y;
+  -webkit-mask-size: $x $y;
+}
+
+@mixin background-image($image, $x: 0, $y: 0) {
+  background-image: $image;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: $x $y;
+}
