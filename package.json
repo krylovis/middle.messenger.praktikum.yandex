@@ -23,7 +23,7 @@
   "author": "Krylov Ivan",
   "devDependencies": {
     "@eslint/js": "^9.6.0",
-    "eslint": "^9.6.0",
+    "eslint": "^8.56.0",
     "globals": "^15.6.0",
     "sass": "^1.77.5",
     "typescript-eslint": "^7.14.1",
