@@ -1,0 +1,7 @@
+<label class="input-field {{#if modifier}}input-field_type_{{modifier}}{{/if}}" for="{{ id }}">
+  {{{ label }}}
+
+  {{> Input id=id name=name type=type placeholder=placeholder value=value modifier=modifier disabled=disabled }}
+
+  <span class="`input-field__error {{ name }}-error`"></span>
+</label>

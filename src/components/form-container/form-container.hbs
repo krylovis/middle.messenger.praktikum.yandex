@@ -1,0 +1,12 @@
+<section class="form-container">
+  <h1 class="form-container__title">{{ form-title }}</h1>
+
+  <form class="form-container__content" name="{{ form-name }}" action="{{ form-action }}">
+    {{> @partial-block }}
+
+    <div class="form-container__button-container">
+      {{> Button type="submit" text=submit-text }}
+      {{> NavLink text=link-text page=to-page }}
+    </div>
+  </form>
+</section>

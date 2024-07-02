@@ -1,0 +1,89 @@
+<section class="profile-page">
+  <div class="profile-page__sidebar">
+    {{> ButtonArrow to-page='' }}
+  </div>
+
+  <div class="profile-page__content">
+    <div class="profile-page__container">
+      {{#with (profile)}}
+      {{> ProfileAvatar name=first_name avatar=avatar }}
+
+      {{#>
+      ProfileForm
+      submit-text=""
+      to-page=""
+      modifier="profile"
+      editMode=false
+      }}
+      {{>
+      InputField
+      modifier="profile"
+      id="profileEmail"
+      name="email"
+      label="Почта"
+      type="email"
+      value=email
+      disabled=true
+      }}
+
+      {{>
+      InputField
+      modifier="profile"
+      id="profileLogin"
+      name="login"
+      label="Логин"
+      type="text"
+      value=login
+      disabled=true
+      }}
+
+      {{>
+      InputField
+      modifier="profile"
+      id="profileFirstName"
+      name="first_name"
+      label="Имя"
+      type="text"
+      value=first_name
+      disabled=true
+      }}
+
+      {{>
+      InputField
+      modifier="profile"
+      id="profileSecondName"
+      name="second_name"
+      label="Фамилия"
+      type="text"
+      value=second_name
+      disabled=true
+      }}
+
+      {{>
+      InputField
+      modifier="profile"
+      id="profileDisplayName"
+      name="display_name"
+      label="Имя&nbsp;в&nbsp;чате"
+      type="text"
+      value=display_name
+      disabled=true
+      }}
+
+      {{>
+      InputField
+      modifier="profile"
+      id="profilePhone"
+      name="phone"
+      label="Телефон"
+      type="text"
+      value=phone
+      disabled=true
+      }}
+      {{/ ProfileForm }}
+      {{/with}}
+    </div>
+  </div>
+</section>
+
+{{#> PopupChangeAvatar }}{{/ PopupChangeAvatar }}

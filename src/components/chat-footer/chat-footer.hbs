@@ -1,0 +1,25 @@
+<div class="chat-footer">
+  <div class="chat-footer__menu-container">
+    {{#> DropdownMenu type="footer" }}
+    <li class="dropdown-menu__item">
+      <span class="dropdown-menu__icon dropdown-menu__icon_type_image"></span>
+      Фото или Видео
+    </li>
+    <li class="dropdown-menu__item">
+      <span class="dropdown-menu__icon dropdown-menu__icon_type_file"></span>
+      Файл
+    </li>
+    <li class="dropdown-menu__item">
+      <span class="dropdown-menu__icon dropdown-menu__icon_type_location"></span>
+      Локация
+    </li>
+    {{/ DropdownMenu }}
+
+    <button class="chat-footer__menu"></button>
+  </div>
+
+  <form class="chat-footer__message-form" name="new-message-form" action="new-message-action">
+    <input id="message-input" class="chat-footer__message-input" name="message" type="text" placeholder="Сообщение" />
+    <button class="chat-footer__submit" type="submit" aria-label="message"></button>
+  </form>
+</div>
