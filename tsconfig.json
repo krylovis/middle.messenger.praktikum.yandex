@@ -16,6 +16,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "paths": {
       "@/*": ["./src/*"]
     }
