@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
-import * as Components from './components/index';
-import * as Pages from './pages/index';
-import PopupWithForm from './components/popup/PopupWithForm';
+import * as Components from '@/components/index';
+import * as Pages from '@/pages/index';
+import PopupWithForm from '@/components/popup/PopupWithForm';
 
 const pages = {
   'login': [Pages.LoginPage],
@@ -55,30 +55,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-// setTimeout(() => {
-//   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
-//   const menuButton = document.querySelector('.chat-footer__menu');
+setTimeout(() => {
+  const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
+  const menuButton = document.querySelector('.chat-footer__menu');
 
-//   if (menuButton) {
-//     console.log('menuButton', menuButton);
-//     menuButton.addEventListener('click', (event) => {
-//       console.log('event', event);
-//     })
-//   }
+  if (menuButton) {
+    console.log('menuButton', menuButton);
+    menuButton.addEventListener('click', (event) => {
+      console.log('event', event);
+    })
+  }
 
-//   if (profileEditAvatarButton) {
-//     const popupEditAvatar = new PopupWithForm({
-//       selector: '.popup_type_change-avatar',
-//       handleFormSubmit: (formData) => {
-//         console.log('formData', formData);
-//       }
-//     });
-//     popupEditAvatar.setEventListeners();
+  if (profileEditAvatarButton) {
+    const popupEditAvatar = new PopupWithForm({
+      selector: '.popup_type_change-avatar',
+      handleFormSubmit: (formData) => {
+        console.log('formData', formData);
+      }
+    });
+    popupEditAvatar.setEventListeners();
 
-//     function openEditAvatar() {
-//       popupEditAvatar.open();
-//     };
+    function openEditAvatar() {
+      popupEditAvatar.open();
+    };
 
-//     profileEditAvatarButton.addEventListener('click', openEditAvatar);
-//   }
-// }, 1000);
+    profileEditAvatarButton.addEventListener('click', openEditAvatar);
+  }
+}, 1000);
