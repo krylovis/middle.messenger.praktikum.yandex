@@ -53,32 +53,32 @@ document.addEventListener('DOMContentLoaded', () => {
       navigate('change-password-page');
       break
   }
-}),
+})
 
-setTimeout(() => {
-  const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
-  const menuButton = document.querySelector('.chat-footer__menu');
+// setTimeout(() => {
+//   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
+//   const menuButton = document.querySelector('.chat-footer__menu');
 
-  if (menuButton) {
-    console.log('menuButton', menuButton);
-    menuButton.addEventListener('click', (event) => {
-      console.log('event', event);
-    })
-  }
+//   if (menuButton) {
+//     console.log('menuButton', menuButton);
+//     menuButton.addEventListener('click', (event) => {
+//       console.log('event', event);
+//     })
+//   }
 
-  if (profileEditAvatarButton) {
-    const popupEditAvatar = new PopupWithForm({
-      selector: '.popup_type_change-avatar',
-      handleFormSubmit: (formData) => {
-        console.log('formData', formData);
-      }
-    });
-    popupEditAvatar.setEventListeners();
+//   if (profileEditAvatarButton) {
+//     const popupEditAvatar = new PopupWithForm({
+//       selector: '.popup_type_change-avatar',
+//       handleFormSubmit: (formData) => {
+//         console.log('formData', formData);
+//       }
+//     });
+//     popupEditAvatar.setEventListeners();
 
-    function openEditAvatar() {
-      popupEditAvatar.open();
-    };
+//     function openEditAvatar() {
+//       popupEditAvatar.open();
+//     };
 
-    profileEditAvatarButton.addEventListener('click', openEditAvatar);
-  }
-}, 1000);
+//     profileEditAvatarButton.addEventListener('click', openEditAvatar);
+//   }
+// }, 1000);
