@@ -3,23 +3,33 @@ import * as Components from '@/components/index';
 import * as Pages from '@/pages/index';
 import PopupWithForm from '@/components/popup/PopupWithForm';
 
-const pages = {
-  'login': [Pages.LoginPage],
-  'register': [Pages.RegisterPage],
-  'profile-page': [Pages.ProfilePage],
-  'edit-profile-page': [Pages.EditProfilePage],
-  'change-password-page': [Pages.ChangePasswordPage],
-  'main-page': [Pages.MainPage],
-  'error-page': [Pages.ErrorPage],
+enum EPages {
+  LoginPage = 'login',
+  RegisterPage = 'register',
+  ProfilePage = 'profile-page',
+  EditProfilePage = 'edit-profile-page',
+  ChangePasswordPage = 'change-password-page',
+  MainPage = 'main-page',
+  ErrorPage = 'error-page',
+}
+
+const pages: any = {
+  [EPages.LoginPage]: [Pages.LoginPage],
+  [EPages.RegisterPage]: [Pages.RegisterPage],
+  [EPages.ProfilePage]: [Pages.ProfilePage],
+  [EPages.EditProfilePage]: [Pages.EditProfilePage],
+  [EPages.ChangePasswordPage]: [Pages.ChangePasswordPage],
+  [EPages.MainPage]: [Pages.MainPage],
+  [EPages.ErrorPage]: [Pages.ErrorPage],
 };
 
 Object.entries(Components).forEach(([name, component]) => {
   Handlebars.registerPartial(name, component);
 });
 
-const app = document.querySelector('#app');
+const app: any = document.querySelector('#app');
 
-function navigate(page, args) {
+function navigate(page: string, args?: { error: string, text: string }): void {
   const [source] = pages[page];
   const handlebarsFunct = Handlebars.compile(source);
 
@@ -69,7 +79,7 @@ setTimeout(() => {
   if (profileEditAvatarButton) {
     const popupEditAvatar = new PopupWithForm({
       selector: '.popup_type_change-avatar',
-      handleFormSubmit: (formData) => {
+      handleFormSubmit: (formData: any) => {
         console.log('formData', formData);
       }
     });
