@@ -3,6 +3,17 @@ import * as Components from '@/components/index';
 import * as Pages from '@/pages/index';
 import PopupWithForm from '@/components/popup/PopupWithForm';
 
+import Block from '@/utils/Block/index';
+
+const btn = new Block({ props: { 'aaa': 123 } });
+const block = new Block({
+  props: { 'aaa': 123 },
+  attributes: { 'aaa': 123 },
+  children: { 'btn': btn },
+  list: [btn],
+  events: { 'event': () => console.log('123') },
+});
+
 enum EPages {
   LoginPage = 'login',
   RegisterPage = 'register',
