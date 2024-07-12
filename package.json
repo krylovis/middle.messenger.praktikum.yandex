@@ -24,7 +24,10 @@
   "author": "Krylov Ivan",
   "devDependencies": {
     "@eslint/js": "^9.6.0",
-    "eslint": "^8.56.0",
+    "@html-eslint/eslint-plugin": "^0.25.0",
+    "@html-eslint/parser": "^0.25.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-html": "^8.1.1",
     "globals": "^15.6.0",
     "sass": "^1.77.5",
     "typescript": "^5.5.3",
