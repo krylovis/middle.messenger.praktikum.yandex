@@ -154,4 +154,4 @@ export default class Block {
   // hide() {
   //   this.getContent().style.display = "none";
   // }
-}
+ }
