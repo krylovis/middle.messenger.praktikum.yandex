@@ -1,6 +1,12 @@
+import Input from '@/components/input';
+import InputError from '@/components/input-error';
+import InputField from '@/components/input-field';
 import FormContainer from '@/components/form-container';
 
 export {
+  Input,
+  InputError,
+  InputField,
   FormContainer
 };
 

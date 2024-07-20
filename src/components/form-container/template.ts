@@ -5,7 +5,7 @@ export const formContainerTemplate = `
   <h1 class="form-container__title">{{{ formTitle }}}</h1>
 
   <form class="form-container__content" name="{{ formName }}" action="{{ formAction }}">
-    {{{ list }}}
+    {{{ lists }}}
 
     <div class="form-container__button-container">
       {{{ submitButton }}}
