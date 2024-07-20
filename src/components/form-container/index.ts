@@ -1,2 +1,8 @@
-import './form-container.scss';
-export { default as FormContainer } from './form-container.hbs?raw';
+import Block from '@/utils/Block';
+import { formContainerTemplate } from './template';
+
+export default class FormContainer extends Block {
+  render() {
+    return formContainerTemplate;
+  }
+}

@@ -1,2 +1,17 @@
-import './login-page.scss';
-export { default as LoginPage } from './login-page.hbs?raw';
+import { FormContainer } from '@/components';
+
+import LoginPage from './LoginPage';
+
+const formContainer = new FormContainer({
+  formTitle: 'Вход',
+  formAction: "signin-action",
+  formName: "signin-form",
+  submitText: "Авторизоваться",
+  linkText: "Нет аккаунта?",
+  toPage: "register",
+});
+
+export const loginPage = new LoginPage({
+  FormContainer: formContainer
+});
+
