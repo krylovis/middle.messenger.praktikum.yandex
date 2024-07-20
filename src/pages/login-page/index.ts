@@ -1,5 +1,6 @@
 import {
   Input,
+  Button,
   InputError,
   InputField,
   FormContainer
@@ -45,6 +46,11 @@ const inputPasswordField = new InputField ({
   label: "Пароль",
 });
 
+const submitButton = new Button ({
+  type: "submit",
+  text: "Авторизоваться",
+});
+
 // form container
 const formContainer = new FormContainer({
   formTitle: "Вход",
@@ -53,6 +59,7 @@ const formContainer = new FormContainer({
   submitText: "Авторизоваться",
   linkText: "Нет аккаунта?",
   toPage: "register",
+  submitButton: submitButton,
   lists: [inputLoginField, inputPasswordField]
 });
 
