@@ -87,7 +87,11 @@ export default class Block {
     const {attr = {}} = this.props;
 
     Object.entries(attr).forEach(([key, value]) => {
-      this._element.setAttribute(key, value);
+      if(key === 'class') {
+        this._element.classList.add(value);
+      } else {
+        this._element.setAttribute(key, value);
+      }
     });
   }
 
