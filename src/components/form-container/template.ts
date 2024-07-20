@@ -8,8 +8,8 @@ export const formContainerTemplate = `
     {{{ lists }}}
 
     <div class="form-container__button-container">
-      {{{ submitButton }}}
-      {{{ formNavLink }}}
+      {{{ SubmitButton }}}
+      {{{ NavLink }}}
     </div>
   </form>
 </section>

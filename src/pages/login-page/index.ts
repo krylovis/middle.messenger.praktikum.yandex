@@ -3,6 +3,7 @@ import {
   Button,
   InputError,
   InputField,
+  NavLink,
   FormContainer
 } from '@/components';
 
@@ -46,9 +47,15 @@ const inputPasswordField = new InputField ({
   label: "Пароль",
 });
 
+// controls
 const submitButton = new Button ({
   type: "submit",
   text: "Авторизоваться",
+});
+
+const navLink = new NavLink ({
+  toPage: "register",
+  text: "Нет аккаунта?",
 });
 
 // form container
@@ -59,7 +66,8 @@ const formContainer = new FormContainer({
   submitText: "Авторизоваться",
   linkText: "Нет аккаунта?",
   toPage: "register",
-  submitButton: submitButton,
+  SubmitButton: submitButton,
+  NavLink: navLink,
   lists: [inputLoginField, inputPasswordField]
 });
 

@@ -2,6 +2,7 @@ import Button from '@/components/button';
 import Input from '@/components/input';
 import InputError from '@/components/input-error';
 import InputField from '@/components/input-field';
+import NavLink from '@/components/nav-link';
 import FormContainer from '@/components/form-container';
 
 export {
@@ -9,6 +10,7 @@ export {
   Input,
   InputError,
   InputField,
+  NavLink,
   FormContainer
 };
 
