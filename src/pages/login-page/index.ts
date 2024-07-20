@@ -7,6 +7,7 @@ import {
 
 import LoginPage from './LoginPage';
 
+// login input
 const inputLogin = new Input({
   id: "inputLogin",
   name: "login",
@@ -25,6 +26,26 @@ const inputLoginField = new InputField ({
   label: "Логин",
 });
 
+// login password
+const inputPassword = new Input({
+  id: "inputPassword",
+  name: "password",
+  type: "password",
+  placeholder: "Введите пароль",
+});
+
+const inputPasswordError = new InputError({
+  attr: { class: "password-error" }
+});
+
+const inputPasswordField = new InputField ({
+  Input: inputPassword,
+  InputError: inputPasswordError,
+  id: "inputPassword",
+  label: "Пароль",
+});
+
+// form container
 const formContainer = new FormContainer({
   formTitle: "Вход",
   formAction: "signin-action",
@@ -32,7 +53,7 @@ const formContainer = new FormContainer({
   submitText: "Авторизоваться",
   linkText: "Нет аккаунта?",
   toPage: "register",
-  lists: [inputLoginField]
+  lists: [inputLoginField, inputPasswordField]
 });
 
 export const loginPage = new LoginPage({
