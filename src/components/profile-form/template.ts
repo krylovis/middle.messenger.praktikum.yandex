@@ -9,7 +9,7 @@ export const profileFormTemplate = `
       {{{ SubmitButton }}}
 
       {{{ NavLinkEdit }}}
-      {{{ NavLinkPass }}}
+      {{{ NavLinkPassword }}}
       {{{ NavLinkLogout }}}
     </div>
   </form>

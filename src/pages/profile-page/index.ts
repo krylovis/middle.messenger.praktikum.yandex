@@ -2,7 +2,7 @@ import avatar from '../../../static/images/captain-jack-sparrow.jpg';
 
 import {
   Input,
-  Button,
+  NavLink,
   InputError,
   InputField,
   ProfileAvatar,
@@ -26,11 +26,30 @@ const profileAvatar = new ProfileAvatar({
   name: profile.first_name
 });
 
+const navLinkEdit = new NavLink ({
+  toPage: "edit-profile-page",
+  text: "Изменить данные",
+  attr: { class: "nav-link_type_profile" }
+});
+
+const navLinkPassword = new NavLink ({
+  toPage: "edit-profile-page",
+  text: "Изменить пароль",
+  attr: { class: "nav-link_type_profile" }
+});
+
+const navLinkLogout = new NavLink ({
+  toPage: "login",
+  text: "Выйти",
+  attr: { class: ["nav-link_type_profile", "nav-link_type_danger"]}
+});
+
 const profileForm = new ProfileForm({
-  // NavLinkEdit: ,
-  // NavLinkPass: ,
-  // NavLinkLogout: ,
-  lists: []
+  lists: [],
+
+  NavLinkEdit: navLinkEdit,
+  NavLinkPassword: navLinkPassword,
+  NavLinkLogout: navLinkLogout,
 });
 
 export const profilePage = new ProfilePage({
