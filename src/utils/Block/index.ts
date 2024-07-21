@@ -88,7 +88,11 @@ export default class Block {
 
     Object.entries(attr).forEach(([key, value]) => {
       if(key === 'class') {
-        this._element.classList.add(value);
+        if (Array.isArray(value)) {
+          this._element.classList.add(...value);
+        } else {
+          this._element.classList.add(value);
+        }
       } else {
         this._element.setAttribute(key, value);
       }
