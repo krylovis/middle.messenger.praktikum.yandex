@@ -3,6 +3,7 @@ import avatar from '../../../static/images/captain-jack-sparrow.jpg';
 import {
   Input,
   NavLink,
+  ButtonArrow,
   InputField,
   ProfileAvatar,
   ProfileForm
@@ -157,6 +158,10 @@ const navLinkLogout = new NavLink ({
   attr: { class: ["nav-link_type_profile", "nav-link_type_danger"]}
 });
 
+const buttonArrow = new ButtonArrow ({
+  toPage: "",
+});
+
 const profileForm = new ProfileForm({
   lists: [
     profileEmailField,
@@ -173,6 +178,7 @@ const profileForm = new ProfileForm({
 });
 
 export const profilePage = new ProfilePage({
+  ButtonArrow: buttonArrow,
   ProfileAvatar: profileAvatar,
   ProfileForm: profileForm
 });
