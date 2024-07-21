@@ -28,7 +28,7 @@ const inputLoginField = new InputField ({
   label: "Логин",
 });
 
-// login password
+// input password
 const inputPassword = new Input({
   id: "inputPassword",
   name: "password",
