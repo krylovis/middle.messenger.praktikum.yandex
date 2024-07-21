@@ -5,6 +5,7 @@ import InputField from '@/components/input-field';
 import NavLink from '@/components/nav-link';
 import FormContainer from '@/components/form-container';
 import ProfileForm from '@/components/profile-form';
+import ProfileAvatar from '@/components/profile-avatar';
 
 export {
   Button,
@@ -13,11 +14,11 @@ export {
   InputField,
   NavLink,
   FormContainer,
-  ProfileForm
+  ProfileForm,
+  ProfileAvatar,
 };
 
 // export { ButtonArrow } from '@/components/button-arrow';
-// export { ProfileAvatar } from '@/components/profile-avatar';
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
 // export { ChatItem } from '@/components/chat-item';

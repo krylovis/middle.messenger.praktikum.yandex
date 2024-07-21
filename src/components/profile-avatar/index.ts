@@ -1,2 +1,9 @@
-import './profile-avatar.scss';
-export { default as ProfileAvatar } from './profile-avatar.hbs?raw';
+import Block from '@/utils/Block';
+import { profileAvatarTemplate } from './template';
+
+export default class ProfileAvatar extends Block {
+  render() {
+    return profileAvatarTemplate;
+  }
+}
+

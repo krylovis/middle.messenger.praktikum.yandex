@@ -5,6 +5,7 @@ import {
   Button,
   InputError,
   InputField,
+  ProfileAvatar,
   ProfileForm
 } from '@/components';
 
@@ -20,6 +21,11 @@ const profile = {
   avatar: avatar,
 };
 
+const profileAvatar = new ProfileAvatar({
+  avatar,
+  name: profile.first_name
+});
+
 const profileForm = new ProfileForm({
   // NavLinkEdit: ,
   // NavLinkPass: ,
@@ -28,5 +34,6 @@ const profileForm = new ProfileForm({
 });
 
 export const profilePage = new ProfilePage({
+  ProfileAvatar: profileAvatar,
   ProfileForm: profileForm
 });
