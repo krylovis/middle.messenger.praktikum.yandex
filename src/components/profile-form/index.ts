@@ -1,2 +1,8 @@
-import './profile-form.scss';
-export { default as ProfileForm } from './profile-form.hbs?raw';
+import Block from '@/utils/Block';
+import { profileFormTemplate } from './template';
+
+export default class ProfileForm extends Block {
+  render() {
+    return profileFormTemplate;
+  }
+}

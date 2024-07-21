@@ -4,6 +4,7 @@ import InputError from '@/components/input-error';
 import InputField from '@/components/input-field';
 import NavLink from '@/components/nav-link';
 import FormContainer from '@/components/form-container';
+import ProfileForm from '@/components/profile-form';
 
 export {
   Button,
@@ -11,16 +12,12 @@ export {
   InputError,
   InputField,
   NavLink,
-  FormContainer
+  FormContainer,
+  ProfileForm
 };
 
-// export { Button } from '@/components/button';
 // export { ButtonArrow } from '@/components/button-arrow';
-// export { Input } from '@/components/input';
-// export { InputField } from '@/components/input-field';
-// export { NavLink } from '@/components/nav-link';
 // export { ProfileAvatar } from '@/components/profile-avatar';
-// export { ProfileForm } from '@/components/profile-form';
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
 // export { ChatItem } from '@/components/chat-item';

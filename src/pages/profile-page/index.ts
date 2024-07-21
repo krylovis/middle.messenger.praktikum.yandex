@@ -20,6 +20,13 @@ const profile = {
   avatar: avatar,
 };
 
+const profileForm = new ProfileForm({
+  // NavLinkEdit: ,
+  // NavLinkPass: ,
+  // NavLinkLogout: ,
+  lists: []
+});
+
 export const profilePage = new ProfilePage({
-  // ProfileForm: profileForm
+  ProfileForm: profileForm
 });
