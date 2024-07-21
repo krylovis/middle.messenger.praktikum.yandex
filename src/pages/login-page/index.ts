@@ -63,9 +63,6 @@ const formContainer = new FormContainer({
   formTitle: "Вход",
   formAction: "signin-action",
   formName: "signin-form",
-  submitText: "Авторизоваться",
-  linkText: "Нет аккаунта?",
-  toPage: "register",
   SubmitButton: submitButton,
   NavLink: navLink,
   lists: [inputLoginField, inputPasswordField]
