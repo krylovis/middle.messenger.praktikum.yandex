@@ -1,7 +1,9 @@
 import { loginPage } from '@/pages/login-page';
+import { registerPage } from '@/pages/register-page';
 
 export {
-  loginPage
+  loginPage,
+  registerPage
 };
 
 // export { RegisterPage } from '@/pages/register-page';
