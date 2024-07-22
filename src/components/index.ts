@@ -7,6 +7,7 @@ import FormContainer from '@/components/form-container';
 import ProfileForm from '@/components/profile-form';
 import ProfileAvatar from '@/components/profile-avatar';
 import ButtonArrow from '@/components/button-arrow';
+import Avatar from '@/components/avatar';
 
 export {
   Button,
@@ -18,6 +19,7 @@ export {
   ProfileForm,
   ProfileAvatar,
   ButtonArrow,
+  Avatar,
 };
 
 // export { PopupContainer } from '@/components/popup/popup-container';
@@ -27,5 +29,4 @@ export {
 // export { ChatHeader } from '@/components/chat-header';
 // export { ChatContent } from '@/components/chat-content';
 // export { ChatFooter } from '@/components/chat-footer';
-// export { Avatar } from '@/components/avatar';
 // export { DropdownMenu } from '@/components/dropdown-menu';
