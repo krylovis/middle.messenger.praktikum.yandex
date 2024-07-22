@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import Handlebars from "handlebars";
-import { v4 as getID } from 'uuid';
+import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
 
 export default class Block {
