@@ -154,7 +154,9 @@ export default class Block {
     this.addAttributes();
   }
 
-  render() {}
+  render() {
+    //
+  }
 
   getContent() {
     return this.element;
