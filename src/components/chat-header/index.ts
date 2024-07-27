@@ -1,2 +1,9 @@
-import './chat-header.scss';
-export { default as ChatHeader } from './chat-header.hbs?raw';
+import Block from '@/utils/Block';
+import { chatHeaderTemplate } from './template';
+
+export default class ChatHeader extends Block {
+  render() {
+    return chatHeaderTemplate;
+  }
+}
+

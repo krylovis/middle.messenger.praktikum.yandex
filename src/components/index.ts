@@ -10,6 +10,7 @@ import ButtonArrow from '@/components/button-arrow';
 import Avatar from '@/components/avatar';
 import ChatList from '@/components/chat-list';
 import ChatItem from '@/components/chat-item';
+import ChatHeader from '@/components/chat-header';
 
 export {
   Button,
@@ -24,11 +25,11 @@ export {
   Avatar,
   ChatList,
   ChatItem,
+  ChatHeader,
 };
 
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
-// export { ChatHeader } from '@/components/chat-header';
 // export { ChatContent } from '@/components/chat-content';
 // export { ChatFooter } from '@/components/chat-footer';
 // export { DropdownMenu } from '@/components/dropdown-menu';
