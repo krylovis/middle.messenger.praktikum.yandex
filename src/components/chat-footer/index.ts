@@ -1,2 +1,8 @@
-import './chat-footer.scss';
-export { default as ChatFooter } from './chat-footer.hbs?raw';
+import Block from '@/utils/Block';
+import { chatFooterTemplate } from './template';
+
+export default class ChatFooter extends Block {
+  render() {
+    return chatFooterTemplate;
+  }
+}

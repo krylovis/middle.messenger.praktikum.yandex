@@ -6,4 +6,3 @@ export default class ChatHeader extends Block {
     return chatHeaderTemplate;
   }
 }
-

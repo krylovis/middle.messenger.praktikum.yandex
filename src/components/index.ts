@@ -11,6 +11,7 @@ import Avatar from '@/components/avatar';
 import ChatList from '@/components/chat-list';
 import ChatItem from '@/components/chat-item';
 import ChatHeader from '@/components/chat-header';
+import ChatFooter from '@/components/chat-footer';
 
 export {
   Button,
@@ -26,10 +27,10 @@ export {
   ChatList,
   ChatItem,
   ChatHeader,
+  ChatFooter,
 };
 
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
 // export { ChatContent } from '@/components/chat-content';
-// export { ChatFooter } from '@/components/chat-footer';
 // export { DropdownMenu } from '@/components/dropdown-menu';
