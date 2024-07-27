@@ -28,7 +28,6 @@ export {
 
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
-// export { ChatItem } from '@/components/chat-item';
 // export { ChatHeader } from '@/components/chat-header';
 // export { ChatContent } from '@/components/chat-content';
 // export { ChatFooter } from '@/components/chat-footer';

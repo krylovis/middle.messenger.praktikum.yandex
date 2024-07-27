@@ -6,4 +6,3 @@ export default class ChatItem extends Block {
     return chatItemTemplate;
   }
 }
-
