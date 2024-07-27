@@ -1,2 +1,8 @@
-import './chat-content.scss';
-export { default as ChatContent } from './chat-content.hbs?raw';
+import Block from '@/utils/Block';
+import { chatContentTemplate } from './template';
+
+export default class ChatContent extends Block {
+  render() {
+    return chatContentTemplate;
+  }
+}

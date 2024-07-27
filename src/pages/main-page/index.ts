@@ -7,7 +7,8 @@ import {
   Avatar,
   ChatItem,
   ChatHeader,
-  ChatFooter
+  ChatFooter,
+  ChatContent,
 } from '@/components';
 
 const headerAvatar = new Avatar({ });
@@ -17,6 +18,7 @@ const chatHeader = new ChatHeader ({
 });
 
 const chatFooter = new ChatFooter ({});
+const chatContent = new ChatContent ({});
 
 const navLink = new NavLink ({
   toPage: "to-profile",
@@ -48,5 +50,6 @@ const chatList = new ChatList({
 export const mainPage = new MainPage({
   ChatList: chatList,
   ChatHeader: chatHeader,
+  ChatContent: chatContent,
   ChatFooter: chatFooter,
 });
