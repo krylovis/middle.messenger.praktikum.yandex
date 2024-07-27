@@ -10,6 +10,17 @@ export const profile = {
   avatar: avatar,
 };
 
+export const errors = {
+  '404': {
+    errorNum: '404',
+    text: 'Не туда попали',
+  },
+  '500': {
+    errorNum: '500',
+    text: 'Мы уже фиксим'
+  }
+};
+
 export const chatList = [
   { name: 'Опоссум', message: 'Изображение', unread: '2', updatedAt: '10:50', avatar },
   { name: 'Енот', message:'Go на свалку!', unread: '2', updatedAt: '9:10', avatar },

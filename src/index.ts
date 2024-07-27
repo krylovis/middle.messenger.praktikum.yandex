@@ -10,7 +10,7 @@ enum EPages {
   EditProfilePage = 'edit-profile-page',
   ChangePasswordPage = 'change-password-page',
   MainPage = 'main-page',
-  // ErrorPage = 'error-page',
+  ErrorPage = 'error-page',
 }
 
 const pages: any = {
@@ -20,14 +20,19 @@ const pages: any = {
   [EPages.EditProfilePage]: [Pages.editProfilePage],
   [EPages.ChangePasswordPage]: [Pages.changePasswordPage],
   [EPages.MainPage]: [Pages.mainPage],
-  // [EPages.ErrorPage]: [Pages.ErrorPage],
+  [EPages.ErrorPage]: [Pages.getErrorPage],
 };
 
 const app: any = document.querySelector('#app');
 
-function navigate(page: string, args?: { error: string, text: string }): void {
+function navigate(page: string, arg?: { error: string }): void {
   const [source] = pages[page];
-  render('#app', source);
+
+  if(arg?.error) {
+    render('#app', source(arg?.error));
+  } else {
+    render('#app', source);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
       navigate('edit-profile-page');
       break
     case '/404':
-      navigate('error-page', { error: '404', text: 'Не туда попали' });
+      navigate('error-page', { error: '404' });
       break
     case '/500':
-      navigate('error-page', { error: '500', text: 'Мы уже фиксим' });
+      navigate('error-page', { error: '500' });
       break
     case '/change-password':
       navigate('change-password-page');

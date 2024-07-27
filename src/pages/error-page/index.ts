@@ -1,15 +1,22 @@
-import Handlebars from 'handlebars';
+import ErrorPage from './ErrorPage';
+import { NavLink } from '@/components';
+import { errors } from '@/utils/constants';
 
-import './error-page.scss';
-export { default as ErrorPage } from './error-page.hbs?raw';
+const navLink = new NavLink ({
+  toPage: "register",
+  text: "Назад к чатам",
+});
 
-Handlebars.registerHelper('errors', () => ({
-    '404': {
-      errorNum: '404',
-      text: 'Не туда попали',
-    },
-    '500': {
-      errorNum: '500',
-      text: 'Мы уже фиксим'
-    }
-}));
+export const getErrorPage = (error) => {
+  const { text } = errors[error];
+
+  return new ErrorPage({
+    NavLink: navLink,
+    error,
+    text
+  });
+}
+
+// export const errorPage = new ErrorPage({
+//   NavLink: navLink
+// });
