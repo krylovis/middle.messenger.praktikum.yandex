@@ -8,6 +8,7 @@ import ProfileForm from '@/components/profile-form';
 import ProfileAvatar from '@/components/profile-avatar';
 import ButtonArrow from '@/components/button-arrow';
 import Avatar from '@/components/avatar';
+import ChatList from '@/components/chat-list';
 
 export {
   Button,
@@ -20,12 +21,12 @@ export {
   ProfileAvatar,
   ButtonArrow,
   Avatar,
+  ChatList,
 };
 
 // export { PopupContainer } from '@/components/popup/popup-container';
 // export { PopupChangeAvatar } from '@/components/popup/popup-change-avatar';
 // export { ChatItem } from '@/components/chat-item';
-// export { ChatList } from '@/components/chat-list';
 // export { ChatHeader } from '@/components/chat-header';
 // export { ChatContent } from '@/components/chat-content';
 // export { ChatFooter } from '@/components/chat-footer';

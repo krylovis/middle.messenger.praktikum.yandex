@@ -1,2 +1,8 @@
-import './chat-list.scss';
-export { default as ChatList } from './chat-list.hbs?raw';
+import Block from '@/utils/Block';
+import { chatListTemplate } from './template';
+
+export default class ChatList extends Block {
+  render() {
+    return chatListTemplate;
+  }
+}
