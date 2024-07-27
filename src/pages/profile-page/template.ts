@@ -13,4 +13,6 @@ export const profilePageTemplate = `
       {{{ ProfileForm }}}
     </div>
   </div>
+
+  {{{ PopupChangeAvatar }}}
 </section>`;

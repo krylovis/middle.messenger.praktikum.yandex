@@ -150,5 +150,5 @@ const profileForm = new ProfileForm({
 export const editProfilePage = new ProfilePage({
   ButtonArrow: buttonArrow,
   ProfileAvatar: profileAvatar,
-  ProfileForm: profileForm
+  ProfileForm: profileForm,
 });
