@@ -9,6 +9,7 @@ import ProfileAvatar from '@/components/profile-avatar';
 import ButtonArrow from '@/components/button-arrow';
 import Avatar from '@/components/avatar';
 import ChatList from '@/components/chat-list';
+import ChatItem from '@/components/chat-item';
 
 export {
   Button,
@@ -22,6 +23,7 @@ export {
   ButtonArrow,
   Avatar,
   ChatList,
+  ChatItem,
 };
 
 // export { PopupContainer } from '@/components/popup/popup-container';
