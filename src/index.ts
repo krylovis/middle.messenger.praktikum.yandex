@@ -3,9 +3,9 @@
 // import * as Pages from '@/pages/index';
 // import PopupWithForm from '@/components/popup/PopupWithForm';
 import render from '@/utils/render';
-import { changePasswordPage } from '@/pages';
+import { mainPage } from '@/pages';
 
-render('#app', changePasswordPage);
+render('#app', mainPage);
 
 // enum EPages {
 //   LoginPage = 'login',
