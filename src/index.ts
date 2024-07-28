@@ -1,7 +1,11 @@
 import * as Pages from '@/pages/index';
 import render from '@/utils/render';
+import FormValidator from '@/utils/FormValidator';
+import { formSelectors } from '@/utils/constants';
 
 import PopupWithForm from '@/components/popup/PopupWithForm';
+
+const formValidators = {};
 
 enum EPages {
   LoginPage = 'login',
@@ -33,6 +37,8 @@ function navigate(page: string, arg?: { error: string }): void {
   } else {
     render('#app', source);
   }
+
+  enableValidation();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -88,3 +94,14 @@ if (profileEditAvatarButton) {
 
   profileEditAvatarButton.addEventListener('click', openEditAvatar);
 }
+
+const enableValidation = () => {
+  const form = document.querySelector('.form-container__content');
+
+  if (form) {
+    const validator = new FormValidator(form, formSelectors);
+    const formName = form.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  }
+};

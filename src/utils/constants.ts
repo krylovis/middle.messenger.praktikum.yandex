@@ -38,3 +38,13 @@ export const chatList = [
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
 ];
+
+export const formSelectors = {
+  label: '.input-field',
+  input: '.input',
+  inputTypeError: 'input_type_error',
+  inputError: '.input-error',
+  inputErrorActive: 'input-error_active',
+  submitBtn: '.button',
+  submitBtnInactive: 'button_inactive',
+};
