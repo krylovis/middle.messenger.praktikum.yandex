@@ -65,7 +65,15 @@ const formContainer = new FormContainer({
   formName: "signin-form",
   SubmitButton: submitButton,
   NavLink: navLink,
-  lists: [inputLoginField, inputPasswordField]
+  lists: [inputLoginField, inputPasswordField],
+  events: {
+    submit: (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      console.log('formData', [...formData]);
+    }
+  }
 });
 
 export const loginPage = new LoginPage({
