@@ -15,5 +15,3 @@ export {
   mainPage,
   getErrorPage,
 };
-
-// export { ErrorPage } from '@/pages/error-page';

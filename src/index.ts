@@ -27,8 +27,6 @@ const pages: any = {
   [EPages.ErrorPage]: [Pages.getErrorPage],
 };
 
-const app: any = document.querySelector('#app');
-
 function navigate(page: string, arg?: { error: string }): void {
   const [source] = pages[page];
 
