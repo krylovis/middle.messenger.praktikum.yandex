@@ -62,22 +62,25 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount() {
+  private _componentDidMount(): void {
     this.componentDidMount();
-    Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+
+    Object.values(this.children).forEach((child): void => {
+      if(child instanceof Block) {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 
-  componentDidMount(): void {
-    return;
+  public componentDidMount(): void {
+    // return;
   }
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps?: TProps, newProps?: TProps) {
+  private _componentDidUpdate(oldProps?: TProps, newProps?: TProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -85,11 +88,11 @@ export default class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps?: TProps, newProps?: TProps): boolean {
+  public componentDidUpdate(oldProps?: TProps, newProps?: TProps): boolean {
     return true;
   }
 
-  _getChildrenPropsAndProps(propsAndChildren: TData) {
+  private _getChildrenPropsAndProps(propsAndChildren: TData) {
     const children: Record<string, TChildren> = {};
     const props: TData = {};
     const lists: Record<string, TChildren[]> = {};
@@ -107,8 +110,7 @@ export default class Block {
     return {children, props, lists};
   }
 
-  addAttributes(): void {
-    // const { attr = {} } = this.props;
+  public addAttributes(): void {
     const { attr = {} as TAttr } = this.props;
 
     Object.entries(attr).forEach(([key, value]): void => {
@@ -124,7 +126,7 @@ export default class Block {
     });
   }
 
-  setProps = (nextProps: TProps) => {
+  public setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
@@ -136,29 +138,35 @@ export default class Block {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     console.log("Render")
+
     const propsAndStubs = { ...this.props };
     const _tmpId = getID();
 
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+      if(child instanceof Block) {
+        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+      }
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
         propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
-    const fragment: HTMLElement = this._createDocumentElement('template');
+    const fragment = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child._id}"]`)
-      stub.replaceWith(child.getContent());
+      if(child instanceof Block) {
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        stub.replaceWith(child.getContent());
+      }
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
       const listCont = this._createDocumentElement('template');
+
       child.forEach((item) => {
         if (item instanceof Block) {
             listCont.content.append(item.getContent());
@@ -183,11 +191,11 @@ export default class Block {
     //
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  private _makePropsProxy(props) {
     const self = this;
 
     return new Proxy(props, {
@@ -207,11 +215,12 @@ export default class Block {
     });
   }
 
-  _createDocumentElement(tagName: string) {
+  // private _createDocumentElement(tagName: string): HTMLElement | HTMLMetaElement {
+  private _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName);
   }
 
-  show() {
+  public show() {
     const element = this.getContent();
 
     if(element) {
@@ -219,7 +228,7 @@ export default class Block {
     }
   }
 
-  hide() {
+  public hide() {
     const element = this.getContent();
 
     if(element) {
