@@ -25,7 +25,7 @@ const profileEmail = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.email,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
@@ -44,7 +44,7 @@ const profileLogin = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.login,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
@@ -63,7 +63,7 @@ const profileFirstName = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.first_name,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
@@ -82,7 +82,7 @@ const profileSecondName = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.second_name,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
@@ -101,7 +101,7 @@ const profileDisplayName = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.display_name,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
@@ -120,7 +120,7 @@ const profilePhone = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.phone,
-    disabled: true,
+    disabled: 'true',
   }
 });
 
