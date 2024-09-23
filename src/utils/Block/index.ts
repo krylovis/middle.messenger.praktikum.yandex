@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
 
 type TProps = Record<string, string | number | boolean>;
 
-type TAttr = Record<string, string | number | boolean | string[]>;
+type TAttr = Record<string, string | string[]>;
 type TEvent = Record<string, EventListener>;
 type TChildren = Block;
 type TLists = Block[];
 
-type TData = Record<string, TEvent | TChildren | TLists | TAttr | string>;
+type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
 
 export default class Block {
   static EVENTS = {
@@ -68,15 +69,15 @@ export default class Block {
     });
   }
 
-  componentDidMount(oldProps: TProps) {
-    //
+  componentDidMount(): void {
+    return;
   }
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps?: TProps, newProps?: TProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -84,14 +85,14 @@ export default class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps?: TProps, newProps?: TProps): boolean {
     return true;
   }
 
   _getChildrenPropsAndProps(propsAndChildren: TData) {
-    const children = {};
-    const props = {};
-    const lists = {};
+    const children: Record<string, TChildren> = {};
+    const props: TData = {};
+    const lists: Record<string, TChildren[]> = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -106,23 +107,24 @@ export default class Block {
     return {children, props, lists};
   }
 
-  addAttributes() {
-    const {attr = {}} = this.props;
+  addAttributes(): void {
+    // const { attr = {} } = this.props;
+    const { attr = {} as TAttr } = this.props;
 
-    Object.entries(attr).forEach(([key, value]) => {
+    Object.entries(attr).forEach(([key, value]): void => {
       if(key === 'class') {
         if (Array.isArray(value)) {
           this._element?.classList.add(...value);
-        } else {
+        } else if(typeof value === 'string') {
           this._element?.classList.add(value);
         }
-      } else {
+      } else if(typeof value === 'string') {
         this._element?.setAttribute(key, value);
       }
     });
   }
 
-  setProps = nextProps => {
+  setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
@@ -147,7 +149,7 @@ export default class Block {
         propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
-    const fragment = this._createDocumentElement('template');
+    const fragment: HTMLElement = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
