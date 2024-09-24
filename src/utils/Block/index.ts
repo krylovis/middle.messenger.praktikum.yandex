@@ -26,7 +26,7 @@ export default class Block {
   attributes = {};
 
   _element: HTMLElement | null = null;
-  _id = getID();
+  _id: string = getID();
   eventBus: () => EventBus;
 
   constructor(propsWithChildren: TData = {}) {
@@ -154,41 +154,44 @@ export default class Block {
         propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
-    const fragment = this._createDocumentElement('template');
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
       if(child instanceof Block) {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-        stub.replaceWith(child.getContent());
+        const childContent = child.getContent() as HTMLElement;
+        stub?.replaceWith(childContent);
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
-      const listCont = this._createDocumentElement('template');
+    Object.entries(this.lists).forEach(([key, child]): void => {
+      const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       child.forEach((item) => {
         if (item instanceof Block) {
-            listCont.content.append(item.getContent());
+            const itemContent = item.getContent() as HTMLElement;
+            listCont.content.append(itemContent);
         } else {
             listCont.content.append(`${item}`);
         }
       });
+
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-      stub.replaceWith(listCont.content);
+      stub?.replaceWith(listCont.content);
     });
 
     const newElement = fragment.content.firstElementChild;
     if (this._element) {
-      this._element.replaceWith(newElement);
+      this._element?.replaceWith(newElement);
     }
     this._element = newElement;
     this._addEvents();
     this.addAttributes();
   }
 
-  render() {
-    //
+  render(): string {
+    return '';
   }
 
   public getContent() {
@@ -215,8 +218,7 @@ export default class Block {
     });
   }
 
-  // private _createDocumentElement(tagName: string): HTMLElement | HTMLMetaElement {
-  private _createDocumentElement(tagName: string): HTMLElement {
+  private _createDocumentElement(tagName: string, options?: ElementCreationOptions): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
   }
 
