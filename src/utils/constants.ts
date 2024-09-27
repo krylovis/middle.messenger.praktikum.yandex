@@ -1,5 +1,10 @@
 import avatar from '../../static/images/captain-jack-sparrow.jpg';
 
+export const BASE_URL = '';
+export const HEADERS = {
+  'Content-Type': 'application/json',
+};
+
 export const profile = {
   login: 'captain-jack-sparrow',
   first_name: 'Jack',
