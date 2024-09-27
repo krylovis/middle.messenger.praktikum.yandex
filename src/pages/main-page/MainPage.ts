@@ -1,8 +1,8 @@
-import Block from '@/utils/Block/index';
+import Block, { TData } from '@/utils/Block/index';
 import { mainPageTemplate } from './template';
 
 export default class MainPage extends Block {
-  constructor(props) {
+  constructor(props: TData) {
     super({
       ...props,
     })

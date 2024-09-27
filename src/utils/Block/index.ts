@@ -3,14 +3,14 @@ import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
 
-type TProps = Record<string, string | number | boolean>;
+export type TProps = Record<string, string | number | boolean>;
 
 type TAttr = Record<string, string | string[]>;
 type TEvent = Record<string, EventListener>;
 type TChildren = Block;
 type TLists = Block[];
 
-type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
+export type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
 
 export default class Block {
   static EVENTS = {

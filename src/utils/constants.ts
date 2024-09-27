@@ -10,7 +10,7 @@ export const profile = {
   avatar: avatar,
 };
 
-export const errors = {
+export const errors: Record<string, Record<string, string>> = {
   '404': {
     errorNum: '404',
     text: 'Не туда попали',

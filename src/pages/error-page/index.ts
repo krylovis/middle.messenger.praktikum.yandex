@@ -7,7 +7,7 @@ const navLink = new NavLink ({
   text: "Назад к чатам",
 });
 
-export const getErrorPage = (error) => {
+export const getErrorPage = (error: string) => {
   const { text } = errors[error];
 
   return new ErrorPage({

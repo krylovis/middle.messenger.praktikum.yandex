@@ -80,7 +80,7 @@ const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-bu
 if (profileEditAvatarButton) {
   const popupEditAvatar = new PopupWithForm({
     selector: '.popup_type_change-avatar',
-    handleFormSubmit: (formData: any) => {
+    handleFormSubmit: (formData: FormData): void => {
       console.log('formData', formData);
     }
   });
