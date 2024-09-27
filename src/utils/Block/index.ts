@@ -32,7 +32,7 @@ export default class Block {
   constructor(propsWithChildren: TData = {}) {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
-    this.props = this._makePropsProxy({ ...props });
+    this.props = this._makePropsProxy(this, { ...props });
     this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
@@ -44,9 +44,9 @@ export default class Block {
     if(this.props?.events) {
       const { events } = this.props;
 
-      Object.keys(events).forEach((eventName) => {
+      Object.keys(events).forEach((eventName: string): void => {
         console.log('eventName', eventName);
-        this._element?.addEventListener(eventName, events[eventName]);
+        this._element?.addEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
   }
@@ -107,7 +107,7 @@ export default class Block {
       }
     });
 
-    return {children, props, lists};
+    return { children, props, lists };
   }
 
   public addAttributes(): void {
@@ -168,12 +168,12 @@ export default class Block {
     Object.entries(this.lists).forEach(([key, child]): void => {
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
-      child.forEach((item) => {
+      (child as Block[]).forEach((item) => {
         if (item instanceof Block) {
-            const itemContent = item.getContent() as HTMLElement;
-            listCont.content.append(itemContent);
+          const itemContent = item.getContent() as HTMLElement;
+          listCont.content.append(itemContent);
         } else {
-            listCont.content.append(`${item}`);
+          listCont.content.append(`${item}`);
         }
       });
 
@@ -183,9 +183,9 @@ export default class Block {
 
     const newElement = fragment.content.firstElementChild;
     if (this._element) {
-      this._element?.replaceWith(newElement);
+      this._element?.replaceWith(newElement as HTMLElement);
     }
-    this._element = newElement;
+    this._element = newElement as HTMLElement;
     this._addEvents();
     this.addAttributes();
   }
@@ -198,20 +198,23 @@ export default class Block {
     return this.element;
   }
 
-  private _makePropsProxy(props) {
-    const self = this;
-
+  private _makePropsProxy(self: Block, props: TData) {
     return new Proxy(props, {
       get(target, prop) {
-        const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
+        const value = target[prop as string];
+        return typeof value === "function" ? (value as EventListener).bind(target) : value;
+        return value;
       },
+
       set(target, prop, value) {
         const oldTarget = {...target};
-        target[prop] = value;
+
+        target[prop as string] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+
         return true;
       },
+
       deleteProperty() {
         throw new Error('No access');
       }
