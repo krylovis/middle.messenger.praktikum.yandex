@@ -203,7 +203,6 @@ export default class Block {
       get(target, prop) {
         const value = target[prop as string];
         return typeof value === "function" ? (value as EventListener).bind(target) : value;
-        return value;
       },
 
       set(target, prop, value) {

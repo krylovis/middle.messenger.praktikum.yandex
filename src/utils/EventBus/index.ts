@@ -1,11 +1,12 @@
+type TListener = <T>(...args: T[]) => void;
 export default class EventBus {
-  readonly listeners: Record<string, Function[]>;
+  readonly listeners: Record<string, TListener[]>;
 
   constructor() {
     this.listeners = {};
   }
 
-  on(event: string, callback: () => void) {
+  on(event: string, callback: TListener): void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
