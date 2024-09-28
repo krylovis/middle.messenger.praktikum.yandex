@@ -1,16 +1,16 @@
 import Popup from './Popup.js';
 
-type TData = {
+interface TData {
   selector: string,
-  handleFormSubmit: () => void
-};
+  handleFormSubmit: (formData?: Record<string, string | number | boolean>) => void
+}
 
 export default class PopupWithForm extends Popup {
   readonly _popupForm: HTMLFormElement | null | undefined;
-  readonly _formData: { [key: string]: any };
-  readonly _inputList: NodeListOf<Element> | undefined;
+  readonly _formData: Record<string, string | number | boolean>;
+  readonly _inputList: NodeListOf<HTMLFormElement> | undefined;
   readonly _popupTitle: HTMLElement | null | undefined;
-  readonly _handleFormSubmit: (value: { [key: string]: any }) => void;
+  readonly _handleFormSubmit: (data: Record<string, string | number | boolean>) => void;
   readonly _handleSubmitBind: (event: SubmitEvent) => void;
 
   constructor({ selector, handleFormSubmit }: TData) {
@@ -24,7 +24,9 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._inputList?.forEach((input: { [key: string]: any }) => this._formData[input.name] = input?.value);
+    this._inputList?.forEach((input: HTMLFormElement) => {
+      this._formData[input.name] = input?.value;
+    });
     return this._formData;
   };
 
@@ -33,13 +35,13 @@ export default class PopupWithForm extends Popup {
     this._popupForm?.reset();
   };
 
-  setPopupTitle(text: string = 'Загрузите файл') {
+  setPopupTitle(text = 'Загрузите файл') {
     const target = this._popupTitle as Element;
     target.textContent = text;
   }
 
-  setInputValues(data: { [key: string]: any }) {
-    this._inputList?.forEach((input: { [key: string]: any }) => {
+  setInputValues(data: Record<string, string | number | boolean>) {
+    this._inputList?.forEach((input: HTMLFormElement) => {
       input.value = data[input.name];
     })
   }
