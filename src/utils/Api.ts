@@ -65,6 +65,22 @@ class Api {
       req.send();
     })
   }
+
+  public get({ path }: IReqParams) {
+		return this._request({ method: METHODS.GET, path });
+	}
+
+  public post({ path, data }: IReqParams) {
+		return this._request({ method: METHODS.POST, path, data });
+	}
+
+  public put({ path, data }: IReqParams) {
+		return this._request({ method: METHODS.PUT, path, data });
+	}
+
+	public delete({ path }: IReqParams) {
+		return this._request({ method: METHODS.DELETE, path });
+	}
 }
 
 export const api = new Api({
