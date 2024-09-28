@@ -3,14 +3,13 @@ import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
 
+export type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
 export type TProps = Record<string, string | number | boolean>;
 
 type TAttr = Record<string, string | string[]>;
 type TEvent = Record<string, EventListener>;
 type TChildren = Block;
 type TLists = Block[];
-
-export type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
 
 export default class Block {
   static EVENTS = {
@@ -80,15 +79,15 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps?: TProps, newProps?: TProps) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+  private _componentDidUpdate() {
+    const response = this.componentDidUpdate();
     if (!response) {
       return;
     }
     this._render();
   }
 
-  public componentDidUpdate(oldProps?: TProps, newProps?: TProps): boolean {
+  public componentDidUpdate(): boolean {
     return true;
   }
 
