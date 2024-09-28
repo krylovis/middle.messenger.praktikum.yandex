@@ -30,9 +30,9 @@ class Api {
   private _request({ method, path = '', timeout, data }: IReqParams) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
-      req.open(method, `${this._baseUrl}${path}`);
 
       // req.withCredentials = true;
+      req.open(method, `${this._baseUrl}${path}`);
       req.responseType = 'json';
       if(timeout) {
         req.timeout = timeout;
