@@ -70,8 +70,10 @@ const formContainer = new FormContainer({
     submit: (event) => {
       event.preventDefault();
 
-      const formData = new FormData(event.target);
-      console.log('formData', [...formData]);
+      const formData = new FormData(event.target as HTMLFormElement);
+      for(const [name, value] of formData.entries()) {
+        console.log(`${name}: ${value}`);
+      }
     }
   }
 });
