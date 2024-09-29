@@ -45,7 +45,7 @@ export const chatList = [
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
 ];
 
-export const messageList = [
+export const messageData = [
   {
     date: '29 Сентября',
     data: [

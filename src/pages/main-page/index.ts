@@ -1,6 +1,6 @@
 import MainPage from './MainPage';
 import { chatList as chatItems } from '@/utils/constants';
-// import { messageList } from '@/utils/constants';
+import { messageData } from '@/utils/constants';
 
 import {
   NavLink,
@@ -10,6 +10,8 @@ import {
   ChatHeader,
   ChatFooter,
   ChatContent,
+  MessagesForDate,
+  MessageItem,
 } from '@/components';
 
 const headerAvatar = new Avatar({ });
@@ -18,9 +20,20 @@ const chatHeader = new ChatHeader ({
   Avatar: headerAvatar,
 });
 
-const chatFooter = new ChatFooter ({});
+const messagesForDateList = messageData.map(({ date, data }) => {
+  const messagesList = data.map(({
+    owner, sentedAt, message, media, file
+  }) => {
+    return new MessageItem({
+      owner, sentedAt, message, media, file
+    });
+  });
+
+  return new MessagesForDate({ date, lists: messagesList });
+});
+
 const chatContent = new ChatContent ({
-  // lists: [],
+  lists: messagesForDateList,
 });
 
 const navLink = new NavLink ({
@@ -49,6 +62,8 @@ const chatListComponent = new ChatList({
   NavLink: navLink,
   lists: chatList,
 });
+
+const chatFooter = new ChatFooter ({});
 
 export const mainPage = new MainPage({
   ChatList: chatListComponent,

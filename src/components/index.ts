@@ -15,6 +15,8 @@ import ChatFooter from '@/components/chat-footer';
 import ChatContent from '@/components/chat-content';
 import PopupContainer from '@/components/popup/popup-container';
 import { popupChangeAvatar } from '@/components/popup/popup-change-avatar';
+import MessagesForDate from '@/components/messages-for-date';
+import MessageItem from '@/components/message-item';
 
 export {
   Button,
@@ -34,6 +36,8 @@ export {
   ChatContent,
   PopupContainer,
   popupChangeAvatar,
+  MessagesForDate,
+  MessageItem,
 };
 
 // export { DropdownMenu } from '@/components/dropdown-menu';
