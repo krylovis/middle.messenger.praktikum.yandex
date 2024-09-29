@@ -44,6 +44,26 @@ export const chatList = [
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
 ];
 
+export enum EPages {
+  LoginPage = 'login',
+  RegisterPage = 'register',
+  ProfilePage = 'profile-page',
+  EditProfilePage = 'edit-profile-page',
+  ChangePasswordPage = 'change-password-page',
+  MainPage = 'main-page',
+  ErrorPage = 'error-page',
+}
+
+export enum EFormSelectors {
+  LABEL = '.input-field',
+  INPUT = '.input',
+  INPUTT_TYPE_ERROR = 'input_type_error',
+  INPUT_ERROR = '.input-error',
+  INPUT_ERROR_ACTIVE = 'input-error_active',
+  SUBMIT_BTN = '.button',
+  SUBMIT_BTN_INACTIVE = 'button_inactive',
+}
+
 export const formSelectors = {
   label: '.input-field',
   input: '.input',

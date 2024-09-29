@@ -2,21 +2,12 @@ import Block from '@/utils/Block/index';
 import * as Pages from '@/pages/index';
 import render from '@/utils/render';
 import FormValidator from '@/utils/FormValidator';
-import { formSelectors } from '@/utils/constants';
+import { EPages } from '@/utils/constants';
 
 import PopupWithForm from '@/components/popup/PopupWithForm';
 
-const formValidators = {};
+const formValidators: Record<string, typeof FormValidator> = {};
 
-enum EPages {
-  LoginPage = 'login',
-  RegisterPage = 'register',
-  ProfilePage = 'profile-page',
-  EditProfilePage = 'edit-profile-page',
-  ChangePasswordPage = 'change-password-page',
-  MainPage = 'main-page',
-  ErrorPage = 'error-page',
-}
 type TPages = Record<EPages, Block[] | ((err: string) => Block)[]>
 
 const pages: TPages = {
@@ -102,9 +93,12 @@ const enableValidation = () => {
   const form = document.querySelector('.form-container__content');
 
   if (form) {
-    const validator = new FormValidator(form, formSelectors);
+    const validator = new FormValidator({ formElement: form });
     const formName = form.getAttribute('name');
-    formValidators[formName] = validator;
-    validator.enableValidation();
+
+    if(formName) {
+      formValidators[formName] = validator;
+      validator.enableValidation();
+    }
   }
 };
