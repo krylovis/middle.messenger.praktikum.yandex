@@ -1,4 +1,5 @@
 import avatar from '../../static/images/captain-jack-sparrow.jpg';
+import image from '../../static/images/image(1).png';
 
 export const BASE_URL = '';
 export const HEADERS = {
@@ -42,6 +43,36 @@ export const chatList = [
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
   { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
+];
+
+export const messageList = [
+  {
+    date: '29 Сентября',
+    data: [
+      {
+        owner: '',
+        sentedAt: '11:56',
+        message: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
+        media: '',
+        file: '',
+      },
+      {
+        owner: '',
+        sentedAt: '11:57',
+        message: '',
+        media: image,
+        file: '',
+      },
+      {
+        owner: 'user',
+        sentedAt: '12:00',
+        message: 'Круто!',
+        media: image,
+        file: '',
+        viewed: true,
+      }
+    ],
+  }
 ];
 
 export enum EPages {
