@@ -1,3 +1,10 @@
+@import '../../styles/variables.scss';
+
 .message-item {
   display: flex;
+  padding: 11px;
+  border: solid 1px $color-border;
+  border-radius: 12px;
+  max-width: 40%;
+  width: fit-content;
 }
