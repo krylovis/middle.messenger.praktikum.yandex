@@ -1,5 +1,6 @@
 import MainPage from './MainPage';
 import { chatList as chatItems } from '@/utils/constants';
+// import { messageList } from '@/utils/constants';
 
 import {
   NavLink,
@@ -18,7 +19,9 @@ const chatHeader = new ChatHeader ({
 });
 
 const chatFooter = new ChatFooter ({});
-const chatContent = new ChatContent ({});
+const chatContent = new ChatContent ({
+  // lists: [],
+});
 
 const navLink = new NavLink ({
   toPage: "to-profile",
@@ -27,7 +30,7 @@ const navLink = new NavLink ({
   attr: { class: "nav-link_type_to-profile" }
 });
 
-const lists = chatItems.map(({
+const chatList = chatItems.map(({
   name, message, unread, updatedAt, avatar,
 }) => {
   const itemAvatar = new Avatar({ avatar });
@@ -42,13 +45,13 @@ const lists = chatItems.map(({
 });
 
 // chat list
-const chatList = new ChatList({
+const chatListComponent = new ChatList({
   NavLink: navLink,
-  lists,
+  lists: chatList,
 });
 
 export const mainPage = new MainPage({
-  ChatList: chatList,
+  ChatList: chatListComponent,
   ChatHeader: chatHeader,
   ChatContent: chatContent,
   ChatFooter: chatFooter,
