@@ -1,8 +1,16 @@
 @import '../../styles/variables.scss';
 
 .chat-content {
+  width: 100%;
   display: flex;
   flex: 1;
+
+  &__message-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
   &__empty-text {
     align-self: center;
