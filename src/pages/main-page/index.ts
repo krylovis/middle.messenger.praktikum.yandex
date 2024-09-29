@@ -24,8 +24,18 @@ const messagesForDateList = messageData.map(({ date, data }) => {
   const messagesList = data.map(({
     owner, sentedAt, message, media, file
   }) => {
+    const classList = [];
+    if (owner) {
+      classList.push('message-item_type_owner');
+    }
+
     return new MessageItem({
-      owner, sentedAt, message, media, file
+      owner,
+      sentedAt,
+      message,
+      media,
+      file,
+      attr: { class: classList}
     });
   });
 

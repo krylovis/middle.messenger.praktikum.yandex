@@ -7,4 +7,8 @@
   border-radius: 12px;
   max-width: 40%;
   width: fit-content;
+
+  &_type_owner {
+    align-self: end;
+  }
 }
