@@ -1,14 +1,44 @@
 @import '../../styles/variables.scss';
 
 .message-item {
-  display: flex;
+  display: inline-flex;
   padding: 11px;
   border: solid 1px $color-border;
-  border-radius: 12px;
+  border-radius: 0 12px 12px;
   max-width: 40%;
   width: fit-content;
+  background: $color-background;
+  list-style: none;
 
   &_type_owner {
     align-self: end;
+    background: $color-background-hover;
+    border-radius: 12px 12px 0;
+  }
+
+  &__info {
+    display: inline-block;
+    align-items: center;
+    align-self: flex-end;
+    padding-left: 15px;
+    margin-left: auto;
+    gap: 4px;
+  }
+
+  &__time {
+    display: inline-block;
+    font-size: 9px;
+    color: $color-primary;
+  }
+
+  &__icon {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    width: 10px;
+    height: 5px;
+
+    background-color: $color-primary;
+    @include mask-image($checked-icon, 10px, 5px);
   }
 }
