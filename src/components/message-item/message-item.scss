@@ -33,8 +33,10 @@
     margin-left: auto;
     gap: 4px;
 
-    &_type_image {
+    &_type_img {
       position: absolute;
+      display: inline-flex;
+      float: none;
       right: 11px;
       bottom: 11px;
     }
@@ -42,6 +44,7 @@
 
   &__time {
     display: inline-block;
+    text-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
     font-size: 9px;
     color: $color-primary;
   }
