@@ -67,7 +67,6 @@ export const messageData = [
         owner: 'user',
         sentedAt: '12:00',
         message: 'Круто!',
-        media: image,
         file: '',
         viewed: true,
       }
