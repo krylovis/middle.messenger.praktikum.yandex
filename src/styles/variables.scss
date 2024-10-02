@@ -36,3 +36,9 @@ $color-background-hover: #E4EDFD;
   background-position: center;
   background-size: $x $y;
 }
+
+@mixin arrow-button() {
+  background-size: 26px 26px;
+  border-radius: 50%;
+  background-color: $color-primary;
+}

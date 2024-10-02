@@ -14,6 +14,7 @@ import {
   MessageItem,
   FormMessage,
   Input,
+  ButtonWithIcon,
 } from '@/components';
 
 const headerAvatar = new Avatar({ });
@@ -83,7 +84,15 @@ const inputMessage = new Input({
   attr: { class: "input_type_message" }
 });
 
+const submitButton = new ButtonWithIcon({
+  id: "inputMessage",
+  type: "submit",
+  buttonSize: '28',
+  iconName: 'arrow-right',
+});
+
 const formMessage = new FormMessage ({
+  SubmitButton: submitButton,
   formAction: "new-message-form",
   formName: "new-message-action",
   lists: [inputMessage],
