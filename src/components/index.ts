@@ -17,6 +17,7 @@ import PopupContainer from '@/components/popup/popup-container';
 import { popupChangeAvatar } from '@/components/popup/popup-change-avatar';
 import MessagesForDate from '@/components/messages-for-date';
 import MessageItem from '@/components/message-item';
+import FormMessage from '@/components/form-message';
 
 export {
   Button,
@@ -38,6 +39,7 @@ export {
   popupChangeAvatar,
   MessagesForDate,
   MessageItem,
+  FormMessage,
 };
 
 // export { DropdownMenu } from '@/components/dropdown-menu';

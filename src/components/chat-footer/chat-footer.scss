@@ -23,27 +23,6 @@
     @include mask-image($attach-icon, 20px, 20px);
   }
 
-  &__message-form {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  &__message-input {
-    flex: 1;
-    border: none;
-    padding: 10px 20px;
-    background-color: $color-input;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 500;
-
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
   &__submit {
     cursor: pointer;
     width: 28px;

@@ -12,6 +12,8 @@ import {
   ChatContent,
   MessagesForDate,
   MessageItem,
+  FormMessage,
+  Input,
 } from '@/components';
 
 const headerAvatar = new Avatar({ });
@@ -73,7 +75,36 @@ const chatListComponent = new ChatList({
   lists: chatList,
 });
 
-const chatFooter = new ChatFooter ({});
+const inputMessage = new Input({
+  id: "inputMessage",
+  name: "message",
+  type: "text",
+  placeholder: "Сообщение",
+  attr: { class: "input_type_message" }
+});
+
+const formMessage = new FormMessage ({
+  formAction: "new-message-form",
+  formName: "new-message-action",
+  lists: [inputMessage],
+  events: {
+    submit: (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target as HTMLFormElement);
+      for(const [name, value] of formData.entries()) {
+        console.log(`${name}: ${value}`);
+      }
+
+      const { target } = event;
+      (target as HTMLFormElement)?.reset();
+    }
+  }
+});
+
+const chatFooter = new ChatFooter ({
+  FormMessage: formMessage,
+});
 
 export const mainPage = new MainPage({
   ChatList: chatListComponent,
