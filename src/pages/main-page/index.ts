@@ -91,6 +91,13 @@ const submitButton = new ButtonWithIcon({
   iconName: 'arrow-right',
 });
 
+const buttonMenu = new ButtonWithIcon({
+  id: "inputMessage",
+  type: "button",
+  buttonSize: '32',
+  iconName: 'attach',
+});
+
 const formMessage = new FormMessage ({
   SubmitButton: submitButton,
   formAction: "new-message-form",
@@ -112,6 +119,7 @@ const formMessage = new FormMessage ({
 });
 
 const chatFooter = new ChatFooter ({
+  ButtonMenu: buttonMenu,
   FormMessage: formMessage,
 });
 
