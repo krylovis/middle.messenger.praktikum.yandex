@@ -7,7 +7,6 @@ import {
   InputField,
   ProfileAvatar,
   ProfileForm,
-  popupChangeAvatar,
 } from '@/components';
 
 import ProfilePage from './ProfilePage';
@@ -173,5 +172,4 @@ export const profilePage = new ProfilePage({
   ButtonArrow: buttonArrow,
   ProfileAvatar: profileAvatar,
   ProfileForm: profileForm,
-  PopupChangeAvatar: popupChangeAvatar,
 });
