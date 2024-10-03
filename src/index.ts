@@ -42,7 +42,6 @@ function navigate(page: string, arg?: { error: string }): void {
   //   })
   // }
 
-  console.log('profileEditAvatarButton', profileEditAvatarButton);
   if (profileEditAvatarButton) {
     const popupEditAvatar = new PopupWithForm({
       selector: '.popup_type_change-avatar',
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const enableValidation = () => {
-  const form = document.querySelector('.form-container__content');
+  const form = document.querySelector('.form');
 
   if (form) {
     const validator = new FormValidator({ formElement: form });

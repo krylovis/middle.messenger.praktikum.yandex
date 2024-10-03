@@ -5,8 +5,10 @@ import {
   Button,
   ButtonArrow,
   InputField,
+  InputError,
   ProfileAvatar,
-  ProfileForm
+  ProfileForm,
+  popupChangeAvatar
 } from '@/components';
 
 import ProfilePage from '../profile-page/ProfilePage';
@@ -26,8 +28,13 @@ const profileEmail = new Input({
   }
 });
 
+const inputEmailError = new InputError({
+  attr: { class: "email-error" }
+});
+
 const profileEmailField = new InputField ({
   Input: profileEmail,
+  InputError: inputEmailError,
   id: "profileEmail",
   label: "Почта",
   attr: { class: "input-field_type_profile" }
@@ -44,8 +51,13 @@ const profileLogin = new Input({
   }
 });
 
+const inputLoginError = new InputError({
+  attr: { class: "login-error" }
+});
+
 const profileLoginField = new InputField ({
   Input: profileLogin,
+  InputError: inputLoginError,
   id: "profileLogin",
   label: "Логин",
   attr: { class: "input-field_type_profile" }
@@ -62,8 +74,13 @@ const profileFirstName = new Input({
   }
 });
 
+const inputFirstNameError = new InputError({
+  attr: { class: "first-name-error" }
+});
+
 const profileFirstNameField = new InputField ({
   Input: profileFirstName,
+  InputError: inputFirstNameError,
   id: "profileFirstName",
   label: "Имя",
   attr: { class: "input-field_type_profile" }
@@ -80,8 +97,13 @@ const profileSecondName = new Input({
   }
 });
 
+const inputSecondNameError = new InputError({
+  attr: { class: "second-name-error" }
+});
+
 const profileSecondNameField = new InputField ({
   Input: profileSecondName,
+  InputError: inputSecondNameError,
   id: "profileSecondName",
   label: "Фамилия",
   attr: { class: "input-field_type_profile" }
@@ -98,8 +120,13 @@ const profileDisplayName = new Input({
   }
 });
 
+const inputDisplayNameError = new InputError({
+  attr: { class: "display-name-error" }
+});
+
 const profileDisplayNameField = new InputField ({
   Input: profileDisplayName,
+  InputError: inputDisplayNameError,
   id: "profileDisplayName",
   label: "Имя&nbsp;в&nbsp;чате",
   attr: { class: "input-field_type_profile" }
@@ -116,8 +143,13 @@ const profilePhone = new Input({
   }
 });
 
+const inputPhoneError = new InputError({
+  attr: { class: "phone-error" }
+});
+
 const profilePhoneField = new InputField ({
   Input: profilePhone,
+  InputError: inputPhoneError,
   id: "profilePhone",
   label: "Телефон",
   attr: { class: "input-field_type_profile" }
@@ -143,12 +175,22 @@ const profileForm = new ProfileForm({
     profileDisplayNameField,
     profilePhoneField,
   ],
-
   SubmitButton: submitButton,
+  events: {
+    submit: (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target as HTMLFormElement);
+      for(const [name, value] of formData.entries()) {
+        console.log(`${name}: ${value}`);
+      }
+    }
+  }
 });
 
 export const editProfilePage = new ProfilePage({
   ButtonArrow: buttonArrow,
   ProfileAvatar: profileAvatar,
   ProfileForm: profileForm,
+  PopupChangeAvatar: popupChangeAvatar,
 });
