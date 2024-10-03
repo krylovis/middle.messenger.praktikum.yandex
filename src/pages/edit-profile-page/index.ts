@@ -15,6 +15,7 @@ import ProfilePage from '../profile-page/ProfilePage';
 
 const profileAvatar = new ProfileAvatar({
   avatar: profile.avatar,
+  isEditAvatar: true,
 });
 
 // email input
