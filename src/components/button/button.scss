@@ -1,14 +1,17 @@
+@import '../../styles/variables.scss';
+
 .button {
   width: 100%;
   font-weight: 500;
   font-size: 13px;
   line-height: 100%;
   text-align: center;
-  color: #fff;
+  color: white;
   border: none;
   padding: 12px;
-  background-color: #3369f3;
+  background-color: $color-primary;
   border-radius: 8px;
+  cursor: pointer;
 
   &_type_profile {
     align-self: center;
