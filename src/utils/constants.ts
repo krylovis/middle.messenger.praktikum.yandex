@@ -1,6 +1,12 @@
 import avatar from '../../static/images/captain-jack-sparrow.jpg';
 import image from '../../static/images/image(1).png';
 
+export const PASSWORD_PATTERN = '(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,40}';
+export const EMAIL_PATTERN = "[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,4}";
+// pass '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}'
+// mobile pattern '/^((\\+7|7|8)+([0-9]){10})$/g'
+// email '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}'
+
 export const BASE_URL = '';
 export const HEADERS = {
   'Content-Type': 'application/json',
