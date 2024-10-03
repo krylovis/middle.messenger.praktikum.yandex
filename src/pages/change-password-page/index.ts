@@ -83,7 +83,7 @@ const repeatNewPasswordField = new InputField ({
 const submitButton = new Button ({
   type: "submit",
   text: "Сохранить",
-  attr: { class: "button_type_profile" }
+  attr: { class: "button_type_profile" },
 });
 
 const buttonArrow = new ButtonArrow ({
@@ -96,8 +96,17 @@ const profileForm = new ProfileForm({
     newPasswordField,
     repeatNewPasswordField,
   ],
-
   SubmitButton: submitButton,
+  events: {
+    submit: (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target as HTMLFormElement);
+      for(const [name, value] of formData.entries()) {
+        console.log(`${name}: ${value}`);
+      }
+    }
+  }
 });
 
 export const changePasswordPage = new ProfilePage({
