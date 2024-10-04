@@ -2,10 +2,10 @@ import avatar from '../../static/images/captain-jack-sparrow.jpg';
 import image from '../../static/images/image(1).png';
 
 export const PASSWORD_PATTERN = '(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,40}';
-export const EMAIL_PATTERN = "[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,4}";
-// pass '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}'
-// mobile pattern '/^((\\+7|7|8)+([0-9]){10})$/g'
-// email '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}'
+export const EMAIL_PATTERN = '[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2}';
+export const PHONE_PATTERN = '((\\+7|7|8)+([0-9]){10,15})';
+export const NAME_PATTERN = '^[A-ZА-ЯЁ]{1}[a-zа-яё]+$';
+export const LOGIN_PATTERN = '^[0-9a-zA-Z\\-_]{3,20}';
 
 export const BASE_URL = '';
 export const HEADERS = {
@@ -18,7 +18,7 @@ export const profile = {
   second_name: 'Sparrow',
   display_name: 'Captain' ,
   email: 'jack-sparrow@captain.ar',
-  phone: '+7 (909) 967 30 30',
+  phone: '+79099673030',
   avatar: avatar,
 };
 

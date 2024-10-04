@@ -1,4 +1,4 @@
-import { profile } from '@/utils/constants';
+import { profile, EMAIL_PATTERN, PHONE_PATTERN, NAME_PATTERN, LOGIN_PATTERN } from '@/utils/constants';
 
 import {
   Input,
@@ -26,6 +26,7 @@ const profileEmail = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.email,
+    pattern: EMAIL_PATTERN,
   }
 });
 
@@ -49,6 +50,7 @@ const profileLogin = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.login,
+    pattern: LOGIN_PATTERN,
   }
 });
 
@@ -72,6 +74,7 @@ const profileFirstName = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.first_name,
+    pattern: NAME_PATTERN,
   }
 });
 
@@ -95,6 +98,7 @@ const profileSecondName = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.second_name,
+    pattern: NAME_PATTERN,
   }
 });
 
@@ -141,6 +145,7 @@ const profilePhone = new Input({
   attr: {
     class: "input_type_profile",
     value: profile.phone,
+    pattern: PHONE_PATTERN,
   }
 });
 
