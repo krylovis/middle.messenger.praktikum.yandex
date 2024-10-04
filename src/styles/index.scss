@@ -1,8 +1,6 @@
 @use 'variables';
 
 /* --------------- vendor --------------- */
-@import url('node_modules/normalize-scss/sass/normalize');
-
 @include normalize();
 
 /* --------------- fonts --------------- */
