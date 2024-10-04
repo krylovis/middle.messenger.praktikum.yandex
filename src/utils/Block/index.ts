@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
@@ -150,6 +149,7 @@ export default class Block {
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
+        console.log('child', child);
         propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
@@ -165,6 +165,7 @@ export default class Block {
     });
 
     Object.entries(this.lists).forEach(([key, child]): void => {
+      console.log('key', key);
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       (child as Block[]).forEach((item) => {
@@ -219,7 +220,7 @@ export default class Block {
     });
   }
 
-  private _createDocumentElement(tagName: string, options?: ElementCreationOptions): Element | HTMLElement | HTMLMetaElement {
+  private _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
   }
 
