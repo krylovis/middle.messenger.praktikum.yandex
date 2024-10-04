@@ -13,7 +13,7 @@
 
   &_type_profile {
     text-align: start;
-    padding: 10px 0 10px;
+    padding: 10px 0;
     border-bottom: 1px solid #EAEAEA;
 
     &:last-of-type {
@@ -23,7 +23,7 @@
   }
 
   &_type_danger {
-    color: #FF0000;
+    color: #F00;
   }
 
   &_type_error-page {
@@ -32,8 +32,8 @@
 
   &_type_to-profile {
     text-align: end;
-    padding: 10px 0 10px;
-    color: #999999;
+    padding: 10px 0;
+    color: #999;
     padding-right: 10px;
 
     &::after {
@@ -42,8 +42,8 @@
       vertical-align: middle;
       width: 4px;
       height: 8px;
-
       background-color: $color-secondary;
+
       @include mask-image($arrow-icon, 4px, 8px);
     }
   }

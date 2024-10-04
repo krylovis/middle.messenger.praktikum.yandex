@@ -26,8 +26,8 @@
     padding: 0;
     width: 20px;
     height: 20px;
-
     background-color: black;
+
     @include mask-image($menu-icon, 3px, 15px);
   }
 }

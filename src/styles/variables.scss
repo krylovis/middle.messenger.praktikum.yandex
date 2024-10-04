@@ -13,7 +13,7 @@ $menu-icon: url(../../../static/icons/menu-icon.svg);
 $checked-icon: url(../../../static/icons/checked.svg);
 
 $color-primary: #3369F3;
-$color-secondary: #999999;
+$color-secondary: #999;
 $color-input: #EFEFEF;
 $color-border: #EAEAEA;
 $color-background: #F8F8F8;
@@ -21,13 +21,9 @@ $color-background-hover: #E4EDFD;
 
 @mixin mask-image($image, $x: 0, $y: 0) {
   mask-image: $image;
-  -webkit-mask-image: $image;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-position: center;
-  -webkit-mask-position: center;
   mask-size: $x $y;
-  -webkit-mask-size: $x $y;
 }
 
 @mixin background-image($image, $x: 0, $y: 0) {

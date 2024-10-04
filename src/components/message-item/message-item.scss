@@ -9,7 +9,7 @@
   max-width: 40%;
   width: fit-content;
   background: $color-background;
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0 rgb(34 60 80 / 20%);
   list-style: none;
 
   &_type_img {
@@ -46,7 +46,7 @@
 
   &__time {
     display: inline-block;
-    text-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
+    text-shadow: 0 0 0 rgb(0 0 0 / 100%);
     font-size: 9px;
     color: $color-primary;
   }
@@ -57,8 +57,8 @@
     padding: 0;
     width: 10px;
     height: 5px;
-
     background-color: $color-primary;
+
     @include mask-image($checked-icon, 10px, 5px);
   }
 }
