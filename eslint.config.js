@@ -4,7 +4,6 @@ import tseslint from "typescript-eslint";
 import html from "@html-eslint/eslint-plugin";
 import htmlParser from "@html-eslint/parser";
 
-
 export default [
   {
     ...html.configs["flat/recommended"],
