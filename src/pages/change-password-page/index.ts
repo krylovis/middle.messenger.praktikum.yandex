@@ -1,4 +1,5 @@
-import { profile } from '@/utils/constants';
+import { profile, PASSWORD_PATTERN } from '@/utils/constants';
+
 
 import {
   Input,
@@ -43,7 +44,10 @@ const newPassword = new Input({
   name: "password",
   type: "password",
   placeholder: "Введите пароль",
-  attr: { class: "input_type_profile" }
+  attr: {
+    class: "input_type_profile",
+    pattern: PASSWORD_PATTERN,
+  }
 });
 
 const newPasswordError = new InputError({
@@ -64,7 +68,10 @@ const repeatNewPassword = new Input({
   name: "password",
   type: "password",
   placeholder: "Введите пароль",
-  attr: { class: "input_type_profile" }
+  attr: {
+    class: "input_type_profile",
+    pattern: PASSWORD_PATTERN,
+  }
 });
 
 const repeatNewPasswordError = new InputError({
