@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .input {
   width: 100%;
   font-weight: 500;
@@ -22,6 +24,20 @@
 
     &:disabled {
       background-color: inherit;
+    }
+  }
+
+  &_type_message {
+    flex: 1;
+    border: none;
+    padding: 10px 20px;
+    background-color: $color-input;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+
+    &:focus-visible {
+      outline: none;
     }
   }
 }

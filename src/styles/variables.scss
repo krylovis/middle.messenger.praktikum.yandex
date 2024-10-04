@@ -10,10 +10,14 @@ $file-icon: url(../../../static/icons/file-icon.svg);
 $location-icon: url(../../../static/icons/location-icon.svg);
 $search-icon: url(../../../static/icons/search-icon.svg);
 $menu-icon: url(../../../static/icons/menu-icon.svg);
+$checked-icon: url(../../../static/icons/checked.svg);
 
 $color-primary: #3369F3;
 $color-secondary: #999999;
 $color-input: #EFEFEF;
+$color-border: #EAEAEA;
+$color-background: #F8F8F8;
+$color-background-hover: #E4EDFD;
 
 @mixin mask-image($image, $x: 0, $y: 0) {
   mask-image: $image;
@@ -31,4 +35,10 @@ $color-input: #EFEFEF;
   background-repeat: no-repeat;
   background-position: center;
   background-size: $x $y;
+}
+
+@mixin arrow-button() {
+  background-size: 26px 26px;
+  border-radius: 50%;
+  background-color: $color-primary;
 }
