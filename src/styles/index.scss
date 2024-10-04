@@ -1,7 +1,8 @@
 @import './variables.scss';
 
 /* --------------- vendor --------------- */
-@import './vendor/normalize.css';
+@import "node_modules/normalize-scss/sass/normalize";
+@include normalize();
 
 /* --------------- fonts --------------- */
 @import '../../static/fonts/index.scss';
