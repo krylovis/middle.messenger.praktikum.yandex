@@ -54,6 +54,17 @@ export default abstract class Block<Props extends IData = IData> {
     }
   }
 
+  _removeEvents(): void {
+    if(this.props?.events) {
+      const { events } = this.props;
+
+      Object.keys(events).forEach((eventName: string): void => {
+        console.log('eventName', eventName);
+        this._element?.removeEventListener(eventName, (events as TEvent)[eventName]);
+      });
+    }
+  }
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -142,7 +153,10 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   private _render() {
-    console.log("Render")
+    console.log("Render");
+
+    this._element = null;
+    this._removeEvents();
 
     const propsAndStubs = { ...this.props };
     const _tmpId = getID();
@@ -188,7 +202,7 @@ export default abstract class Block<Props extends IData = IData> {
 
     const newElement = fragment.content.firstElementChild;
     if (this._element) {
-      this._element?.replaceWith(newElement as HTMLElement);
+      (this._element as HTMLElement).replaceWith(newElement as HTMLElement);
     }
     this._element = newElement as HTMLElement;
     this._addEvents();
