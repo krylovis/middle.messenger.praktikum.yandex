@@ -1,8 +1,8 @@
-import Block from '@/utils/Block/index';
+import Block, { IData } from '@/utils/Block';
 import { errorPageTemplate } from './template';
 
-export default class ErrorPage extends Block {
-  constructor(props) {
+export default class ErrorPage extends Block<IData> {
+  constructor(props: IData) {
     super({
       ...props,
     })

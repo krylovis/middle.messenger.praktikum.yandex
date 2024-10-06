@@ -1,7 +1,7 @@
 import Block, { IData } from '@/utils/Block';
-import { registerPageTemplate } from './template';
+import { editProfilePageTemplate } from './template';
 
-export default class RegisterPage extends Block<IData> {
+export default class EditProfilePage extends Block<IData> {
   constructor(props: IData) {
     super({
       ...props,
@@ -17,6 +17,6 @@ export default class RegisterPage extends Block<IData> {
   }
 
   override render() {
-      return registerPageTemplate
+    return editProfilePageTemplate;
   }
 }

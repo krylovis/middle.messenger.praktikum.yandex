@@ -1,4 +1,12 @@
 import {
+  EMAIL_PATTERN,
+  PHONE_PATTERN,
+  NAME_PATTERN,
+  LOGIN_PATTERN,
+  PASSWORD_PATTERN
+} from '@/utils/constants';
+
+import {
   Input,
   Button,
   InputError,
@@ -15,6 +23,9 @@ const inputEmail = new Input({
   name: "email",
   type: "email",
   placeholder: "Введите почту",
+  attr: {
+    pattern: EMAIL_PATTERN,
+  }
 });
 
 const inputEmailError = new InputError({
@@ -28,12 +39,37 @@ const inputEmailField = new InputField ({
   label: "Почта",
 });
 
+// login input
+const inputLogin = new Input({
+  id: "profileLogin",
+  name: "login",
+  type: "text",
+  placeholder: "Введите логин",
+  attr: {
+    pattern: LOGIN_PATTERN,
+  }
+});
+
+const inputLoginError = new InputError({
+  attr: { class: "login-error" }
+});
+
+const loginField = new InputField ({
+  Input: inputLogin,
+  InputError: inputLoginError,
+  id: "inputLogin",
+  label: "Логин",
+});
+
 // password input
 const inputPassword = new Input({
   id: "inputPassword",
   name: "password",
   type: "password",
   placeholder: "Введите пароль",
+  attr: {
+    pattern: PASSWORD_PATTERN,
+  }
 });
 
 const inputPasswordError = new InputError({
@@ -53,6 +89,9 @@ const inputFirstName = new Input({
   name: "first_name",
   type: "text",
   placeholder: "Введите имя",
+  attr: {
+    pattern: NAME_PATTERN,
+  }
 });
 
 const inputFirstNameError = new InputError({
@@ -72,6 +111,9 @@ const inputSecondName = new Input({
   name: "second_name",
   type: "text",
   placeholder: "Введите фамилию",
+  attr: {
+    pattern: NAME_PATTERN,
+  }
 });
 
 const inputSecondNameError = new InputError({
@@ -91,6 +133,9 @@ const inputPhone = new Input({
   name: "phone",
   type: "phone",
   placeholder: "Введите телефон",
+  attr: {
+    pattern: PHONE_PATTERN,
+  }
 });
 
 const inputPhoneError = new InputError({
@@ -110,6 +155,9 @@ const inputRepeatPassword = new Input({
   name: "repeat_password",
   type: "password",
   placeholder: "Повторите пароль",
+  attr: {
+    pattern: PASSWORD_PATTERN,
+  }
 });
 
 const inputRepeatPasswordError = new InputError({
@@ -143,6 +191,7 @@ const formContainer = new FormContainer({
   NavLink: navLink,
   lists: [
     inputEmailField,
+    loginField,
     inputFirstNameField,
     inputSecondNameField,
     inputPhoneField,

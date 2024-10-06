@@ -1,17 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
+import FormValidator from '@/utils/FormValidator';
 
-export type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
-export type TProps = Record<string, string | number | boolean>;
+export type TPropsLists = Block<IData>[];
+export type TProps = Record<string, unknown>;
+export type TChildren = Record<string, Block<IData>>;
+export type TLists = Record<string, Block<IData>[]>;
+export type TEvent = Record<string, EventListener>;
+export type TAttr = Record<string, string | string[]>;
 
-type TAttr = Record<string, string | string[]>;
-type TEvent = Record<string, EventListener>;
-type TChildren = Block;
-type TLists = Block[];
-
-export default class Block {
+export interface IData {
+	[key: string]: unknown,
+	lists?: TPropsLists,
+	events?: TEvent,
+  attr?: TAttr,
+}
+export default abstract class Block<Props extends IData = IData> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -20,15 +25,16 @@ export default class Block {
   };
 
   props;
-  lists = {};
-  children = {};
+  lists;
+  children;
   attributes = {};
+  formValidators: Record<string, typeof FormValidator> = {};
 
   _element: HTMLElement | null = null;
   _id: string = getID();
   eventBus: () => EventBus;
 
-  constructor(propsWithChildren: TData = {}) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
     this.props = this._makePropsProxy(this, { ...props });
@@ -40,12 +46,53 @@ export default class Block {
   }
 
   _addEvents(): void {
+    this.addEvents();
     if(this.props?.events) {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
         console.log('eventName', eventName);
         this._element?.addEventListener(eventName, (events as TEvent)[eventName]);
+      });
+    }
+  }
+
+  addEvents(): void {
+    //
+  }
+
+  enableValidation = (element: HTMLElement) => {
+    if (element) {
+      const form = element.querySelector('.form');
+
+      const validator = new FormValidator({ formElement: form });
+      const formName = (form as HTMLFormElement).getAttribute('name');
+
+      if(formName) {
+        this.formValidators[formName] = validator;
+        validator.enableValidation();
+      }
+    }
+  };
+
+  disableValidation = () => {
+    Object.keys(this.formValidators).forEach((validatorName: string): void => {
+      this.formValidators[validatorName]?.disableValidation();
+    });
+  };
+
+  removeEvents(): void {
+    //
+  }
+
+  _removeEvents(): void {
+    this.removeEvents();
+    if(this.props?.events) {
+      const { events } = this.props;
+
+      Object.keys(events).forEach((eventName: string): void => {
+        console.log('eventName', eventName);
+        this._element?.removeEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
   }
@@ -91,10 +138,10 @@ export default class Block {
     return true;
   }
 
-  private _getChildrenPropsAndProps(propsAndChildren: TData) {
-    const children: Record<string, TChildren> = {};
-    const props: TData = {};
-    const lists: Record<string, TChildren[]> = {};
+  private _getChildrenPropsAndProps(propsAndChildren: Props) {
+    const children: TChildren = {};
+    const props: TProps = {};
+    const lists: TLists = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -110,9 +157,9 @@ export default class Block {
   }
 
   public addAttributes(): void {
-    const { attr = {} as TAttr } = this.props;
+    const { attr = {} } = this.props;
 
-    Object.entries(attr).forEach(([key, value]): void => {
+    Object.entries(attr as TAttr).forEach(([key, value]): void => {
       if(key === 'class') {
         if (Array.isArray(value)) {
           this._element?.classList.add(...value);
@@ -138,7 +185,10 @@ export default class Block {
   }
 
   private _render() {
-    console.log("Render")
+    console.log("Render");
+
+    this._element = null;
+    this._removeEvents();
 
     const propsAndStubs = { ...this.props };
     const _tmpId = getID();
@@ -150,6 +200,7 @@ export default class Block {
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
+        console.log('child', child);
         propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
@@ -165,6 +216,7 @@ export default class Block {
     });
 
     Object.entries(this.lists).forEach(([key, child]): void => {
+      console.log('key', key);
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       (child as Block[]).forEach((item) => {
@@ -182,7 +234,7 @@ export default class Block {
 
     const newElement = fragment.content.firstElementChild;
     if (this._element) {
-      this._element?.replaceWith(newElement as HTMLElement);
+      (this._element as HTMLElement).replaceWith(newElement as HTMLElement);
     }
     this._element = newElement as HTMLElement;
     this._addEvents();
@@ -197,7 +249,7 @@ export default class Block {
     return this.element;
   }
 
-  private _makePropsProxy(self: Block, props: TData) {
+  private _makePropsProxy(self: Block, props: TProps) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
@@ -219,7 +271,7 @@ export default class Block {
     });
   }
 
-  private _createDocumentElement(tagName: string, options?: ElementCreationOptions): Element | HTMLElement | HTMLMetaElement {
+  private _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
   }
 

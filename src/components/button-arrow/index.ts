@@ -1,7 +1,7 @@
-import Block from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { buttonArrowTemplate } from './template';
 
-export default class ButtonArrow extends Block {
+export default class ButtonArrow extends Block<IData> {
   render() {
     return buttonArrowTemplate;
   }

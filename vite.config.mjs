@@ -23,5 +23,15 @@ export default defineConfig({
         find: "@", replacement: resolve(__dirname, "./src"),
       },
     ]
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @use './src/styles/variables' as *;
+        @use 'node_modules/normalize-scss/sass/normalize' as *;
+        `
+      },
+    },
+  },
 });

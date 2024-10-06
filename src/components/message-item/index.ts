@@ -1,7 +1,7 @@
-import Block from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { messageItemTemplate } from './template';
 
-export default class MessageItem extends Block {
+export default class MessageItem extends Block<IData> {
   render() {
     return messageItemTemplate;
   }

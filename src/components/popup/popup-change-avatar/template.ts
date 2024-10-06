@@ -1,5 +1,3 @@
-import './popup-change-avatar.scss';
-
 export const changeAvatarContentTemplate = `
 <form class="popup__form" name="new-avatar-form" action="new-avatar-action">
 

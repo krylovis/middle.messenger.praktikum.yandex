@@ -1,16 +1,12 @@
-@import '../../styles/variables.scss';
-
 .button-with-icon {
   width: 20px;
   height: 20px;
   border: none;
   opacity: 1;
   cursor: pointer;
-
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-
   transition: opacity .3s ease;
 
   &:hover {
@@ -19,16 +15,19 @@
 
   &_type_arrow-right {
     @include arrow-button();
-    background-image: url(../../../static/icons/arrow-right.svg);
+
+    background-image: url("../../../static/icons/arrow-right.svg");
   }
 
   &_type_arrow-left {
     @include arrow-button();
-    background-image: url(../../../static/icons/arrow-left.svg);
+
+    background-image: url("../../../static/icons/arrow-left.svg");
   }
 
   &_type_attach {
     @include mask-image($attach-icon, 25px, 25px);
+
     background-color: $color-primary;
   }
 }
