@@ -9,6 +9,6 @@ export default class ProfilePage extends Block<IData> {
   }
 
   override render() {
-      return profilePageTemplate
+    return profilePageTemplate;
   }
 }
