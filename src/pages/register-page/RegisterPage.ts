@@ -1,8 +1,8 @@
-import Block, { TData } from '@/utils/Block/index';
+import { Block, IData } from '@/utils/Block';
 import { registerPageTemplate } from './template';
 
-export default class RegisterPage extends Block {
-  constructor(props: TData) {
+export default class RegisterPage extends Block<IData> {
+  constructor(props: IData) {
     super({
       ...props,
     })

@@ -1,6 +1,5 @@
 import { profile, PASSWORD_PATTERN } from '@/utils/constants';
 
-
 import {
   Input,
   InputError,

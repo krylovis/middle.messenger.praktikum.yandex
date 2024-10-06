@@ -16,7 +16,3 @@ export const getErrorPage = (error: string) => {
     text
   });
 }
-
-// export const errorPage = new ErrorPage({
-//   NavLink: navLink
-// });

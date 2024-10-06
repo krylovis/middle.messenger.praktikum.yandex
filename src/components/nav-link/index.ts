@@ -1,7 +1,7 @@
-import Block from '@/utils/Block';
+import { Block, IData } from '@/utils/Block';
 import { navLinkTemplate } from './template';
 
-export default class NavLink extends Block {
+export default class NavLink extends Block<IData> {
   render() {
     return navLinkTemplate;
   }

@@ -1,4 +1,4 @@
-import Block from '@/utils/Block/index';
+import { Block } from '@/utils/Block/index';
 import * as Pages from '@/pages/index';
 import render from '@/utils/render';
 import FormValidator from '@/utils/FormValidator';
