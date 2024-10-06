@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
+import FormValidator from '@/utils/FormValidator';
 
 export type TPropsLists = Block<IData>[];
 export type TProps = Record<string, unknown>;
@@ -27,6 +28,7 @@ export default abstract class Block<Props extends IData = IData> {
   lists;
   children;
   attributes = {};
+  formValidators: Record<string, typeof FormValidator> = {};
 
   _element: HTMLElement | null = null;
   _id: string = getID();
@@ -44,6 +46,7 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   _addEvents(): void {
+    this.addEvents();
     if(this.props?.events) {
       const { events } = this.props;
 
@@ -54,7 +57,36 @@ export default abstract class Block<Props extends IData = IData> {
     }
   }
 
+  addEvents(): void {
+    //
+  }
+
+  enableValidation = (element: HTMLElement) => {
+    if (element) {
+      const form = element.querySelector('.form');
+
+      const validator = new FormValidator({ formElement: form });
+      const formName = (form as HTMLFormElement).getAttribute('name');
+
+      if(formName) {
+        this.formValidators[formName] = validator;
+        validator.enableValidation();
+      }
+    }
+  };
+
+  disableValidation = () => {
+    Object.keys(this.formValidators).forEach((validatorName: string): void => {
+      this.formValidators[validatorName]?.disableValidation();
+    });
+  };
+
+  removeEvents(): void {
+    //
+  }
+
   _removeEvents(): void {
+    this.removeEvents();
     if(this.props?.events) {
       const { events } = this.props;
 

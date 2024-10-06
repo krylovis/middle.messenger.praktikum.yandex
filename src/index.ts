@@ -1,12 +1,9 @@
 import Block from '@/utils/Block/index';
 import * as Pages from '@/pages/index';
 import render from '@/utils/render';
-import FormValidator from '@/utils/FormValidator';
 import { EPages } from '@/utils/constants';
 
 import PopupWithForm from '@/components/popup/PopupWithForm';
-
-const formValidators: Record<string, typeof FormValidator> = {};
 
 type TPages = Record<EPages, Block[] | ((err: string) => Block)[]>
 
@@ -30,8 +27,6 @@ function navigate(page: string, arg?: { error: string }): void {
   } else {
     render('#app', source as Block);
   }
-
-  enableValidation();
 
   const profileEditAvatarButton = document.querySelector('.profile-avatar__edit-button');
   // const menuButton = document.querySelector('.chat-footer__menu');
@@ -87,17 +82,3 @@ document.addEventListener('DOMContentLoaded', () => {
       break
   }
 })
-
-const enableValidation = () => {
-  const form = document.querySelector('.form');
-
-  if (form) {
-    const validator = new FormValidator({ formElement: form });
-    const formName = form.getAttribute('name');
-
-    if(formName) {
-      formValidators[formName] = validator;
-      validator.enableValidation();
-    }
-  }
-};

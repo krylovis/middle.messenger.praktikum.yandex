@@ -103,7 +103,21 @@ export default class FormValidator {
     });
   };
 
+  _removeEventListeners = () => {
+    this._enableButton();
+
+    this._inputList.forEach((inputElement) => {
+      inputElement.removeEventListener('blur', () => {
+        this._checkInputValidity(inputElement);
+      });
+    });
+  };
+
   enableValidation = () => {
     this._setEventListeners();
+  };
+
+  disableValidation = () => {
+    this._removeEventListeners();
   };
 };
