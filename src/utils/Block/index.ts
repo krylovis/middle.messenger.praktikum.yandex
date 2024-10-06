@@ -2,15 +2,20 @@ import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
 
-export type TData = Record<string, TEvent | TChildren | TLists | TAttr | string | boolean>;
-export type TProps = Record<string, string | number | boolean>;
+export type TPropsLists = Block<IData>[];
+export type TProps = Record<string, unknown>;
+export type TChildren = Record<string, Block<IData>>;
+export type TLists = Record<string, Block<IData>[]>;
+export type TEvent = Record<string, EventListener>;
+export type TAttr = Record<string, string | string[]>;
 
-type TAttr = Record<string, string | string[]>;
-type TEvent = Record<string, EventListener>;
-type TChildren = Block;
-type TLists = Block[];
-
-export default class Block {
+export interface IData {
+	[key: string]: unknown,
+	lists?: TPropsLists,
+	events?: TEvent,
+  attr?: TAttr,
+}
+export abstract class Block<Props extends IData = IData> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -19,15 +24,15 @@ export default class Block {
   };
 
   props;
-  lists = {};
-  children = {};
+  lists;
+  children;
   attributes = {};
 
   _element: HTMLElement | null = null;
   _id: string = getID();
   eventBus: () => EventBus;
 
-  constructor(propsWithChildren: TData = {}) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
     this.props = this._makePropsProxy(this, { ...props });
@@ -90,10 +95,10 @@ export default class Block {
     return true;
   }
 
-  private _getChildrenPropsAndProps(propsAndChildren: TData) {
-    const children: Record<string, TChildren> = {};
-    const props: TData = {};
-    const lists: Record<string, TChildren[]> = {};
+  private _getChildrenPropsAndProps(propsAndChildren: Props) {
+    const children: TChildren = {};
+    const props: TProps = {};
+    const lists: TLists = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -109,9 +114,9 @@ export default class Block {
   }
 
   public addAttributes(): void {
-    const { attr = {} as TAttr } = this.props;
+    const { attr = {} } = this.props;
 
-    Object.entries(attr).forEach(([key, value]): void => {
+    Object.entries(attr as TAttr).forEach(([key, value]): void => {
       if(key === 'class') {
         if (Array.isArray(value)) {
           this._element?.classList.add(...value);
@@ -198,7 +203,7 @@ export default class Block {
     return this.element;
   }
 
-  private _makePropsProxy(self: Block, props: TData) {
+  private _makePropsProxy(self: Block, props: TProps) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
