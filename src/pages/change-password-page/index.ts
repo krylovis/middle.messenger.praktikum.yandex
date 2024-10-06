@@ -10,7 +10,7 @@ import {
   ProfileForm
 } from '@/components';
 
-import ProfilePage from '../profile-page/ProfilePage';
+import EditProfilePage from '../edit-profile-page/EditProfilePage';
 
 const profileAvatar = new ProfileAvatar({
   avatar: profile.avatar,
@@ -115,7 +115,7 @@ const profileForm = new ProfileForm({
   }
 });
 
-export const changePasswordPage = new ProfilePage({
+export const changePasswordPage = new EditProfilePage({
   ButtonArrow: buttonArrow,
   ProfileAvatar: profileAvatar,
   ProfileForm: profileForm
