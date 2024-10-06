@@ -8,6 +8,14 @@ export default class LoginPage extends Block<IData> {
     })
   }
 
+  override addEvents() {
+    this.enableValidation(this._element as HTMLElement);
+  }
+
+  override removeEvents() {
+    this.disableValidation();
+  }
+
   override render() {
       return loginPageTemplate
   }
