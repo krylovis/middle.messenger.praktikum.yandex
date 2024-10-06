@@ -1,4 +1,10 @@
-import { profile, EMAIL_PATTERN, PHONE_PATTERN, NAME_PATTERN, LOGIN_PATTERN } from '@/utils/constants';
+import {
+  profile,
+  EMAIL_PATTERN,
+  PHONE_PATTERN,
+  NAME_PATTERN,
+  LOGIN_PATTERN
+} from '@/utils/constants';
 
 import {
   Input,
