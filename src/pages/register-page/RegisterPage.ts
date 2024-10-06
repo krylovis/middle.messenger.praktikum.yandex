@@ -1,4 +1,4 @@
-import { Block, IData } from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { registerPageTemplate } from './template';
 
 export default class RegisterPage extends Block<IData> {

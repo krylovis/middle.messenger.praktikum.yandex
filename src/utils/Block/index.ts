@@ -15,7 +15,7 @@ export interface IData {
 	events?: TEvent,
   attr?: TAttr,
 }
-export abstract class Block<Props extends IData = IData> {
+export default abstract class Block<Props extends IData = IData> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",

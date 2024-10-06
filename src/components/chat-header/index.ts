@@ -1,4 +1,4 @@
-import { Block, IData } from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { chatHeaderTemplate } from './template';
 
 export default class ChatHeader extends Block<IData> {

@@ -1,4 +1,4 @@
-import { Block, IData } from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { profilePageTemplate } from './template';
 
 export default class ProfilePage extends Block<IData> {

@@ -1,4 +1,4 @@
-import { Block, IData } from '@/utils/Block';
+import Block, { IData } from '@/utils/Block';
 import { errorPageTemplate } from './template';
 
 export default class ErrorPage extends Block<IData> {
