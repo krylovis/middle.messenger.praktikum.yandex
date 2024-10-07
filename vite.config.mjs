@@ -17,4 +17,21 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'dist'),
   },
+  resolve: {
+    alias: [
+      {
+        find: "@", replacement: resolve(__dirname, "./src"),
+      },
+    ]
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+        @use './src/styles/variables' as *;
+        @use 'node_modules/normalize-scss/sass/normalize' as *;
+        `
+      },
+    },
+  },
 });

@@ -1,14 +1,12 @@
 .app {
   position: relative;
   display: flex;
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  text-rendering: optimizeLegibility;
+  font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  background-color: #FFFFFF;
+  text-size-adjust: 100%;
+  background-color: #FFF;
   color: #1E1E1E;
   height: 100vh;
   width: 100%;

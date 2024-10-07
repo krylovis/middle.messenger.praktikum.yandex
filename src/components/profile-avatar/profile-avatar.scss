@@ -1,5 +1,3 @@
-@import '../../styles/variables.scss';
-
 .profile-avatar {
   width: 100%;
   display: flex;
@@ -37,29 +35,30 @@
     &:hover::before {
       content: 'Поменять\Aаватар';
       color: white;
-      background-color: rgba(0, 0, 0, .5);
+      background-color: rgb(0 0 0 / 50%);
     }
   }
 
   &__avatar {
-    width: 100%;
-    height: 100%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
     object-fit: cover;
+
+    &_type_edit {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__icon-avatar {
     width: 100%;
     height: 100%;
     background-color: #CDCDCD;
-
     mask-image: $default-img-icon;
-    -webkit-mask-image: $default-img-icon;
     mask-repeat: no-repeat;
-    -webkit-mask-repeat: no-repeat;
     mask-position: center;
-    -webkit-mask-position: center;
     mask-size: 26px 26px;
-    -webkit-mask-size: 26px 26px;
   }
 
   &__name {

@@ -4,14 +4,23 @@
   font-size: 13px;
   line-height: 100%;
   text-align: center;
-  color: #fff;
+  color: white;
   border: none;
   padding: 12px;
-  background-color: #3369f3;
+  background-color: $color-primary;
   border-radius: 8px;
+  cursor: pointer;
 
   &_type_profile {
     align-self: center;
     width: 280px;
+  }
+
+  &_inactive {
+    opacity: 0.2;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    pointer-events: none;
   }
 }

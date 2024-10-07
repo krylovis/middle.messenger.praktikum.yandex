@@ -1,0 +1,62 @@
+.message-item {
+  position: relative;
+  display: inline;
+  padding: 11px;
+  border: solid 1px $color-border;
+  border-radius: 0 12px 12px;
+  max-width: 40%;
+  width: fit-content;
+  background: $color-background;
+  box-shadow: 4px 4px 8px 0 rgb(34 60 80 / 20%);
+  list-style: none;
+
+  &_type_img {
+    display: inline-flex;
+    border-radius: 12px;
+    padding: 0;
+  }
+
+  &_type_owner {
+    align-self: end;
+    background: $color-background-hover;
+    border-radius: 12px 12px 0;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__info {
+    float: inline-end;
+    align-items: center;
+    padding-left: 15px;
+    margin-left: auto;
+    gap: 4px;
+
+    &_type_img {
+      position: absolute;
+      display: inline-flex;
+      float: none;
+      right: 11px;
+      bottom: 11px;
+    }
+  }
+
+  &__time {
+    display: inline-block;
+    text-shadow: 0 0 0 rgb(0 0 0 / 100%);
+    font-size: 9px;
+    color: $color-primary;
+  }
+
+  &__icon {
+    display: inline-block;
+    border: none;
+    padding: 0;
+    width: 10px;
+    height: 5px;
+    background-color: $color-primary;
+
+    @include mask-image($checked-icon, 10px, 5px);
+  }
+}

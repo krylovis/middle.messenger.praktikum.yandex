@@ -1,5 +1,3 @@
-@import '../../styles/variables.scss';
-
 .chat-header {
   display: flex;
   align-items: center;
@@ -26,8 +24,8 @@
     padding: 0;
     width: 20px;
     height: 20px;
-
     background-color: black;
+
     @include mask-image($menu-icon, 3px, 15px);
   }
 }

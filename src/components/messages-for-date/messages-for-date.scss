@@ -1,0 +1,19 @@
+.messages-for-date {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    text-align: center;
+    color: $color-secondary;
+    font-size: 12px;
+    margin: 0;
+    padding: 30px 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0;
+  }
+}
