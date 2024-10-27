@@ -1,7 +1,5 @@
 import Block from "@/utils/Block/index";
 import { Route } from "@/utils/Route";
-import { getErrorPage } from '@/pages/index';
-import render from '@/utils/render';
 
 class Router {
   static __instance: Router = new Router();
@@ -38,20 +36,22 @@ class Router {
   }
 
   _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+    let route = this.getRoute(pathname);
 
     if (!route) {
-      const errorPage = getErrorPage('404');
-      render('#app', errorPage);
-      return;
+      route = this.getRoute('/404');
+      this.currentRoute?.leave();
+      this.currentRoute = null;
     }
 
     if (this.currentRoute && this.currentRoute !== route) {
       this.currentRoute.leave();
     }
 
-    route.render();
-    this.currentRoute = route;
+    if (route) {
+      route.render();
+      this.currentRoute = route;
+    }
   }
 
   go(pathname: string) {

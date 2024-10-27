@@ -1,13 +1,10 @@
-import * as Pages from '@/pages/index';
+import pages from '@/pages/index';
 import { router } from '@/utils/Router';
 
-router
-  .use('/', Pages.loginPage)
-  .use('/sign-up', Pages.registerPage)
-  .use('/messenger', Pages.mainPage)
-  .use('/settings', Pages.editProfilePage)
-  .use('/profile', Pages.profilePage)
-  .use('/change-password', Pages.changePasswordPage);
+for(const [path, page] of Object.entries(pages)) {
+  router.use(path, page);
+}
+
 router.start();
 
 document.addEventListener('DOMContentLoaded', () => {
