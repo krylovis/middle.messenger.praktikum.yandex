@@ -8,6 +8,7 @@ router
   .use('/settings', Pages.editProfilePage)
   .use('/profile', Pages.profilePage)
   .use('/change-password', Pages.changePasswordPage);
+router.start();
 
 document.addEventListener('DOMContentLoaded', () => {
   router.go(window.location.pathname);
