@@ -80,16 +80,6 @@ export const messageData = [
   }
 ];
 
-export enum EPages {
-  LoginPage = 'login',
-  RegisterPage = 'register',
-  ProfilePage = 'profile-page',
-  EditProfilePage = 'edit-profile-page',
-  ChangePasswordPage = 'change-password-page',
-  MainPage = 'main-page',
-  ErrorPage = 'error-page',
-}
-
 export enum EFormSelectors {
   LABEL = '.input-field',
   INPUT = '.input',
