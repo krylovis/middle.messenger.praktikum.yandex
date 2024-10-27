@@ -6,7 +6,6 @@ import NavLink from '@/components/nav-link';
 import FormContainer from '@/components/form-container';
 import ProfileForm from '@/components/profile-form';
 import ProfileAvatar from '@/components/profile-avatar';
-import ButtonArrow from '@/components/button-arrow';
 import ButtonWithIcon from '@/components/button-with-icon';
 import Avatar from '@/components/avatar';
 import ChatList from '@/components/chat-list';
@@ -29,7 +28,6 @@ export {
   FormContainer,
   ProfileForm,
   ProfileAvatar,
-  ButtonArrow,
   ButtonWithIcon,
   Avatar,
   ChatList,
