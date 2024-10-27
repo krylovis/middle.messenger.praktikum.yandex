@@ -1,6 +1,7 @@
 import MainPage from './MainPage';
 import { chatList as chatItems } from '@/utils/constants';
 import { messageData } from '@/utils/constants';
+import { router } from '@/utils/Router';
 
 import {
   NavLink,
@@ -50,10 +51,15 @@ const chatContent = new ChatContent ({
 });
 
 const navLink = new NavLink ({
-  toPage: "to-profile",
   text: "Профиль",
   icon: true,
-  attr: { class: "nav-link_type_to-profile" }
+  attr: { class: "nav-link_type_to-profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/profile');
+    }
+  }
 });
 
 const chatList = chatItems.map(({

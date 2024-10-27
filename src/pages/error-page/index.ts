@@ -1,10 +1,16 @@
 import ErrorPage from './ErrorPage';
 import { NavLink } from '@/components';
 import { errors } from '@/utils/constants';
+import { router } from '@/utils/Router';
 
 const navLink = new NavLink ({
-  toPage: "register",
   text: "Назад к чатам",
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/messenger');
+    }
+  }
 });
 
 export const getErrorPage = (error: string) => {

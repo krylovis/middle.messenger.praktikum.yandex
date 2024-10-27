@@ -1,3 +1,4 @@
+import { router } from '@/utils/Router';
 import {
   Input,
   Button,
@@ -54,8 +55,13 @@ const submitButton = new Button ({
 });
 
 const navLink = new NavLink ({
-  toPage: "register",
   text: "Нет аккаунта?",
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/sign-up');
+    }
+  }
 });
 
 // form container

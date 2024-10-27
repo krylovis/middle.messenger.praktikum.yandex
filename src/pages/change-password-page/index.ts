@@ -1,10 +1,11 @@
+import { router } from '@/utils/Router';
 import { profile, PASSWORD_PATTERN } from '@/utils/constants';
 
 import {
   Input,
   InputError,
   Button,
-  ButtonArrow,
+  ButtonWithIcon,
   InputField,
   ProfileAvatar,
   ProfileForm
@@ -92,8 +93,15 @@ const submitButton = new Button ({
   attr: { class: "button_type_profile" },
 });
 
-const buttonArrow = new ButtonArrow ({
-  toPage: "",
+const buttonArrow = new ButtonWithIcon({
+  type: "button",
+  buttonSize: '28',
+  iconName: 'arrow-left',
+  events: {
+    click: () => {
+      router.go('/profile');
+    }
+  }
 });
 
 const profileForm = new ProfileForm({

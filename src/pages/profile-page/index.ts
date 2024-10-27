@@ -1,9 +1,10 @@
 import { profile } from '@/utils/constants';
+import { router } from '@/utils/Router';
 
 import {
   Input,
   NavLink,
-  ButtonArrow,
+  ButtonWithIcon,
   InputField,
   ProfileAvatar,
   ProfileForm,
@@ -132,25 +133,47 @@ const profilePhoneField = new InputField ({
 
 // controls
 const navLinkEdit = new NavLink ({
-  toPage: "edit-profile-page",
   text: "Изменить данные",
-  attr: { class: "nav-link_type_profile" }
+  attr: { class: "nav-link_type_profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/settings');
+    }
+  }
 });
 
 const navLinkPassword = new NavLink ({
-  toPage: "edit-profile-page",
   text: "Изменить пароль",
-  attr: { class: "nav-link_type_profile" }
+  attr: { class: "nav-link_type_profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/change-password');
+    }
+  }
 });
 
 const navLinkLogout = new NavLink ({
-  toPage: "login",
   text: "Выйти",
-  attr: { class: ["nav-link_type_profile", "nav-link_type_danger"]}
+  attr: { class: ["nav-link_type_profile", "nav-link_type_danger"] },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/');
+    }
+  }
 });
 
-const buttonArrow = new ButtonArrow ({
-  toPage: "",
+const buttonArrow = new ButtonWithIcon({
+  type: "button",
+  buttonSize: '28',
+  iconName: 'arrow-left',
+  events: {
+    click: () => {
+      router.go('/messenger');
+    }
+  }
 });
 
 const profileForm = new ProfileForm({

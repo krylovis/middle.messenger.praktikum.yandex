@@ -178,7 +178,6 @@ const submitButton = new Button ({
 });
 
 const navLink = new NavLink ({
-  toPage: "login",
   text: "Войти",
 });
 
