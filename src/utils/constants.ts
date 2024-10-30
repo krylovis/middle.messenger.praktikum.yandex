@@ -7,9 +7,9 @@ export const PHONE_PATTERN = '((\\+7|7|8)+([0-9]){10,15})';
 export const NAME_PATTERN = '^[A-ZА-ЯЁ]{1}[a-zа-яё]+$';
 export const LOGIN_PATTERN = '^[0-9a-zA-Z\\-_]{3,20}';
 
-export const BASE_URL = '';
+export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
 export const HEADERS = {
-  'Content-Type': 'application/json',
+  'Content-Type': 'application/json; charset=utf-8',
 };
 
 export const profile = {
