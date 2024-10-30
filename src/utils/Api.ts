@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { BASE_URL, HEADERS} from '@/utils/constants'
+import { BASE_URL, HEADERS } from '@/utils/constants'
 
 enum METHODS {
-	GET = 'GET',
-	POST = 'POST',
-	PUT = 'PUT',
-	DELETE = 'DELETE',
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 interface IParams {
   baseUrl: string,
@@ -13,6 +12,11 @@ interface IParams {
 }
 interface IReqParams {
   method: METHODS,
+  path?: string,
+  timeout?: number,
+  data?: FormData | string,
+}
+interface IReqData {
   path?: string,
   timeout?: number,
   data?: FormData | string,
@@ -31,14 +35,15 @@ class Api {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
-      // req.withCredentials = true;
+      req.withCredentials = true;
       req.open(method, `${this._baseUrl}${path}`);
       req.responseType = 'json';
-      if(timeout) {
+
+      if (timeout) {
         req.timeout = timeout;
       }
 
-      if(this._headers.length) {
+      if (this._headers) {
         for (const key in this._headers) {
           req.setRequestHeader(key, this._headers[key]);
         }
@@ -56,31 +61,29 @@ class Api {
         reject(new Error(`Ошибка соединения: ${req.status}`));
       };
 
-      if (method === METHODS.GET || method === METHODS.PUT && data) {
-				req.send(data);
-			} else {
-				req.send();
-			}
-
-      req.send();
+      if (method === METHODS.POST || method === METHODS.PUT && data) {
+        req.send(data);
+      } else {
+        req.send();
+      }
     })
   }
 
-  public get({ path }: IReqParams) {
-		return this._request({ method: METHODS.GET, path });
-	}
+  public get({ path }: IReqData) {
+    return this._request({ method: METHODS.GET, path });
+  }
 
-  public post({ path, data }: IReqParams) {
-		return this._request({ method: METHODS.POST, path, data });
-	}
+  public post({ path, data }: IReqData) {
+    return this._request({ method: METHODS.POST, path, data });
+  }
 
-  public put({ path, data }: IReqParams) {
-		return this._request({ method: METHODS.PUT, path, data });
-	}
+  public put({ path, data }: IReqData) {
+    return this._request({ method: METHODS.PUT, path, data });
+  }
 
-	public delete({ path }: IReqParams) {
-		return this._request({ method: METHODS.DELETE, path });
-	}
+  public delete({ path }: IReqData) {
+    return this._request({ method: METHODS.DELETE, path });
+  }
 }
 
 export const api = new Api({
