@@ -1,4 +1,6 @@
 import { router } from '@/utils/Router';
+import formDataToJson from '@/utils/formDataToJson';
+import { api } from '@/utils/Api';
 import {
   Input,
   Button,
@@ -73,13 +75,13 @@ const formContainer = new FormContainer({
   NavLink: navLink,
   lists: [inputLoginField, inputPasswordField],
   events: {
-    submit: (event) => {
+    submit: async (event) => {
       event.preventDefault();
 
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
-        console.log(`${name}: ${value}`);
-      }
+      const data = formDataToJson(formData);
+
+      await api.post({ path: '/auth/signin', data });
     }
   }
 });
