@@ -11,9 +11,9 @@ export type TEvent = Record<string, EventListener>;
 export type TAttr = Record<string, string | string[]>;
 
 export interface IData {
-	[key: string]: unknown,
-	lists?: TPropsLists,
-	events?: TEvent,
+  [key: string]: unknown,
+  lists?: TPropsLists,
+  events?: TEvent,
   attr?: TAttr,
 }
 export default abstract class Block<Props extends IData = IData> {
@@ -47,7 +47,7 @@ export default abstract class Block<Props extends IData = IData> {
 
   _addEvents(): void {
     this.addEvents();
-    if(this.props?.events) {
+    if (this.props?.events) {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
@@ -68,7 +68,7 @@ export default abstract class Block<Props extends IData = IData> {
       const validator = new FormValidator({ formElement: form });
       const formName = (form as HTMLFormElement).getAttribute('name');
 
-      if(formName) {
+      if (formName) {
         this.formValidators[formName] = validator;
         validator.enableValidation();
       }
@@ -87,7 +87,7 @@ export default abstract class Block<Props extends IData = IData> {
 
   _removeEvents(): void {
     this.removeEvents();
-    if(this.props?.events) {
+    if (this.props?.events) {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
@@ -112,7 +112,7 @@ export default abstract class Block<Props extends IData = IData> {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child): void => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         child.dispatchComponentDidMount();
       }
     });
@@ -146,7 +146,7 @@ export default abstract class Block<Props extends IData = IData> {
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
-      } else if(Array.isArray(value)) {
+      } else if (Array.isArray(value)) {
         lists[key] = value;
       } else {
         props[key] = value;
@@ -160,13 +160,13 @@ export default abstract class Block<Props extends IData = IData> {
     const { attr = {} } = this.props;
 
     Object.entries(attr as TAttr).forEach(([key, value]): void => {
-      if(key === 'class') {
+      if (key === 'class') {
         if (Array.isArray(value)) {
           this._element?.classList.add(...value);
-        } else if(typeof value === 'string') {
+        } else if (typeof value === 'string') {
           this._element?.classList.add(value);
         }
-      } else if(typeof value === 'string') {
+      } else if (typeof value === 'string') {
         this._element?.setAttribute(key, value);
       }
     });
@@ -194,21 +194,21 @@ export default abstract class Block<Props extends IData = IData> {
     const _tmpId = getID();
 
     Object.entries(this.children).forEach(([key, child]) => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
       }
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
-        console.log('child', child);
-        propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
+      console.log('child', child);
+      propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
         const childContent = child.getContent() as HTMLElement;
         stub?.replaceWith(childContent);
@@ -257,7 +257,7 @@ export default abstract class Block<Props extends IData = IData> {
       },
 
       set(target, prop, value) {
-        const oldTarget = {...target};
+        const oldTarget = { ...target };
 
         target[prop as string] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
@@ -278,7 +278,7 @@ export default abstract class Block<Props extends IData = IData> {
   public show() {
     const element = this.getContent();
 
-    if(element) {
+    if (element) {
       element.style.display = "block";
     }
   }
@@ -286,7 +286,7 @@ export default abstract class Block<Props extends IData = IData> {
   public hide() {
     const element = this.getContent();
 
-    if(element) {
+    if (element) {
       element.style.display = "none";
     }
   }
