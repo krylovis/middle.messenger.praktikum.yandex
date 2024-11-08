@@ -1,3 +1,4 @@
+import { router } from '@/utils/Router';
 import {
   EMAIL_PATTERN,
   PHONE_PATTERN,
@@ -179,6 +180,12 @@ const submitButton = new Button ({
 
 const navLink = new NavLink ({
   text: "Войти",
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/');
+    }
+  }
 });
 
 // form container
