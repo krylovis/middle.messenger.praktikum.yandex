@@ -18,7 +18,7 @@ export const profile = {
   second_name: 'Sparrow',
   display_name: 'Captain' ,
   email: 'jack-sparrow@captain.ar',
-  phone: '+79099673030',
+  phone: '+79999999999',
   avatar: avatar,
 };
 

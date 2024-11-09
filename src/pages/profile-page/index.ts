@@ -1,5 +1,6 @@
 import { profile } from '@/utils/constants';
 import { router } from '@/utils/Router';
+import authController from '@/utils/controllers/UserController';
 
 import {
   Input,
@@ -160,7 +161,7 @@ const navLinkLogout = new NavLink ({
   events: {
     click: (event) => {
       event.preventDefault();
-      router.go('/');
+      authController.logout();
     }
   }
 });

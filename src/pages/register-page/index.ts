@@ -1,4 +1,6 @@
 import { router } from '@/utils/Router';
+import authController from '@/utils/controllers/UserController';
+import formDataToJson from '@/utils/formDataToJson';
 import {
   EMAIL_PATTERN,
   PHONE_PATTERN,
@@ -203,7 +205,17 @@ const formContainer = new FormContainer({
     inputPhoneField,
     inputPasswordField,
     inputRepeatPasswordField,
-  ]
+  ],
+  events: {
+    submit: async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target as HTMLFormElement);
+      const data = formDataToJson(formData);
+
+      authController.signUp({ data });
+    }
+  }
 });
 
 export const registerPage = new RegisterPage({
