@@ -1,6 +1,6 @@
 import { router } from '@/utils/Router';
 import formDataToJson from '@/utils/formDataToJson';
-import { api } from '@/utils/Api';
+import { authApi } from '@/utils/Api/AuthApi';
 import {
   Input,
   Button,
@@ -81,7 +81,8 @@ const formContainer = new FormContainer({
       const formData = new FormData(event.target as HTMLFormElement);
       const data = formDataToJson(formData);
 
-      await api.post({ path: '/auth/signin', data });
+      const res = await authApi.signIn({ data });
+      console.log('res', res);
     }
   }
 });

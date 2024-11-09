@@ -1,42 +1,50 @@
-import { BASE_URL, HEADERS } from '@/utils/constants'
+import { BASE_URL, HEADERS } from '@/utils/constants';
 
-enum METHODS {
+export enum METHODS {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
-interface IParams {
+
+export interface IParams {
   baseUrl: string,
+  endpoint?: string,
   headers: Record<string, string>,
 }
-interface IReqParams {
+
+export interface IReqParams {
   method: METHODS,
   path?: string,
   timeout?: number,
   data?: FormData | string,
 }
-interface IReqData {
+
+export interface IReqData {
   path?: string,
   timeout?: number,
   data?: FormData | string,
 }
 
-class Api {
+export class BaseApi {
   _baseUrl;
+  _endpoint;
   _headers;
+  _url;
 
-  constructor({ baseUrl, headers }: IParams) {
+  constructor({ baseUrl, headers, endpoint = '' }: IParams) {
     this._baseUrl = baseUrl;
+    this._endpoint = endpoint;
     this._headers = headers;
+    this._url = `${this._baseUrl}${endpoint}`;
   }
 
-  private _request({ method, path = '', timeout, data }: IReqParams) {
+  public request({ method, path = '', timeout, data }: IReqParams) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
       req.withCredentials = true;
-      req.open(method, `${this._baseUrl}${path}`);
+      req.open(method, `${this._url}${path}`);
       req.responseType = 'json';
 
       if (timeout) {
@@ -70,23 +78,23 @@ class Api {
   }
 
   public get({ path }: IReqData) {
-    return this._request({ method: METHODS.GET, path });
+    return this.request({ method: METHODS.GET, path });
   }
 
   public post({ path, data }: IReqData) {
-    return this._request({ method: METHODS.POST, path, data });
+    return this.request({ method: METHODS.POST, path, data });
   }
 
   public put({ path, data }: IReqData) {
-    return this._request({ method: METHODS.PUT, path, data });
+    return this.request({ method: METHODS.PUT, path, data });
   }
 
   public delete({ path }: IReqData) {
-    return this._request({ method: METHODS.DELETE, path });
+    return this.request({ method: METHODS.DELETE, path });
   }
 }
 
-export const api = new Api({
+export const api = new BaseApi({
   baseUrl: BASE_URL,
   headers: HEADERS,
 });
