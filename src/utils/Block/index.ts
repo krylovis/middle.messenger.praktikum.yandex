@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
+import { isEqual } from "@/utils/helpers";
 import FormValidator from '@/utils/FormValidator';
 
 export type TPropsLists = Block<IData>[];
@@ -38,7 +39,8 @@ export default abstract class Block<Props extends IData = IData> {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
     this.props = this._makePropsProxy(this, { ...props });
-    this.children = children;
+    this.children = this._makePropsProxy(this, children);
+    // this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
@@ -108,7 +110,7 @@ export default abstract class Block<Props extends IData = IData> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _componentDidMount(): void {
+  public _componentDidMount(): void {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child): void => {
@@ -119,26 +121,28 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public componentDidMount(): void {
-    // return;
+    return;
   }
 
   public dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate() {
-    const response = this.componentDidUpdate();
+  public _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
+    const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
     }
     this._render();
   }
 
-  public componentDidUpdate(): boolean {
-    return true;
+  public componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
+    const isReRender = isEqual(oldProps, newProps);
+    if (isReRender) return true;
+    return false;
   }
 
-  private _getChildrenPropsAndProps(propsAndChildren: Props) {
+  public _getChildrenPropsAndProps(propsAndChildren: Props) {
     const children: TChildren = {};
     const props: TProps = {};
     const lists: TLists = {};
@@ -184,7 +188,7 @@ export default abstract class Block<Props extends IData = IData> {
     return this._element;
   }
 
-  private _render() {
+  public _render() {
     console.log("Render");
 
     this._element = null;
@@ -249,7 +253,7 @@ export default abstract class Block<Props extends IData = IData> {
     return this.element;
   }
 
-  private _makePropsProxy(self: Block, props: TProps) {
+  public _makePropsProxy(self: Block, props: TProps) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
@@ -271,7 +275,7 @@ export default abstract class Block<Props extends IData = IData> {
     });
   }
 
-  private _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
+  public _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
   }
 
