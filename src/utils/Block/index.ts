@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
 import EventBus from "@/utils/EventBus";
@@ -39,8 +40,7 @@ export default abstract class Block<Props extends IData = IData> {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
     this.props = this._makePropsProxy(this, { ...props });
-    this.children = this._makePropsProxy(this, children);
-    // this.children = children;
+    this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
@@ -53,7 +53,6 @@ export default abstract class Block<Props extends IData = IData> {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
-        console.log('eventName', eventName);
         this._element?.addEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
@@ -93,7 +92,6 @@ export default abstract class Block<Props extends IData = IData> {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
-        console.log('eventName', eventName);
         this._element?.removeEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
@@ -204,7 +202,6 @@ export default abstract class Block<Props extends IData = IData> {
     });
 
     Object.entries(this.lists).forEach(([key, child]) => {
-      console.log('child', child);
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
@@ -220,7 +217,6 @@ export default abstract class Block<Props extends IData = IData> {
     });
 
     Object.entries(this.lists).forEach(([key, child]): void => {
-      console.log('key', key);
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       (child as Block[]).forEach((item) => {
