@@ -1,4 +1,4 @@
-import { profile } from '@/utils/constants';
+// import { profile } from '@/utils/constants';
 import { router } from '@/utils/Router';
 import authController from '@/utils/controllers/UserController';
 
@@ -12,11 +12,12 @@ import {
 } from '@/components';
 
 import ProfilePage from './ProfilePage';
+import { connectWithAvatar } from '@/utils/connects';
+// import { connectWithUser, connectWithAvatar } from '@/utils/connects';
 
-const profileAvatar = new ProfileAvatar({
-  avatar: profile.avatar,
-  name: profile.first_name
-});
+const ConnectProfileAvatar = connectWithAvatar(ProfileAvatar);
+
+const profileAvatar = new ConnectProfileAvatar({ name: '', avatar: '' });
 
 // email input
 const profileEmail = new Input({
@@ -25,7 +26,6 @@ const profileEmail = new Input({
   type: "email",
   attr: {
     class: "input_type_profile",
-    value: profile.email,
     disabled: 'true',
   }
 });

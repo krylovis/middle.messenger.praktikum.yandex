@@ -9,7 +9,6 @@ for(const [path, page] of Object.entries(pages)) {
 router.start();
 
 document.addEventListener('DOMContentLoaded', async () => {
-  router.go(window.location.pathname);
-
   await authController.getUser();
+  router.go(window.location.pathname);
 })
