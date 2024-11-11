@@ -34,16 +34,19 @@ export default abstract class Block<Props extends IData = IData> {
 
   _element: HTMLElement | null = null;
   _id: string = getID();
+  _isSetUpgate: boolean;
   eventBus: () => EventBus;
 
   constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
-    this.props = this._makePropsProxy(this, { ...props });
+    this.props = this._makePropsProxy(this, props);
+    // this.children = this._makePropsProxy(this, children);
     this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
+    this._isSetUpgate = false;
     eventBus.emit(Block.EVENTS.INIT);
   }
 
@@ -127,17 +130,17 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
+    const isReRender = this.componentDidUpdate(oldProps, newProps);
+
+    if (isReRender) {
+      this._render();
+    } else {
       return;
     }
-    this._render();
   }
 
   public componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    const isReRender = isEqual(oldProps, newProps);
-    if (isReRender) return true;
-    return false;
+    return isEqual(oldProps, newProps);
   }
 
   public _getChildrenPropsAndProps(propsAndChildren: Props) {
@@ -174,12 +177,26 @@ export default abstract class Block<Props extends IData = IData> {
     });
   }
 
-  public setProps = (nextProps: TProps) => {
-    if (!nextProps) {
+  public setProps = (newProps: TProps) => {
+    if (!newProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    this._isSetUpgate = false;
+    const oldValue = { ...this.props };
+
+    if (Object.values(newProps).length) {
+      Object.assign(this.props, newProps);
+    }
+
+    // if (Object.values(this.children).length) {
+    //   //
+    // }
+
+    if (this._isSetUpgate) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
+      this._isSetUpgate = false;
+    }
   }
 
   get element() {
@@ -188,8 +205,6 @@ export default abstract class Block<Props extends IData = IData> {
 
   public _render() {
     console.log("Render");
-
-    this._element = null;
     this._removeEvents();
 
     const propsAndStubs = { ...this.props };
@@ -212,6 +227,7 @@ export default abstract class Block<Props extends IData = IData> {
       if (child instanceof Block) {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
         const childContent = child.getContent() as HTMLElement;
+
         stub?.replaceWith(childContent);
       }
     });
@@ -237,6 +253,7 @@ export default abstract class Block<Props extends IData = IData> {
       (this._element as HTMLElement).replaceWith(newElement as HTMLElement);
     }
     this._element = newElement as HTMLElement;
+
     this._addEvents();
     this.addAttributes();
   }
@@ -249,7 +266,7 @@ export default abstract class Block<Props extends IData = IData> {
     return this.element;
   }
 
-  public _makePropsProxy(self: Block, props: TProps) {
+  public _makePropsProxy(self: Block, props: TProps | TChildren) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
@@ -257,10 +274,10 @@ export default abstract class Block<Props extends IData = IData> {
       },
 
       set(target, prop, value) {
-        const oldTarget = { ...target };
-
-        target[prop as string] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        if (target[prop as string] !== value) {
+          target[prop as string] = value;
+          self._isSetUpgate = true;
+        }
 
         return true;
       },
@@ -273,21 +290,5 @@ export default abstract class Block<Props extends IData = IData> {
 
   public _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
-  }
-
-  public show() {
-    const element = this.getContent();
-
-    if (element) {
-      element.style.display = "block";
-    }
-  }
-
-  public hide() {
-    const element = this.getContent();
-
-    if (element) {
-      element.style.display = "none";
-    }
   }
 }
