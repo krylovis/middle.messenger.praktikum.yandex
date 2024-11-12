@@ -22,6 +22,7 @@ export default abstract class Block<Props extends IData = IData> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
+    FLOW_CBM: "flow:component-before-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render"
   };
@@ -103,6 +104,7 @@ export default abstract class Block<Props extends IData = IData> {
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CBM, this._componentBeforeMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
@@ -122,6 +124,14 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public componentDidMount(): void {
+    return;
+  }
+
+  public _componentBeforeMount(newElement: HTMLElement): void {
+    this.componentBeforeMount(newElement);
+  }
+
+  public componentBeforeMount(newElement: HTMLElement): void {
     return;
   }
 
@@ -249,11 +259,13 @@ export default abstract class Block<Props extends IData = IData> {
     });
 
     const newElement = fragment.content.firstElementChild;
+
     if (this._element) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CBM, newElement);
       (this._element as HTMLElement).replaceWith(newElement as HTMLElement);
     }
-    this._element = newElement as HTMLElement;
 
+    this._element = newElement as HTMLElement;
     this._addEvents();
     this.addAttributes();
   }

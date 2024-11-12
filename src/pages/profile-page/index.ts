@@ -1,4 +1,3 @@
-// import { profile } from '@/utils/constants';
 import { router } from '@/utils/Router';
 import authController from '@/utils/controllers/UserController';
 
@@ -12,11 +11,9 @@ import {
 } from '@/components';
 
 import ProfilePage from './ProfilePage';
-import { connectWithAvatar } from '@/utils/connects';
-// import { connectWithUser, connectWithAvatar } from '@/utils/connects';
+import { connectWithUser, connectWithAvatar } from '@/utils/connects';
 
 const ConnectProfileAvatar = connectWithAvatar(ProfileAvatar);
-
 const profileAvatar = new ConnectProfileAvatar({ name: '', avatar: '' });
 
 // email input
@@ -44,7 +41,6 @@ const profileLogin = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.login,
     disabled: 'true',
   }
 });
@@ -63,7 +59,6 @@ const profileFirstName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.first_name,
     disabled: 'true',
   }
 });
@@ -82,7 +77,6 @@ const profileSecondName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.second_name,
     disabled: 'true',
   }
 });
@@ -101,7 +95,6 @@ const profileDisplayName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.display_name,
     disabled: 'true',
   }
 });
@@ -120,7 +113,6 @@ const profilePhone = new Input({
   type: "phone",
   attr: {
     class: "input_type_profile",
-    value: profile.phone,
     disabled: 'true',
   }
 });
@@ -177,7 +169,8 @@ const buttonArrow = new ButtonWithIcon({
   }
 });
 
-const profileForm = new ProfileForm({
+const ConnectProfileForm = connectWithUser(ProfileForm);
+const profileForm = new ConnectProfileForm({
   lists: [
     profileEmailField,
     profileLoginField,
