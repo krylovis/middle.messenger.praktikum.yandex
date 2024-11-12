@@ -1,4 +1,6 @@
 import { router } from '@/utils/Router';
+import userController from '@/utils/controllers/UserController';
+import formDataToJson from '@/utils/formDataToJson';
 import {
   profile,
   EMAIL_PATTERN,
@@ -201,9 +203,9 @@ const profileForm = new ProfileForm({
       event.preventDefault();
 
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
-        console.log(`${name}: ${value}`);
-      }
+      const data = formDataToJson(formData);
+
+      userController.updateProfile({ data });
     }
   }
 });
