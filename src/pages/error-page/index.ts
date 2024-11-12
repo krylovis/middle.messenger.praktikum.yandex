@@ -3,7 +3,7 @@ import { NavLink } from '@/components';
 import { errors } from '@/utils/constants';
 import { router } from '@/utils/Router';
 
-const navLink = new NavLink ({
+const navLink = new NavLink({
   text: "Назад к чатам",
   events: {
     click: (event) => {

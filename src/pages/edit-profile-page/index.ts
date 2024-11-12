@@ -43,7 +43,7 @@ const inputEmailError = new InputError({
   attr: { class: "email-error" }
 });
 
-const profileEmailField = new InputField ({
+const profileEmailField = new InputField({
   Input: profileEmail,
   InputError: inputEmailError,
   id: "profileEmail",
@@ -67,7 +67,7 @@ const inputLoginError = new InputError({
   attr: { class: "login-error" }
 });
 
-const profileLoginField = new InputField ({
+const profileLoginField = new InputField({
   Input: profileLogin,
   InputError: inputLoginError,
   id: "profileLogin",
@@ -91,7 +91,7 @@ const inputFirstNameError = new InputError({
   attr: { class: "first-name-error" }
 });
 
-const profileFirstNameField = new InputField ({
+const profileFirstNameField = new InputField({
   Input: profileFirstName,
   InputError: inputFirstNameError,
   id: "profileFirstName",
@@ -115,7 +115,7 @@ const inputSecondNameError = new InputError({
   attr: { class: "second-name-error" }
 });
 
-const profileSecondNameField = new InputField ({
+const profileSecondNameField = new InputField({
   Input: profileSecondName,
   InputError: inputSecondNameError,
   id: "profileSecondName",
@@ -138,7 +138,7 @@ const inputDisplayNameError = new InputError({
   attr: { class: "display-name-error" }
 });
 
-const profileDisplayNameField = new InputField ({
+const profileDisplayNameField = new InputField({
   Input: profileDisplayName,
   InputError: inputDisplayNameError,
   id: "profileDisplayName",
@@ -162,7 +162,7 @@ const inputPhoneError = new InputError({
   attr: { class: "phone-error" }
 });
 
-const profilePhoneField = new InputField ({
+const profilePhoneField = new InputField({
   Input: profilePhone,
   InputError: inputPhoneError,
   id: "profilePhone",
@@ -171,10 +171,10 @@ const profilePhoneField = new InputField ({
 });
 
 // controls
-const submitButton = new Button ({
+const submitButton = new Button({
   type: "submit",
   text: "Сохранить",
-  attr: { class: "button_type_profile" }
+  attr: { class: "button_type_profile" },
 });
 
 const buttonArrow = new ButtonWithIcon({

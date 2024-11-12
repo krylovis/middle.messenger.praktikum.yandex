@@ -27,7 +27,7 @@ const profileEmail = new Input({
   }
 });
 
-const profileEmailField = new InputField ({
+const profileEmailField = new InputField({
   Input: profileEmail,
   id: "profileEmail",
   label: "Почта",
@@ -45,7 +45,7 @@ const profileLogin = new Input({
   }
 });
 
-const profileLoginField = new InputField ({
+const profileLoginField = new InputField({
   Input: profileLogin,
   id: "profileLogin",
   label: "Логин",
@@ -63,7 +63,7 @@ const profileFirstName = new Input({
   }
 });
 
-const profileFirstNameField = new InputField ({
+const profileFirstNameField = new InputField({
   Input: profileFirstName,
   id: "profileFirstName",
   label: "Имя",
@@ -81,7 +81,7 @@ const profileSecondName = new Input({
   }
 });
 
-const profileSecondNameField = new InputField ({
+const profileSecondNameField = new InputField({
   Input: profileSecondName,
   id: "profileSecondName",
   label: "Фамилия",
@@ -99,7 +99,7 @@ const profileDisplayName = new Input({
   }
 });
 
-const profileDisplayNameField = new InputField ({
+const profileDisplayNameField = new InputField({
   Input: profileDisplayName,
   id: "profileDisplayName",
   label: "Имя&nbsp;в&nbsp;чате",
@@ -117,7 +117,7 @@ const profilePhone = new Input({
   }
 });
 
-const profilePhoneField = new InputField ({
+const profilePhoneField = new InputField({
   Input: profilePhone,
   id: "profilePhone",
   label: "Телефон",
@@ -125,7 +125,7 @@ const profilePhoneField = new InputField ({
 });
 
 // controls
-const navLinkEdit = new NavLink ({
+const navLinkEdit = new NavLink({
   text: "Изменить данные",
   attr: { class: "nav-link_type_profile" },
   events: {
@@ -136,7 +136,7 @@ const navLinkEdit = new NavLink ({
   }
 });
 
-const navLinkPassword = new NavLink ({
+const navLinkPassword = new NavLink({
   text: "Изменить пароль",
   attr: { class: "nav-link_type_profile" },
   events: {
@@ -147,7 +147,7 @@ const navLinkPassword = new NavLink ({
   }
 });
 
-const navLinkLogout = new NavLink ({
+const navLinkLogout = new NavLink({
   text: "Выйти",
   attr: { class: ["nav-link_type_profile", "nav-link_type_danger"] },
   events: {

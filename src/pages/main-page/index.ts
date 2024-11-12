@@ -18,9 +18,9 @@ import {
   ButtonWithIcon,
 } from '@/components';
 
-const headerAvatar = new Avatar({ });
+const headerAvatar = new Avatar({});
 
-const chatHeader = new ChatHeader ({
+const chatHeader = new ChatHeader({
   Avatar: headerAvatar,
 });
 
@@ -39,18 +39,18 @@ const messagesForDateList = messageData.map(({ date, data }) => {
       message,
       media,
       file,
-      attr: { class: classList}
+      attr: { class: classList }
     });
   });
 
   return new MessagesForDate({ date, lists: messagesList });
 });
 
-const chatContent = new ChatContent ({
+const chatContent = new ChatContent({
   lists: messagesForDateList,
 });
 
-const navLink = new NavLink ({
+const navLink = new NavLink({
   text: "Профиль",
   icon: true,
   attr: { class: "nav-link_type_to-profile" },
@@ -104,7 +104,7 @@ const buttonMenu = new ButtonWithIcon({
   iconName: 'attach',
 });
 
-const formMessage = new FormMessage ({
+const formMessage = new FormMessage({
   SubmitButton: submitButton,
   formAction: "new-message-form",
   formName: "new-message-action",
@@ -114,7 +114,7 @@ const formMessage = new FormMessage ({
       event.preventDefault();
 
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
+      for (const [name, value] of formData.entries()) {
         console.log(`${name}: ${value}`);
       }
 
@@ -124,7 +124,7 @@ const formMessage = new FormMessage ({
   }
 });
 
-const chatFooter = new ChatFooter ({
+const chatFooter = new ChatFooter({
   ButtonMenu: buttonMenu,
   FormMessage: formMessage,
 });

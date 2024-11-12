@@ -24,7 +24,7 @@ const inputLoginError = new InputError({
   attr: { class: "login-error" }
 });
 
-const inputLoginField = new InputField ({
+const inputLoginField = new InputField({
   Input: inputLogin,
   InputError: inputLoginError,
   id: "inputLogin",
@@ -43,7 +43,7 @@ const inputPasswordError = new InputError({
   attr: { class: "password-error" }
 });
 
-const inputPasswordField = new InputField ({
+const inputPasswordField = new InputField({
   Input: inputPassword,
   InputError: inputPasswordError,
   id: "inputPassword",
@@ -51,12 +51,12 @@ const inputPasswordField = new InputField ({
 });
 
 // controls
-const submitButton = new Button ({
+const submitButton = new Button({
   type: "submit",
   text: "Авторизоваться",
 });
 
-const navLink = new NavLink ({
+const navLink = new NavLink({
   text: "Нет аккаунта?",
   events: {
     click: (event) => {
