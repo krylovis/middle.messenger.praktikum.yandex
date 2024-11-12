@@ -1,3 +1,4 @@
+import defaultAvatar from '../../../static/images/default.png';
 import './profile-avatar.scss';
 
 export const profileAvatarTemplate = `
@@ -7,7 +8,11 @@ export const profileAvatarTemplate = `
     <img src={{ avatar }} alt="Аватар" class="profile-avatar__avatar profile-avatar__avatar_type_edit" />
   </button>
   {{else}}
-    <img src={{ avatar }} alt="Аватар" class="profile-avatar__avatar" />
+    {{#if avatar}}
+      <img src={{ avatar }} alt="Аватар" class="profile-avatar__avatar" />
+    {{else}}
+      <img src="${defaultAvatar}" alt="Аватар" class="profile-avatar__avatar" />
+    {{/if}}
   {{/if}}
 
   <p class="profile-avatar__name">{{ name }}</p>
