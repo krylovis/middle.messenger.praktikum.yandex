@@ -11,7 +11,7 @@ import {
 } from '@/components';
 
 import ProfilePage from './ProfilePage';
-import { connectWithUser, connectWithAvatar } from '@/utils/connects';
+import { connectWithAvatar } from '@/utils/connects';
 
 const ConnectProfileAvatar = connectWithAvatar(ProfileAvatar);
 const profileAvatar = new ConnectProfileAvatar({ name: '', avatar: '' });
@@ -169,8 +169,7 @@ const buttonArrow = new ButtonWithIcon({
   }
 });
 
-const ConnectProfileForm = connectWithUser(ProfileForm);
-const profileForm = new ConnectProfileForm({
+const profileForm = new ProfileForm({
   lists: [
     profileEmailField,
     profileLoginField,
