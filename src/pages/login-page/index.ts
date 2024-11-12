@@ -1,6 +1,6 @@
 import { router } from '@/utils/Router';
 import formDataToJson from '@/utils/formDataToJson';
-import authController from '@/utils/controllers/UserController';
+import authController from '@/utils/controllers/AuthController';
 import {
   Input,
   Button,
