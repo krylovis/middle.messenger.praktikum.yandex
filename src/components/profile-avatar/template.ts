@@ -6,14 +6,14 @@ export const profileAvatarTemplate = `
   {{#if isEditAvatar}}
   <button class="profile-avatar__edit-button" type="button" aria-label="Редактировать аватар профиля">
     {{#if avatar}}
-      <img src={{ avatar }} alt="Аватар" class="profile-avatar__avatar" />
+      <img src="https://ya-praktikum.tech/api/v2/resources{{avatar}}" alt="Аватар" class="profile-avatar__avatar" />
     {{else}}
       <img src="${defaultAvatar}" alt="Аватар" class="profile-avatar__avatar" />
     {{/if}}
   </button>
   {{else}}
     {{#if avatar}}
-      <img src={{ avatar }} alt="Аватар" class="profile-avatar__avatar" />
+      <img src="https://ya-praktikum.tech/api/v2/resources{{avatar}}" alt="Аватар" class="profile-avatar__avatar" />
     {{else}}
       <img src="${defaultAvatar}" alt="Аватар" class="profile-avatar__avatar" />
     {{/if}}

@@ -70,6 +70,9 @@ export class BaseApi {
       };
 
       if (method === METHODS.POST || method === METHODS.PUT && data) {
+        if (typeof data === 'string') {
+          req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        }
         req.send(data);
       } else {
         req.send();

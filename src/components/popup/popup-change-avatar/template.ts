@@ -3,7 +3,7 @@ export const changeAvatarContentTemplate = `
 
   <label class="popup__input-label" for="input-new-avatar">
     Выбрать файл на компьютере
-    <input id="input-new-avatar" class="popup__input" type="file" accept=".jpg, .png" />
+    <input id="input-new-avatar" class="popup__input" name="avatar" type="file" accept=".jpg, .png" />
   </label>
 
   {{{ Button }}}

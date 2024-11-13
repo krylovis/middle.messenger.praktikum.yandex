@@ -11,10 +11,8 @@ import {
 } from '@/components';
 
 import ProfilePage from './ProfilePage';
-import { connectWithAvatar } from '@/utils/connects';
 
-const ConnectProfileAvatar = connectWithAvatar(ProfileAvatar);
-const profileAvatar = new ConnectProfileAvatar({ name: '', avatar: '' });
+const profileAvatar = new ProfileAvatar({ name: '', avatar: '' });
 
 // email input
 const profileEmail = new Input({
