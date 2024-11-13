@@ -18,6 +18,7 @@ interface IUser {
 
 export interface IState {
   currentUser?: IUser;
+  isPopupOpen?: boolean;
 }
 
 class Store extends EventBus {

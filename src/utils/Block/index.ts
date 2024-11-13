@@ -172,6 +172,10 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public addAttributes(): void {
+    //
+  }
+
+  public _addAttributes(): void {
     const { attr = {} } = this.props;
 
     Object.entries(attr as TAttr).forEach(([key, value]): void => {
@@ -185,6 +189,8 @@ export default abstract class Block<Props extends IData = IData> {
         this._element?.setAttribute(key, value);
       }
     });
+
+    this.addAttributes();
   }
 
   public setProps = (newProps: TProps) => {
@@ -267,7 +273,7 @@ export default abstract class Block<Props extends IData = IData> {
 
     this._element = newElement as HTMLElement;
     this._addEvents();
-    this.addAttributes();
+    this._addAttributes();
   }
 
   render(): string {

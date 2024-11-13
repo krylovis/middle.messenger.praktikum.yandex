@@ -1,4 +1,5 @@
 import { router } from '@/utils/Router';
+import store from '@/utils/Store';
 import userController from '@/utils/controllers/UserController';
 import formDataToJson from '@/utils/formDataToJson';
 import {
@@ -23,8 +24,12 @@ import {
 import EditProfilePage from './EditProfilePage';
 
 const profileAvatar = new ProfileAvatar({
-  avatar: profile.avatar,
   isEditAvatar: true,
+  events: {
+    click: () => {
+      store.set('isPopupOpen', true);
+    },
+  }
 });
 
 // email input
