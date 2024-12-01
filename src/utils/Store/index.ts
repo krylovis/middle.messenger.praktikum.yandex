@@ -35,8 +35,18 @@ class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   };
 
-  public getState() {
+  public getAllState() {
     return this.state;
+  }
+
+  public getState(key: string): IUser| boolean | null {
+    const state = this.state[key as keyof IState];
+
+    if (state) {
+      return state;
+    } else {
+      return null;
+    }
   }
 }
 

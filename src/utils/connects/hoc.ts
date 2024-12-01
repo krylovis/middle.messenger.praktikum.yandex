@@ -6,11 +6,11 @@ function connect(mapStateToProps: (state: IState) => IData) {
   return function (Component: typeof Block) {
     return class extends Component {
       constructor(props: IData) {
-        let state = mapStateToProps(store.getState() as IState);
+        let state = mapStateToProps(store.getAllState() as IState);
         super({ ...props, ...state });
 
         store.on(StoreEvents.Updated, () => {
-          const newState = mapStateToProps(store.getState() as IState);
+          const newState = mapStateToProps(store.getAllState() as IState);
           if (!isEqual(state, newState)) {
             this.setProps({ ...newState });
           }
