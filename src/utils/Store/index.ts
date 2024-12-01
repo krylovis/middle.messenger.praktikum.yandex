@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-dynamic-delete */
 import EventBus from "@/utils/EventBus";
 import { set } from "@/utils/helpers";
 
@@ -46,6 +47,14 @@ class Store extends EventBus {
       return state;
     } else {
       return null;
+    }
+  }
+
+  public delete(key: string): void {
+    const state = this.state[key as keyof IState];
+
+    if (state) {
+      delete this.state[key as keyof IState];
     }
   }
 }
