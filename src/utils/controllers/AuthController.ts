@@ -23,11 +23,11 @@ class AuthController {
 
   async signIn(data: IReqData) {
     await this.api.signIn(data)
-      .then(() => {
-        this.getUser();
+      .then(async () => {
+        await this.getUser();
         router.go('/messenger');
       })
-      .catch(console.error);;
+      .catch(console.error);
   }
 
   async getUser() {
@@ -41,8 +41,12 @@ class AuthController {
   }
 
   async logout() {
-    await this.api.logout();
-    router.go('/');
+    await this.api.logout()
+      .then(() => {
+        store.delete('currentUser');
+        router.go('/');
+      })
+      .catch(console.error);
   }
 }
 
