@@ -12,9 +12,9 @@ class AuthController {
 
   async signUp(data: IReqData) {
     await this.api.signUp(data)
-      .then((id) => {
+      .then(async (id) => {
         if (id) {
-          this.getUser();
+          await this.getUser();
           router.go('/messenger');
         }
       })
