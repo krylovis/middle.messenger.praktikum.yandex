@@ -30,4 +30,13 @@
 
     background-color: $color-primary;
   }
+
+  &_type_add-item {
+    @include background-image($add-icon, 11px, 11px);
+
+    background-color: $color-border;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+  }
 }
