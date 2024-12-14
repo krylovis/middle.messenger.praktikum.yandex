@@ -42,6 +42,7 @@ export interface IState {
   chatsList?: IChats[];
   currentUser?: IUser;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
+  [EPopupTriggers.ADD_CHAT]?: boolean;
 }
 
 class Store extends EventBus {

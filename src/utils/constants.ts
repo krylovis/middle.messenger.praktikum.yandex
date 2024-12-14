@@ -90,6 +90,7 @@ export enum EFormSelectors {
 
 export enum EPopupTriggers {
   AVATAR_CHANGE = 'isPopupAvatarChangeOpen',
+  ADD_CHAT = 'isPopupAddChatOpen',
 }
 
 export const formSelectors = {
