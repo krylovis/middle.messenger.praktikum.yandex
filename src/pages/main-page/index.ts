@@ -16,6 +16,7 @@ import {
   FormMessage,
   Input,
   ButtonWithIcon,
+  popupAddChat,
 } from '@/components';
 
 const headerAvatar = new Avatar({});
@@ -134,4 +135,5 @@ export const mainPage = new MainPage({
   ChatHeader: chatHeader,
   ChatContent: chatContent,
   ChatFooter: chatFooter,
+  PopupAddChat: popupAddChat,
 });

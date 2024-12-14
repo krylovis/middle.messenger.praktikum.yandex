@@ -1,6 +1,8 @@
+import store from '@/utils/Store';
 import Block, { IData } from '@/utils/Block';
 import { connectWithChats } from '@/utils/connects';
 import { chatListTemplate } from './template';
+import { EPopupTriggers } from '@/utils/constants';
 
 import {
   ButtonWithIcon,
@@ -11,8 +13,8 @@ const addChatBtn = new ButtonWithIcon({
   title: 'Добавить чат',
   iconName: 'add-item',
   events: {
-    click: (event) => {
-      console.log('event', event);
+    click: () => {
+      store.set(EPopupTriggers.ADD_CHAT, true);
     }
   }
 });

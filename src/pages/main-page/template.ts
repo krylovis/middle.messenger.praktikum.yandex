@@ -7,8 +7,10 @@ export const mainPageTemplate = `
   </div>
 
   <div class="main-page__content main-page__content_type_chat">
-    {{{ ChatHeader }}}
-    {{{ ChatContent }}}
-    {{{ ChatFooter }}}
-  </div>
+      {{{ ChatHeader }}}
+      {{{ ChatContent }}}
+      {{{ ChatFooter }}}
+    </div>
+
+  {{{ PopupAddChat }}}
 </section>`;
