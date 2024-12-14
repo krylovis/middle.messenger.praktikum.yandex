@@ -220,7 +220,6 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public _render() {
-    console.log("Render");
     this._removeEvents();
 
     const propsAndStubs = { ...this.props };
