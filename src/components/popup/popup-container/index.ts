@@ -1,10 +1,10 @@
 import Block, { IData } from '@/utils/Block';
 import Popup from '../Popup';
-import { connectWithPopup } from '@/utils/connects';
 import { popupContainerTemplate } from './template';
 
-class PopupContainer extends Block<IData> {
+export default class PopupContainer extends Block<IData> {
   popup: Popup | null;
+  popupTrigger: string;
 
   constructor(props: IData) {
     super({
@@ -12,15 +12,17 @@ class PopupContainer extends Block<IData> {
     })
 
     this.popup = null;
+    this.popupTrigger = '';
   }
 
   componentBeforeMount(newElement: HTMLElement) {
-    this.popup = new Popup(newElement);
+    this.popupTrigger = this.props?.popupTrigger as string || '';
+    this.popup = new Popup({ element: newElement, popupTrigger: this.popupTrigger });
     this.popup.setEventListeners();
   }
 
   addAttributes() {
-    if (this.props.isPopupOpen) {
+    if (this.props[this.popupTrigger]) {
       this.popup?.open();
     }
   }
@@ -33,5 +35,3 @@ class PopupContainer extends Block<IData> {
     return popupContainerTemplate;
   }
 }
-
-export default connectWithPopup(PopupContainer);

@@ -40,7 +40,7 @@ interface IChats {
 export interface IState {
   chatsList?: IChats[];
   currentUser?: IUser;
-  isPopupOpen?: boolean;
+  isPopupAvatarChageOpen?: boolean;
 }
 
 class Store extends EventBus {

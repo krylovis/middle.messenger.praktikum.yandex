@@ -27,7 +27,7 @@ const profileAvatar = new ProfileAvatar({
   isEditAvatar: true,
   events: {
     click: () => {
-      store.set('isPopupOpen', true);
+      store.set('isPopupAvatarChageOpen', true);
     },
   }
 });
