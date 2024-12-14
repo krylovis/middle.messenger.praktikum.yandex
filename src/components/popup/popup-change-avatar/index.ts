@@ -3,6 +3,7 @@ import { connectWithChangeAvatarPopup } from '@/utils/connects';
 import ChangeAvatarContent from './ChangeAvatarContent';
 import userController from '@/utils/controllers/UserController';
 import { Button } from '@/components';
+import { EPopupTriggers } from '@/utils/constants';
 
 const button = new Button ({
   text: 'Поменять',
@@ -24,6 +25,6 @@ const connectPopupContainer = connectWithChangeAvatarPopup(PopupContainer);
 export const popupChangeAvatar = new connectPopupContainer({
   title: 'Загрузите файл',
   content: changeAvatarContent,
-  popupTrigger: 'isPopupAvatarChageOpen',
+  popupTrigger: EPopupTriggers.AVATAR_CHANGE,
   attr: { class: 'popup_type_change-avatar' }
 });

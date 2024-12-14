@@ -2,6 +2,7 @@ import { router } from '@/utils/Router';
 import store from '@/utils/Store';
 import userController from '@/utils/controllers/UserController';
 import formDataToJson from '@/utils/formDataToJson';
+import { EPopupTriggers } from '@/utils/constants';
 import {
   profile,
   EMAIL_PATTERN,
@@ -27,7 +28,7 @@ const profileAvatar = new ProfileAvatar({
   isEditAvatar: true,
   events: {
     click: () => {
-      store.set('isPopupAvatarChageOpen', true);
+      store.set(EPopupTriggers.AVATAR_CHANGE, true);
     },
   }
 });

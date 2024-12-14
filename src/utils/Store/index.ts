@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-dynamic-delete */
 import EventBus from "@/utils/EventBus";
 import { set } from "@/utils/helpers";
+import { EPopupTriggers } from '@/utils/constants';
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -40,7 +41,7 @@ interface IChats {
 export interface IState {
   chatsList?: IChats[];
   currentUser?: IUser;
-  isPopupAvatarChageOpen?: boolean;
+  [EPopupTriggers.AVATAR_CHANGE]?: boolean;
 }
 
 class Store extends EventBus {

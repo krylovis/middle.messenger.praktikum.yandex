@@ -88,6 +88,10 @@ export enum EFormSelectors {
   SUBMIT_BTN_INACTIVE = 'button_inactive',
 }
 
+export enum EPopupTriggers {
+  AVATAR_CHANGE = 'isPopupAvatarChangeOpen',
+}
+
 export const formSelectors = {
   label: '.input-field',
   input: '.input',
