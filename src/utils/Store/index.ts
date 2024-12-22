@@ -18,7 +18,7 @@ interface IUser {
   "email": string
 }
 
-interface IChats {
+export interface IChats {
   "id": number,
   "title": string,
   "avatar": string,

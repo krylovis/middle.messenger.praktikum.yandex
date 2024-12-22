@@ -1,10 +1,12 @@
-import store from '@/utils/Store';
+import store, { IChats } from '@/utils/Store';
 import Block, { IData } from '@/utils/Block';
 import { connectWithChats } from '@/utils/connects';
 import { chatListTemplate } from './template';
 import { EPopupTriggers } from '@/utils/constants';
 
 import {
+  ChatItem,
+  Avatar,
   ButtonWithIcon,
 } from '@/components';
 
@@ -23,13 +25,28 @@ class ChatList extends Block<IData> {
   constructor(props: IData) {
     super({
       ...props,
+      lists: [],
       AddChatBtn: addChatBtn
     })
   }
 
-  public componentBeforeMount(): void {
-    if (this.props.chatsList) {
-      //
+  public updateLists(): void {
+    const { chatsList } = this.props;
+
+    if ((chatsList as IChats[])?.length) {
+      this.lists.lists = (chatsList as IChats[]).map(({
+        title, last_message, unread_count, avatar,
+      }) => {
+        const chatAvatar = new Avatar({ avatar });
+
+        return new ChatItem({
+          Avatar: chatAvatar,
+          title,
+          lastMessage: last_message?.content,
+          unreadCount: unread_count,
+          time: last_message?.time
+        });
+      });
     }
   }
 

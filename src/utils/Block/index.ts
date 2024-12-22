@@ -42,7 +42,6 @@ export default abstract class Block<Props extends IData = IData> {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
     this.props = this._makePropsProxy(this, props);
-    // this.children = this._makePropsProxy(this, children);
     this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
@@ -193,6 +192,10 @@ export default abstract class Block<Props extends IData = IData> {
     this.addAttributes();
   }
 
+  public updateLists() {
+    //
+  }
+
   public setProps = (newProps: TProps) => {
     if (!newProps) {
       return;
@@ -221,6 +224,7 @@ export default abstract class Block<Props extends IData = IData> {
 
   public _render() {
     this._removeEvents();
+    this.updateLists();
 
     const propsAndStubs = { ...this.props };
     const _tmpId = getID();

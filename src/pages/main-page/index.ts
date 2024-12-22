@@ -1,5 +1,4 @@
 import MainPage from './MainPage';
-import { chatList as chatItems } from '@/utils/constants';
 import { messageData } from '@/utils/constants';
 import { router } from '@/utils/Router';
 
@@ -7,7 +6,6 @@ import {
   NavLink,
   ChatList,
   Avatar,
-  ChatItem,
   ChatHeader,
   ChatFooter,
   ChatContent,
@@ -63,24 +61,9 @@ const navLink = new NavLink({
   }
 });
 
-const chatList = chatItems.map(({
-  name, message, unread, updatedAt, avatar,
-}) => {
-  const itemAvatar = new Avatar({ avatar });
-
-  return new ChatItem({
-    Avatar: itemAvatar,
-    name,
-    message,
-    unread,
-    updatedAt
-  });
-});
-
 // chat list
-const chatListComponent = new ChatList({
+const chatList = new ChatList({
   NavLink: navLink,
-  lists: chatList,
 });
 
 const inputMessage = new Input({
@@ -131,7 +114,7 @@ const chatFooter = new ChatFooter({
 });
 
 export const mainPage = new MainPage({
-  ChatList: chatListComponent,
+  ChatList: chatList,
   ChatHeader: chatHeader,
   ChatContent: chatContent,
   ChatFooter: chatFooter,

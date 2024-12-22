@@ -25,6 +25,7 @@ class ChatsController {
       .then((chat) => {
         if (chat) {
           store.set(EPopupTriggers.ADD_CHAT, false);
+          this.api.getChats();
         }
       })
       .catch(console.error);
