@@ -26,13 +26,14 @@ function isArrayOrObject(value: unknown): value is ([] | PlainObject) {
 }
 
 export function isEqual<T>(lhs: T, rhs: T) {
-  if (isPlainObject(lhs) && isPlainObject(rhs)) {
+  if (isArrayOrObject(lhs) && isArrayOrObject(rhs)) {
     if (Object.keys(lhs).length !== Object.keys(rhs).length) {
       return false;
     }
 
     for (const [key, value] of Object.entries(lhs)) {
-      const rightValue = rhs[key];
+      const rightValue = rhs[key as keyof T];
+
       if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
         if (isEqual(value, rightValue)) {
           continue;
