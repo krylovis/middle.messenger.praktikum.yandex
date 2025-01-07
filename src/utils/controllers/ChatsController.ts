@@ -12,12 +12,12 @@ class ChatsController {
 
   async getChats() {
     await this.api.getChats()
-      .then((chatsList) => {
-        if (chatsList) {
-          store.set('chatsList', chatsList);
-        }
-      })
-      .catch(console.error);
+    .then((chatsList) => {
+      if (chatsList) {
+        store.set('chatsList', chatsList);
+      }
+    })
+    .catch(console.error);
   }
 
   async createChat(data: IReqData) {
@@ -25,7 +25,7 @@ class ChatsController {
       .then((chat) => {
         if (chat) {
           store.set(EPopupTriggers.ADD_CHAT, false);
-          this.api.getChats();
+          this.getChats();
         }
       })
       .catch(console.error);
