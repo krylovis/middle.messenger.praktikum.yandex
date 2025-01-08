@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
 
+  &_selected {
+    background-color: #E4EDFD;
+  }
+
   &__line {
     height: 1px;
     background: #EAEAEA;
@@ -61,7 +65,7 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  
+
   &__counter {
     display: flex;
     align-items: center;

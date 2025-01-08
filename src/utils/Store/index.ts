@@ -41,6 +41,7 @@ export interface IChats {
 export interface IState {
   chatsList?: IChats[];
   currentUser?: IUser;
+  currentChat?: string | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
 }

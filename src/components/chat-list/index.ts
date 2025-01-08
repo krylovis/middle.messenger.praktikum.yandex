@@ -35,7 +35,7 @@ class ChatList extends Block<IData> {
 
     if ((chatsList as IChats[])?.length) {
       this.lists.lists = (chatsList as IChats[]).map(({
-        title, last_message, unread_count, avatar,
+        id, title, last_message, unread_count, avatar,
       }) => {
         const chatAvatar = new Avatar({ avatar });
 
@@ -44,7 +44,12 @@ class ChatList extends Block<IData> {
           title,
           lastMessage: last_message?.content,
           unreadCount: unread_count,
-          time: last_message?.time
+          time: last_message?.time,
+          events: {
+              click: () => {
+                store.toggleValue('currentChat', id);
+              }
+            }
         });
       });
     }
