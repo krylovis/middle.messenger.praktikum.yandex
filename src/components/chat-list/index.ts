@@ -38,6 +38,7 @@ class ChatList extends Block<IData> {
         id, title, last_message, unread_count, avatar,
       }) => {
         const chatAvatar = new Avatar({ avatar });
+        const currentChatId = `chat-${id}`;
 
         return new ChatItem({
           Avatar: chatAvatar,
@@ -45,11 +46,31 @@ class ChatList extends Block<IData> {
           lastMessage: last_message?.content,
           unreadCount: unread_count,
           time: last_message?.time,
+          attr: { id: currentChatId },
           events: {
-              click: () => {
-                store.toggleValue('currentChat', id);
+            click: (event) => {
+              event.preventDefault();
+              store.toggleValue('currentChat', id);
+
+              const list = document.querySelectorAll('.chat-item');
+              const selectedItem = Array.from((list as NodeListOf<Element>))
+                .find((item) => item.classList.contains('chat-item_selected'));
+
+              if (selectedItem) {
+                selectedItem.classList.remove('chat-item_selected');
+
+                if (selectedItem?.id === currentChatId) {
+                  return;
+                }
               }
+
+              list.forEach((item) => {
+                if (item.id === currentChatId) {
+                  item.classList.add('chat-item_selected');
+                }
+              });
             }
+          }
         });
       });
     }
