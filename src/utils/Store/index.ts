@@ -63,7 +63,17 @@ class Store extends EventBus {
     return this.state;
   }
 
-  public getState(key: string): IUser | boolean | null | IChats[] {
+  public toggleValue(path: string, value: unknown) {
+    const currentValue = this.state[path as keyof IState];
+
+    if (currentValue !== value) {
+      set(this.state, path, value);
+    } else {
+      set(this.state, path, null);
+    }
+  }
+
+  public getState(key: string): IUser | boolean | null | IChats[] | string {
     const state = this.state[key as keyof IState];
 
     if (state) {
