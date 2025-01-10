@@ -20,6 +20,17 @@ export const profile = {
   avatar: avatar,
 };
 
+export const headerMenu = [
+  {
+    type: 'add-user',
+    text: 'Добавить пользователя',
+  },
+  {
+    type: 'remove-user',
+    text: 'Удалить пользователя',
+  }
+];
+
 export const errors: Record<string, Record<string, string>> = {
   '404': {
     errorNum: '404',

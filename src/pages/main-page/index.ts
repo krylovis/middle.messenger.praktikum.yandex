@@ -1,6 +1,7 @@
 import MainPage from './MainPage';
 import { messageData } from '@/utils/constants';
 import { router } from '@/utils/Router';
+import { headerMenu } from '@/utils/constants';
 
 import {
   NavLink,
@@ -15,12 +16,41 @@ import {
   Input,
   ButtonWithIcon,
   popupAddChat,
+  DropdownMenu,
+  DropdownMenuItem,
 } from '@/components';
 
 const headerAvatar = new Avatar({});
 
+const headerMenuLists = headerMenu.map(({ type, text }) => {
+  return new DropdownMenuItem({
+    type: type,
+    text: text,
+    events: {
+      click: (event) => {
+        event.preventDefault();
+        console.log('type', type);
+      }
+    }
+  });
+});
+
+const editChatButtonMenu = new ButtonWithIcon({
+  id: "editChatButtonMenu",
+  type: "button",
+  buttonSize: '32',
+  iconName: 'menu',
+});
+
+const dropdownMenu = new DropdownMenu({
+  ButtonMenu: editChatButtonMenu,
+  lists: headerMenuLists,
+  type: 'header'
+});
+
 const chatHeader = new ChatHeader({
   Avatar: headerAvatar,
+  DropdownMenu: dropdownMenu,
 });
 
 const messagesForDateList = messageData.map(({ date, data }) => {
