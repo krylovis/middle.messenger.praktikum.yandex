@@ -20,17 +20,6 @@ export const profile = {
   avatar: avatar,
 };
 
-export const headerMenu = [
-  {
-    type: 'add-user',
-    text: 'Добавить пользователя',
-  },
-  {
-    type: 'remove-user',
-    text: 'Удалить пользователя',
-  }
-];
-
 export const errors: Record<string, Record<string, string>> = {
   '404': {
     errorNum: '404',
@@ -102,6 +91,8 @@ export enum EFormSelectors {
 export enum EPopupTriggers {
   AVATAR_CHANGE = 'isPopupAvatarChangeOpen',
   ADD_CHAT = 'isPopupAddChatOpen',
+  ADD_USER = 'isPopupAddUserOpen',
+  REMOVE_USER = 'isPopupRemoveUserOpen',
 }
 
 export enum EDropdownMenuTriggers {
@@ -117,3 +108,16 @@ export const formSelectors = {
   submitBtn: '.button',
   submitBtnInactive: 'button_inactive',
 };
+
+export const headerMenu = [
+  {
+    type: 'add-user',
+    text: 'Добавить пользователя',
+    trigger: EPopupTriggers.ADD_USER
+  },
+  {
+    type: 'remove-user',
+    text: 'Удалить пользователя',
+    trigger: EPopupTriggers.REMOVE_USER
+  }
+];

@@ -24,14 +24,14 @@ import {
 
 const headerAvatar = new Avatar({});
 
-const headerMenuLists = headerMenu.map(({ type, text }) => {
+const headerMenuLists = headerMenu.map(({ type, text, trigger }) => {
   return new DropdownMenuItem({
     type: type,
     text: text,
     events: {
       click: (event) => {
         event.preventDefault();
-        console.log('type', type);
+        store.set(trigger, true);
       }
     }
   });

@@ -44,6 +44,8 @@ export interface IState {
   currentChat?: string | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
+  [EPopupTriggers.ADD_USER]?: boolean;
+  [EPopupTriggers.REMOVE_USER]?: boolean;
   [EDropdownMenuTriggers.HEADER_MENU]?: boolean;
 }
 
