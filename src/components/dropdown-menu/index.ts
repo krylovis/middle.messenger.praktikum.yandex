@@ -21,6 +21,7 @@ export default class DropdownMenu extends Block<IData> {
     const dropdownMenuElement = newElement.querySelector('.dropdown-menu') as HTMLElement;
     if (dropdownMenuElement) {
       this.dropdownMenu = new DropdownMenuControl({ element: dropdownMenuElement, menuTrigger: this.menuTrigger });
+      this.dropdownMenu.setEventListeners();
     }
   }
 

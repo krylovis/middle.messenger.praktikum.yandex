@@ -7,10 +7,12 @@ export interface IDropdownMenuControl {
 export default class DropdownMenuControl {
   readonly _dropdownMenu: HTMLElement | null;
   readonly _menuTrigger: string = '';
+  readonly _mouseleaveClose: (event: MouseEvent) => void;
 
   constructor({ element, menuTrigger }: IDropdownMenuControl) {
     this._dropdownMenu = element;
     this._menuTrigger = menuTrigger;
+    this._mouseleaveClose = this._handleMouseleaveClose.bind(this);
   }
 
   open() {
@@ -22,17 +24,11 @@ export default class DropdownMenuControl {
     this._dropdownMenu?.classList.remove('dropdown-menu_active');
   }
 
-  _handleMousedownClose(event: MouseEvent) {
-    const target = event.target as Element;
-
-    if (target.classList.contains('dropdown-menu_active')) this.close();
+  _handleMouseleaveClose() {
+    if (this._dropdownMenu?.classList.contains('dropdown-menu_active')) this.close();
   }
 
   setEventListeners() {
-    //
-  }
-
-  removeEventListeners() {
-    //
+    this._dropdownMenu?.addEventListener('mouseleave', this._mouseleaveClose);
   }
 }
