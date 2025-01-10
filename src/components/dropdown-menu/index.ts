@@ -1,2 +1,8 @@
-import './dropdown-menu.scss';
-export { default as DropdownMenu } from './dropdown-menu.hbs?raw';
+import Block, { IData } from '@/utils/Block';
+import { dropdownMenuTemplate } from './template';
+
+export default class DropdownMenu extends Block<IData> {
+  render() {
+    return dropdownMenuTemplate;
+  }
+}

@@ -1,6 +1,6 @@
 .dropdown-menu {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -11,9 +11,13 @@
   border-radius: 12px;
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
 
+  &__container {
+    position: relative;
+  }
+
   &_type_header {
-    top: 60px;
-    left: -190px;
+    top: 80px;
+    right: 10px;
   }
 
   &_type_footer {

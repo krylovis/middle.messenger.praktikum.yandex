@@ -7,7 +7,5 @@ export const chatHeaderTemplate = `
 
   <div class="chat-header__menu-container">
     {{{ DropdownMenu }}}
-
-    <button class="chat-header__menu"></button>
   </div>
 </div>`;

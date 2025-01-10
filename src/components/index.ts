@@ -19,6 +19,8 @@ import { popupAddChat } from '@/components/popup/popup-add-chat';
 import MessagesForDate from '@/components/messages-for-date';
 import MessageItem from '@/components/message-item';
 import FormMessage from '@/components/form-message';
+import DropdownMenu from '@/components/dropdown-menu';
+import DropdownMenuItem from '@/components/dropdown-menu-item';
 
 export {
   Button,
@@ -42,6 +44,7 @@ export {
   MessagesForDate,
   MessageItem,
   FormMessage,
+  DropdownMenu,
+  DropdownMenuItem,
 };
 
-// export { DropdownMenu } from '@/components/dropdown-menu';
