@@ -104,6 +104,10 @@ export enum EPopupTriggers {
   ADD_CHAT = 'isPopupAddChatOpen',
 }
 
+export enum EDropdownMenuTriggers {
+  HEADER_MENU = 'isHeaderMenuOpen',
+}
+
 export const formSelectors = {
   label: '.input-field',
   input: '.input',

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-dynamic-delete */
 import EventBus from "@/utils/EventBus";
 import { set } from "@/utils/helpers";
-import { EPopupTriggers } from '@/utils/constants';
+import { EPopupTriggers, EDropdownMenuTriggers } from '@/utils/constants';
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -44,10 +44,13 @@ export interface IState {
   currentChat?: string | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
+  [EDropdownMenuTriggers.HEADER_MENU]?: boolean;
 }
 
 class Store extends EventBus {
-  private state: IState = {};
+  private state: IState = {
+    [EDropdownMenuTriggers.HEADER_MENU]: false,
+  };
 
   constructor() {
     super();
@@ -72,6 +75,13 @@ class Store extends EventBus {
     } else {
       set(this.state, path, null);
     }
+  }
+
+  public toggle(path: string) {
+    const currentValue = this.state[path as keyof IState];
+    set(this.state, path, !currentValue);
+
+    this.emit(StoreEvents.Updated);
   }
 
   public getState(key: string): IUser | boolean | null | IChats[] | string {

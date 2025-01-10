@@ -1,7 +1,9 @@
 import MainPage from './MainPage';
-import { messageData } from '@/utils/constants';
+import { messageData, EDropdownMenuTriggers } from '@/utils/constants';
 import { router } from '@/utils/Router';
 import { headerMenu } from '@/utils/constants';
+import store from '@/utils/Store';
+import { connectWithDropdownMenuHeader } from '@/utils/connects';
 
 import {
   NavLink,
@@ -40,13 +42,21 @@ const editChatButtonMenu = new ButtonWithIcon({
   type: "button",
   buttonSize: '32',
   iconName: 'menu',
+  events: {
+    click: () => {
+      store.toggle(EDropdownMenuTriggers.HEADER_MENU);
+    }
+  }
 });
 
-const dropdownMenu = new DropdownMenu({
-  ButtonMenu: editChatButtonMenu,
-  lists: headerMenuLists,
-  type: 'header'
-});
+const DropdownMenuHeader = connectWithDropdownMenuHeader(DropdownMenu);
+
+const dropdownMenu = new DropdownMenuHeader({
+    ButtonMenu: editChatButtonMenu,
+    menuTrigger: EDropdownMenuTriggers.HEADER_MENU,
+    lists: headerMenuLists,
+    type: 'header'
+  });
 
 const chatHeader = new ChatHeader({
   Avatar: headerAvatar,
