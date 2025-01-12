@@ -43,9 +43,9 @@ class Router {
       route = this.getRoute('/404');
       this.currentRoute?.leave();
       this.currentRoute = null;
-    } else if (!store.getState('currentUser')) {
+    } else if (route._pathname !== '/sign-up' && !store.getState('currentUser')) {
       route = this.getRoute('/');
-      this.history.pushState({}, '', pathname);
+      this.history.pushState({}, '', '/');
     }
 
     if (this.currentRoute && this.currentRoute !== route) {
