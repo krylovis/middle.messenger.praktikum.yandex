@@ -13,4 +13,5 @@ export const mainPageTemplate = `
     </div>
 
   {{{ PopupAddChat }}}
+  {{{ PopupAddUser }}}
 </section>`;

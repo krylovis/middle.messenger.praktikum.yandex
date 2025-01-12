@@ -41,7 +41,7 @@ export interface IChats {
 export interface IState {
   chatsList?: IChats[];
   currentUser?: IUser;
-  currentChat?: string | null;
+  currentChat?: number | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
   [EPopupTriggers.ADD_USER]?: boolean;
@@ -86,7 +86,7 @@ class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   }
 
-  public getState(key: string): IUser | boolean | null | IChats[] | string {
+  public getState(key: string): IUser | boolean | null | IChats[] | string| number {
     const state = this.state[key as keyof IState];
 
     if (state) {

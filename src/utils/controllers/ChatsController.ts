@@ -30,6 +30,17 @@ class ChatsController {
       })
       .catch(console.error);
   }
+
+  async addUserToChat(data: IReqData) {
+    await this.api.addUserToChat(data)
+      .then((chat) => {
+        if (chat) {
+          store.set(EPopupTriggers.ADD_USER, false);
+          this.getChats();
+        }
+      })
+      .catch(console.error);
+  }
 }
 
 export default new ChatsController();
