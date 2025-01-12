@@ -45,7 +45,7 @@ class Router {
       this.currentRoute = null;
     } else if (route._pathname !== '/sign-up' && !store.getState('currentUser')) {
       route = this.getRoute('/');
-      this.history.pushState({}, '', '/');
+      this.history.pushState({}, '', pathname);
     }
 
     if (this.currentRoute && this.currentRoute !== route) {
