@@ -2,7 +2,6 @@ import PopupContainer from '../popup-container';
 import { connectWithAddUserPopup } from '@/utils/connects';
 import AddUserContent from './AddUserContent';
 import store from '@/utils/Store';
-import formDataToJson from '@/utils/formDataToJson';
 import chatsController from '@/utils/controllers/ChatsController';
 import {
   InputError,
@@ -14,20 +13,20 @@ import { EPopupTriggers } from '@/utils/constants';
 
 const inputAddUser = new Input({
   id: "inputAddUser",
-  name: "login",
+  name: "user-id",
   type: "text",
-  placeholder: "Введите логин пользователя",
+  placeholder: "Введите id пользователя",
 });
 
 const inputAddUserError = new InputError({
-  attr: { class: "login-error" }
+  attr: { class: "user-id-error" }
 });
 
 const inputLoginField = new InputField({
   Input: inputAddUser,
   InputError: inputAddUserError,
   id: "inputAddUser",
-  label: "Логин",
+  label: "ID пользователя",
 });
 
 const button = new Button({
@@ -41,26 +40,28 @@ const addUserContent = new AddUserContent({
   events: {
     submit: (event) => {
       event.preventDefault();
-      // const data = {
-      //   users: [],
-      //   chatId: '',
-      // };
+      const object: {
+        users: number[],
+        chatId: number | null,
+      } = {
+        users: [],
+        chatId: null,
+      };
 
       const formData = new FormData(event.target as HTMLFormElement);
 
-      const newFormData = new FormData();
-
-      for (const [name, value] of formData.entries()) {
-        newFormData.append('users', [value]);
-        // newFormData.append('users', JSON.stringify([value]));
+      for (const [, value] of formData.entries()) {
+        object.users.push(parseInt(value as string));
       }
 
       const currentChat = store.getState('currentChat');
-      console.log('currentChat', currentChat);
 
       if (currentChat && formData) {
+        object.chatId = currentChat as number;
+        const data = JSON.stringify(object);
+        chatsController.addUserToChat({ data });
       }
-    }
+    },
   }
 });
 

@@ -73,6 +73,7 @@ export class BaseApi {
         if (typeof data === 'string') {
           req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         }
+
         req.send(data);
       } else {
         req.send();
