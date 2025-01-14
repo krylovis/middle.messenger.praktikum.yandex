@@ -69,11 +69,10 @@ export class BaseApi {
         reject(new Error(`Ошибка соединения: ${req.status}`));
       };
 
-      if (method === METHODS.POST || method === METHODS.PUT && data) {
+      if (method !== METHODS.GET && data) {
         if (typeof data === 'string') {
           req.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         }
-
         req.send(data);
       } else {
         req.send();
@@ -93,8 +92,8 @@ export class BaseApi {
     return this.request({ method: METHODS.PUT, path, data });
   }
 
-  public delete({ path }: IReqData) {
-    return this.request({ method: METHODS.DELETE, path });
+  public delete({ path, data }: IReqData) {
+    return this.request({ method: METHODS.DELETE, path, data });
   }
 }
 

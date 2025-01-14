@@ -26,7 +26,7 @@ class ChatsApi extends BaseApi {
     return this.put({ path: '/users', data });
   }
 
-  public deleteUserFromChat({ data }: IReqData) {
+  public removeUserFromChat({ data }: IReqData) {
     return this.delete({ path: '/users', data });
   }
 }

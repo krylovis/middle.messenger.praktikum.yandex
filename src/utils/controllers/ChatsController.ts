@@ -35,7 +35,14 @@ class ChatsController {
     await this.api.addUserToChat(data)
       .then(() => {
         store.set(EPopupTriggers.ADD_USER, false);
-        this.getChats();
+      })
+      .catch(console.error);
+  }
+
+  async removeUserFromChat(data: IReqData) {
+    await this.api.removeUserFromChat(data)
+      .then(() => {
+        store.set(EPopupTriggers.REMOVE_USER, false);
       })
       .catch(console.error);
   }
