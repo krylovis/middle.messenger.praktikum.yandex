@@ -15,7 +15,7 @@ const inputAddUser = new Input({
   id: "inputAddUser",
   name: "user-id",
   type: "text",
-  placeholder: "Введите id пользователя",
+  placeholder: "Введите ID пользователя",
 });
 
 const inputAddUserError = new InputError({
