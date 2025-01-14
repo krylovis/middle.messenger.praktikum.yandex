@@ -4,6 +4,7 @@ import connectWithAvatar from './connectWithAvatar';
 import connectWithChangeAvatarPopup from './connectWithChangeAvatarPopup';
 import connectWithAddChatPopup from './connectWithAddChatPopup';
 import connectWithAddUserPopup from './connectWithAddUserPopup';
+import connectWithRemoveUserPopup from './connectWithRemoveUserPopup';
 import connectWithChats from './connectWithChats';
 import connectWithDropdownMenuHeader from './connectWithDropdownMenuHeader';
 
@@ -14,6 +15,7 @@ export {
   connectWithChangeAvatarPopup,
   connectWithAddChatPopup,
   connectWithAddUserPopup,
+  connectWithRemoveUserPopup,
   connectWithChats,
   connectWithDropdownMenuHeader,
 };

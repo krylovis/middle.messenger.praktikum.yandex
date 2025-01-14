@@ -14,4 +14,5 @@ export const mainPageTemplate = `
 
   {{{ PopupAddChat }}}
   {{{ PopupAddUser }}}
+  {{{ PopupRemoveUser }}}
 </section>`;

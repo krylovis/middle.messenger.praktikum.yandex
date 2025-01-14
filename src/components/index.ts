@@ -17,6 +17,7 @@ import PopupContainer from '@/components/popup/popup-container';
 import { popupChangeAvatar } from '@/components/popup/popup-change-avatar';
 import { popupAddChat } from '@/components/popup/popup-add-chat';
 import { popupAddUser } from '@/components/popup/popup-add-user';
+import { popupRemoveUser } from '@/components/popup/popup-remove-user';
 import MessagesForDate from '@/components/messages-for-date';
 import MessageItem from '@/components/message-item';
 import FormMessage from '@/components/form-message';
@@ -43,6 +44,7 @@ export {
   popupChangeAvatar,
   popupAddChat,
   popupAddUser,
+  popupRemoveUser,
   MessagesForDate,
   MessageItem,
   FormMessage,

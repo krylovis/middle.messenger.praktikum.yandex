@@ -19,6 +19,7 @@ import {
   ButtonWithIcon,
   popupAddChat,
   popupAddUser,
+  popupRemoveUser,
   DropdownMenu,
   DropdownMenuItem,
 } from '@/components';
@@ -161,4 +162,5 @@ export const mainPage = new MainPage({
   ChatFooter: chatFooter,
   PopupAddChat: popupAddChat,
   PopupAddUser: popupAddUser,
+  PopupRemoveUser: popupRemoveUser,
 });
