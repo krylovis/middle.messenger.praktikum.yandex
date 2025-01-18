@@ -4,6 +4,10 @@
   grid-template-columns: 310px 1fr;
   grid-template-rows: 100vh;
 
+  &__empty-text {
+    margin: 0 auto;
+  }
+
   &__chat-list-container {
     width: 100%;
     background-color: #FBFBFB;

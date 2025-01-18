@@ -6,11 +6,17 @@ export const mainPageTemplate = `
     {{{ ChatList }}}
   </div>
 
-  <div class="main-page__content main-page__content_type_chat">
+  <div class="main-page__content{{#if currentChat}} main-page__content_type_chat{{/if}}">
+    {{#if currentChat}}
       {{{ ChatHeader }}}
       {{{ ChatContent }}}
       {{{ ChatFooter }}}
-    </div>
+    {{else}}
+      <p class="main-page__empty-text">
+        Выберите чат чтобы отправить сообщение
+      </p>
+    {{/if}}
+  </div>
 
   {{{ PopupAddChat }}}
   {{{ PopupAddUser }}}
