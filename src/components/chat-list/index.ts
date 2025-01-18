@@ -1,4 +1,4 @@
-import store, { IChats } from '@/utils/Store';
+import store, { IChat } from '@/utils/Store';
 import Block, { IData } from '@/utils/Block';
 import { connectWithChats } from '@/utils/connects';
 import { chatListTemplate } from './template';
@@ -33,8 +33,8 @@ class ChatList extends Block<IData> {
   public updateLists(): void {
     const { chatsList } = this.props;
 
-    if ((chatsList as IChats[])?.length) {
-      this.lists.lists = (chatsList as IChats[]).map(({
+    if ((chatsList as IChat[])?.length) {
+      this.lists.lists = (chatsList as IChat[]).map(({
         id, title, last_message, unread_count, avatar,
       }) => {
         const chatAvatar = new Avatar({ avatar });
