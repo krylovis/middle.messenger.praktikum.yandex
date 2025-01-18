@@ -49,7 +49,7 @@ export interface IState {
   [EDropdownMenuTriggers.HEADER_MENU]?: boolean;
 }
 
-class Store extends EventBus {
+export class Store extends EventBus {
   private state: IState = {
     [EDropdownMenuTriggers.HEADER_MENU]: false,
   };
@@ -86,7 +86,7 @@ class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   }
 
-  public getState(key: string): IUser | boolean | null | IChats[] | string| number {
+  public getState(key: string): IUser | boolean | null | IChat[] | IChat | string| number {
     const state = this.state[key as keyof IState];
 
     if (state) {
