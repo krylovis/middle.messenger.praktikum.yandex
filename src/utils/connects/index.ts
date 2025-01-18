@@ -6,6 +6,7 @@ import connectWithAddChatPopup from './connectWithAddChatPopup';
 import connectWithAddUserPopup from './connectWithAddUserPopup';
 import connectWithRemoveUserPopup from './connectWithRemoveUserPopup';
 import connectWithChats from './connectWithChats';
+import connectWithCurrentChat from './connectWithCurrentChat';
 import connectWithDropdownMenuHeader from './connectWithDropdownMenuHeader';
 
 export {
@@ -17,5 +18,6 @@ export {
   connectWithAddUserPopup,
   connectWithRemoveUserPopup,
   connectWithChats,
+  connectWithCurrentChat,
   connectWithDropdownMenuHeader,
 };

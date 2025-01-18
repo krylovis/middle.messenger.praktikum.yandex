@@ -4,6 +4,7 @@ import { router } from '@/utils/Router';
 import { headerMenu } from '@/utils/constants';
 import store from '@/utils/Store';
 import { connectWithDropdownMenuHeader } from '@/utils/connects';
+import { connectWithCurrentChat } from '@/utils/connects';
 
 import {
   NavLink,
@@ -155,7 +156,9 @@ const chatFooter = new ChatFooter({
   FormMessage: formMessage,
 });
 
-export const mainPage = new MainPage({
+const ConnectMainPage = connectWithCurrentChat(MainPage);
+
+export const mainPage = new ConnectMainPage({
   ChatList: chatList,
   ChatHeader: chatHeader,
   ChatContent: chatContent,
