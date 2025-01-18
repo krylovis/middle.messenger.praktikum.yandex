@@ -1,7 +1,7 @@
 import PopupContainer from '../popup-container';
 import { connectWithAddUserPopup } from '@/utils/connects';
 import AddUserContent from './AddUserContent';
-import store from '@/utils/Store';
+import store, { IChat } from '@/utils/Store';
 import chatsController from '@/utils/controllers/ChatsController';
 import {
   InputError,
@@ -54,10 +54,10 @@ const addUserContent = new AddUserContent({
         object.users.push(parseInt(value as string));
       }
 
-      const currentChatId = store.getState('currentChatId');
+      const currentChat = store.getState('currentChat') as IChat;
 
-      if (currentChatId && formData) {
-        object.chatId = currentChatId as number;
+      if (currentChat?.id && formData) {
+        object.chatId = currentChat?.id as number;
         const data = JSON.stringify(object);
         chatsController.addUserToChat({ data });
       }

@@ -1,7 +1,7 @@
 import PopupContainer from '../popup-container';
 import { connectWithRemoveUserPopup } from '@/utils/connects';
 import RemoveUserContent from './RemoveUserContent';
-import store from '@/utils/Store';
+import store, { IChat } from '@/utils/Store';
 import chatsController from '@/utils/controllers/ChatsController';
 import {
   InputError,
@@ -54,10 +54,10 @@ const removeUserContent = new RemoveUserContent({
         object.users.push(parseInt(value as string));
       }
 
-      const currentChatId = store.getState('currentChatId');
+      const currentChat = store.getState('currentChat') as IChat;
 
-      if (currentChatId && formData) {
-        object.chatId = currentChatId as number;
+      if (currentChat?.id && formData) {
+        object.chatId = currentChat?.id as number;
         const data = JSON.stringify(object);
         chatsController.removeUserFromChat({ data });
       }

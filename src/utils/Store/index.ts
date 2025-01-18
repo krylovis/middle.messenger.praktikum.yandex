@@ -41,6 +41,7 @@ export interface IChat {
 export interface IState {
   chatsList?: IChat[];
   currentUser?: IUser;
+  currentChat?: IChat | null;
   currentChatId?: number | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
@@ -67,6 +68,17 @@ export class Store extends EventBus {
 
   public getAllState() {
     return this.state;
+  }
+
+  public toggleCurrentChat(chatId: number) {
+    if (this.state.currentChat?.id === chatId) {
+      set(this.state, 'currentChat', null);
+    } else {
+      const selectedChat = this.state.chatsList?.find(({ id }) => id === chatId);
+      set(this.state, 'currentChat', JSON.parse(JSON.stringify(selectedChat)));
+    }
+
+    this.emit(StoreEvents.Updated);
   }
 
   public toggleValue(path: string, value: unknown) {
