@@ -54,10 +54,10 @@ const removeUserContent = new RemoveUserContent({
         object.users.push(parseInt(value as string));
       }
 
-      const currentChat = store.getState('currentChat');
+      const currentChatId = store.getState('currentChatId');
 
-      if (currentChat && formData) {
-        object.chatId = currentChat as number;
+      if (currentChatId && formData) {
+        object.chatId = currentChatId as number;
         const data = JSON.stringify(object);
         chatsController.removeUserFromChat({ data });
       }

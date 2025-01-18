@@ -18,7 +18,7 @@ interface IUser {
   "email": string
 }
 
-export interface IChats {
+export interface IChat {
   "id": number,
   "title": string,
   "avatar": string,
@@ -39,9 +39,9 @@ export interface IChats {
 }
 
 export interface IState {
-  chatsList?: IChats[];
+  chatsList?: IChat[];
   currentUser?: IUser;
-  currentChat?: number | null;
+  currentChatId?: number | null;
   [EPopupTriggers.AVATAR_CHANGE]?: boolean;
   [EPopupTriggers.ADD_CHAT]?: boolean;
   [EPopupTriggers.ADD_USER]?: boolean;

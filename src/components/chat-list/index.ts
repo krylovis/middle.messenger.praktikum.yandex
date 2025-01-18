@@ -50,7 +50,7 @@ class ChatList extends Block<IData> {
           events: {
             click: (event) => {
               event.preventDefault();
-              store.toggleValue('currentChat', id);
+              store.toggleValue('currentChatId', id);
 
               const list = document.querySelectorAll('.chat-item');
               const selectedItem = Array.from((list as NodeListOf<Element>))
