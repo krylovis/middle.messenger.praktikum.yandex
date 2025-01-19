@@ -50,7 +50,8 @@ export class ChatWebSocket extends EventBus {
     this.handleErrorWS = this.errorWebSocket.bind(this);
   }
 
-  createWebSocket({ token, userId, chatId }: ICreateData) {
+    this.closeConnect();
+
     this.token = token;
     this.chatId = userId;
     this.userId = chatId;
@@ -62,6 +63,12 @@ export class ChatWebSocket extends EventBus {
     if (this.socket) {
       this.setEventListeners();
       this.setPingInterval();
+    }
+  }
+
+  public closeConnect() {
+    if (this.socket) {
+      this.socket.close();
     }
   }
 
