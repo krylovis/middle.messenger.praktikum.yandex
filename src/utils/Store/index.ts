@@ -7,7 +7,7 @@ export enum StoreEvents {
   Updated = 'updated',
 }
 
-interface IUser {
+export interface IUser {
   "id": number,
   "first_name": string,
   "second_name": string,
