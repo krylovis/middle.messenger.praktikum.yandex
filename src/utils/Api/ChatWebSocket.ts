@@ -111,8 +111,8 @@ export class ChatWebSocket extends EventBus {
 
   private setPingInterval() {
     this.pingIntervalId = setInterval(() => {
-      this.socket?.send(JSON.stringify({ type: 'ping' }));
-    }, 1000);
+      this.socket?.send(JSON.stringify({ type: 'ping', content: '' }));
+    }, 3000);
   }
 
   private clearPingInterval() {
