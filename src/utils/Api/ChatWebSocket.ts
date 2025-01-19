@@ -85,6 +85,7 @@ export class ChatWebSocket extends EventBus {
       console.log('Обрыв соединения');
     }
 
+    this.clearPingInterval();
     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
   }
 
@@ -112,6 +113,12 @@ export class ChatWebSocket extends EventBus {
     this.pingIntervalId = setInterval(() => {
       this.socket?.send(JSON.stringify({ type: 'ping' }));
     }, 1000);
+  }
+
+  private clearPingInterval() {
+    if (this.pingIntervalId) {
+      clearInterval(this.pingIntervalId as number);
+    }
   }
 }
 
