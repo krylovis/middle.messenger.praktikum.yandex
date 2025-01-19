@@ -10,6 +10,9 @@ export const LOGIN_PATTERN = '^[0-9a-zA-Z\\-_]{3,20}';
 export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
 export const HEADERS = {};
 
+export const BASE_WSS_URL = 'wss://ya-praktikum.tech';
+export const CHAT_ENDPOINT = 'ws/chats';
+
 export const profile = {
   login: 'captain-jack-sparrow',
   first_name: 'Jack',
