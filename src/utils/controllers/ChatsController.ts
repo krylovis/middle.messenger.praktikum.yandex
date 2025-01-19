@@ -46,6 +46,14 @@ class ChatsController {
       })
       .catch(console.error);
   }
+
+  async getChatToken(data: IReqData) {
+    await this.api.getChatToken(data)
+      .then((response) => {
+        return response;
+      })
+      .catch(console.error);
+  }
 }
 
 export default new ChatsController();

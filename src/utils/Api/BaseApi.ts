@@ -23,6 +23,7 @@ export interface IReqParams {
 export interface IReqData {
   path?: string,
   timeout?: number,
+  chatId?: number,
   data?: FormData | string,
 }
 

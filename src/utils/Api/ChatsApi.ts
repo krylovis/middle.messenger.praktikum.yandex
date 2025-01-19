@@ -29,6 +29,10 @@ class ChatsApi extends BaseApi {
   public removeUserFromChat({ data }: IReqData) {
     return this.delete({ path: '/users', data });
   }
+
+  public getChatToken({ chatId }: IReqData) {
+    return this.post({ path: `/token/${chatId}` });
+  }
 }
 
 export const chatsApi = new ChatsApi();
