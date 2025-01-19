@@ -21,12 +21,12 @@ class ChatsController {
 
   async getChats() {
     await this.api.getChats()
-    .then((chatsList) => {
-      if (chatsList) {
-        store.set('chatsList', chatsList);
-      }
-    })
-    .catch(console.error);
+      .then((chatsList) => {
+        if (chatsList) {
+          store.set('chatsList', chatsList);
+        }
+      })
+      .catch(console.error);
   }
 
   async createChat(data: IReqData) {
