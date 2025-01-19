@@ -50,11 +50,12 @@ export class ChatWebSocket extends EventBus {
     this.handleErrorWS = this.errorWebSocket.bind(this);
   }
 
+  createWebSocket({ token, userId, chatId }: ICreateData) {
     this.closeConnect();
 
     this.token = token;
-    this.chatId = userId;
-    this.userId = chatId;
+    this.chatId = chatId;
+    this.userId = userId;
 
     this.socket = new WebSocket(`
       ${this.host}/${this.endpoint}/${this.userId}/${this.chatId}/${this.token}
