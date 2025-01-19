@@ -57,6 +57,14 @@ class ChatsController {
   }
 
   async getChatToken(data: IReqData) {
+    interface IToken { token?: string }
+
+    return await this.api.getChatToken(data)
+      .then((response) => {
+        return (response as IToken).token;
+      })
+      .catch(console.error);
+  }
 
   async getChatUsers(data: IReqData) {
     await this.api.getChatUsers(data)
