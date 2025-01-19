@@ -28,10 +28,10 @@ export class ChatWebSocket extends EventBus {
   socket: WebSocket | null;
   pingIntervalId: number | null;
 
-  handleOpenWebSocket;
-  handleCloseWebSocket;
-  handleMessageWebSocket;
-  handleErrorWebSocket;
+  handleOpenWS;
+  handleCloseWS;
+  handleMessageWS;
+  handleErrorWS;
 
   constructor({ host, endpoint }: IData) {
     super();
@@ -44,10 +44,10 @@ export class ChatWebSocket extends EventBus {
     this.socket = null;
     this.pingIntervalId = null;
 
-    this.handleOpenWebSocket = this.openWebSocket.bind(this);
-    this.handleCloseWebSocket = this.closeWebSocket.bind(this);
-    this.handleMessageWebSocket = this.messageWebSocket.bind(this);
-    this.handleErrorWebSocket = this.errorWebSocket.bind(this);
+    this.handleOpenWS = this.openWebSocket.bind(this);
+    this.handleCloseWS = this.closeWebSocket.bind(this);
+    this.handleMessageWS = this.messageWebSocket.bind(this);
+    this.handleErrorWS = this.errorWebSocket.bind(this);
   }
 
   createWebSocket({ token, userId, chatId }: ICreateData) {
@@ -66,10 +66,10 @@ export class ChatWebSocket extends EventBus {
   }
 
   setEventListeners() {
-    this.socket?.addEventListener(WebSocketEvents.open, this.handleOpenWebSocket);
-    this.socket?.addEventListener(WebSocketEvents.close, this.handleCloseWebSocket);
-    this.socket?.addEventListener(WebSocketEvents.message, this.handleMessageWebSocket);
-    this.socket?.addEventListener(WebSocketEvents.error, this.handleErrorWebSocket);
+    this.socket?.addEventListener(WebSocketEvents.open, this.handleOpenWS);
+    this.socket?.addEventListener(WebSocketEvents.close, this.handleCloseWS);
+    this.socket?.addEventListener(WebSocketEvents.message, this.handleMessageWS);
+    this.socket?.addEventListener(WebSocketEvents.error, this.handleErrorWS);
   }
 
   openWebSocket() {
