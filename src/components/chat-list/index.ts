@@ -3,6 +3,7 @@ import Block, { IData } from '@/utils/Block';
 import { connectWithChats } from '@/utils/connects';
 import { chatListTemplate } from './template';
 import { EPopupTriggers } from '@/utils/constants';
+import ChatsController from '@/utils/controllers/ChatsController';
 
 import {
   ChatItem,
@@ -69,6 +70,8 @@ class ChatList extends Block<IData> {
                   item.classList.add('chat-item_selected');
                 }
               });
+
+              ChatsController.createWebSocket(id);
             }
           }
         });

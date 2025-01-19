@@ -1,13 +1,22 @@
 import { chatsApi } from '@/utils/Api/ChatsApi';
 import { IReqData } from '@/utils/Api/BaseApi';
 import { EPopupTriggers } from '@/utils/constants';
-import store from '@/utils/Store';
-
+import chatWebSocket from '@/utils/Api/ChatWebSocket';
+import store, { IUser } from '@/utils/Store';
 class ChatsController {
   private api;
 
   constructor() {
     this.api = chatsApi;
+  }
+
+  async createWebSocket(chatId: number) {
+    const token = await this.getChatToken({ chatId });
+    const { id } = store.getState('currentUser') as IUser;
+
+    if (typeof token === 'string') {
+      chatWebSocket.createWebSocket({ token, userId: id, chatId });
+    }
   }
 
   async getChats() {
