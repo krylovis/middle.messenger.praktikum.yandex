@@ -1,7 +1,7 @@
 import { chatsApi } from '@/utils/Api/ChatsApi';
 import { IReqData } from '@/utils/Api/BaseApi';
 import { EPopupTriggers } from '@/utils/constants';
-import chatWebSocket from '@/utils/Api/ChatWebSocket';
+import chatWebSocket, { IMessage } from '@/utils/Api/ChatWebSocket';
 import store, { IUser } from '@/utils/Store';
 class ChatsController {
   private api;
@@ -17,6 +17,10 @@ class ChatsController {
     if (typeof token === 'string') {
       chatWebSocket.createWebSocket({ token, userId: id, chatId });
     }
+  }
+
+  sendMessage({ message }: IMessage) {
+    chatWebSocket.sendMessage({ message });
   }
 
   async getChats() {

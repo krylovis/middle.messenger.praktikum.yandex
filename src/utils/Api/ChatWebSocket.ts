@@ -13,6 +13,8 @@ export interface IData {
   endpoint: string,
 }
 
+export type IMessage = Record<string, string>;
+
 export interface ICreateData {
   userId: number | null,
   chatId: number | null,
@@ -105,7 +107,7 @@ export class ChatWebSocket extends EventBus {
     console.log('Ошибка', event.message);
   }
 
-  public sendMessage({ message }: { message: string }) {
+  public sendMessage({ message }: IMessage) {
     this.socket?.send(JSON.stringify(
       { content: message, type: 'message', }
     ));

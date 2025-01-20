@@ -5,6 +5,8 @@ import { headerMenu } from '@/utils/constants';
 import store from '@/utils/Store';
 import { connectWithDropdownMenuHeader } from '@/utils/connects';
 import { connectWithCurrentChat } from '@/utils/connects';
+import ChatsController from '@/utils/controllers/ChatsController';
+import { IMessage } from '@/utils/Api/ChatWebSocket';
 
 import {
   NavLink,
@@ -55,11 +57,11 @@ const editChatButtonMenu = new ButtonWithIcon({
 const DropdownMenuHeader = connectWithDropdownMenuHeader(DropdownMenu);
 
 const dropdownMenu = new DropdownMenuHeader({
-    ButtonMenu: editChatButtonMenu,
-    menuTrigger: EDropdownMenuTriggers.HEADER_MENU,
-    lists: headerMenuLists,
-    type: 'header'
-  });
+  ButtonMenu: editChatButtonMenu,
+  menuTrigger: EDropdownMenuTriggers.HEADER_MENU,
+  lists: headerMenuLists,
+  type: 'header'
+});
 
 const chatHeader = new ChatHeader({
   Avatar: headerAvatar,
@@ -114,7 +116,7 @@ const inputMessage = new Input({
   name: "message",
   type: "text",
   placeholder: "Сообщение",
-  attr: { class: "input_type_message" }
+  attr: { class: "input_type_message", maxlength: '120', minlength: '1' }
 });
 
 const submitButton = new ButtonWithIcon({
@@ -140,13 +142,18 @@ const formMessage = new FormMessage({
     submit: (event) => {
       event.preventDefault();
 
+      const { target } = event;
+      const data: IMessage = {};
       const formData = new FormData(event.target as HTMLFormElement);
+
       for (const [name, value] of formData.entries()) {
-        console.log(`${name}: ${value}`);
+        data[name] = value as string;
       }
 
-      const { target } = event;
-      (target as HTMLFormElement)?.reset();
+      if (data.message) {
+        ChatsController.sendMessage(data as IMessage);
+        (target as HTMLFormElement)?.reset();
+      }
     }
   }
 });
