@@ -30,7 +30,8 @@
 
   &_type_to-profile {
     text-align: end;
-    padding: 0 0 23px 0;
+    padding: 0;
+    padding-bottom: 23px;
     color: #999;
 
     &::after {
