@@ -137,6 +137,7 @@ export class Store extends EventBus {
 
     if (state) {
       delete this.state[key as keyof IState];
+      this.emit(StoreEvents.Updated);
     }
   }
 }
