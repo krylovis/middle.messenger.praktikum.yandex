@@ -17,6 +17,15 @@ export interface IUser {
   "avatar"?: string,
   "email": string
 }
+export interface IChatUser {
+  "id": number,
+  "login": string,
+  "first_name": string,
+  "second_name": string,
+  "display_name": string,
+  "avatar": string,
+  "role": string,
+}
 
 export interface IChat {
   "id": number,
@@ -57,6 +66,7 @@ export interface IMessage {
 
 export interface IState {
   chatsList?: IChat[];
+  chatUsers?: IChatUser[];
   messagesList: IMessage[];
   currentUser?: IUser;
   currentChat?: IChat | null;

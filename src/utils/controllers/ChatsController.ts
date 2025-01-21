@@ -15,7 +15,7 @@ class ChatsController {
   }
 
   setDefaultValueForChat() {
-    const stateKeysList = ['messagesList'];
+    const stateKeysList = ['messagesList', 'chatUsers'];
 
     for (const stateKey of stateKeysList) {
       store.set(stateKey, []);
@@ -92,7 +92,7 @@ class ChatsController {
   async getChatUsers(data: IReqData) {
     await this.api.getChatUsers(data)
       .then((response) => {
-        console.log('response', response);
+        store.set('chatUsers', response);
       })
       .catch(console.error);
   }
