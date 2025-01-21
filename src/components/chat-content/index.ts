@@ -40,6 +40,8 @@ export class ChatContent extends Block<IData> {
 
         return new MessagesForDate({ date, lists: messageItemList });
       })
+    } else {
+      this.lists.lists = [];
     }
   }
 
