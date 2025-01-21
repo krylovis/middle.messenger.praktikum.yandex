@@ -3,6 +3,10 @@ import { IReqData } from '@/utils/Api/BaseApi';
 import { EPopupTriggers } from '@/utils/constants';
 import chatWebSocket, { IMessage } from '@/utils/Api/ChatWebSocket';
 import store, { IUser } from '@/utils/Store';
+
+export interface IChatSelect {
+  chatId: number,
+}
 class ChatsController {
   private api;
 
@@ -10,7 +14,22 @@ class ChatsController {
     this.api = chatsApi;
   }
 
-  async createWebSocket(chatId: number) {
+  setDefaultValueForChat() {
+    const stateKeysList = ['messagesList'];
+
+    for (const stateKey of stateKeysList) {
+      store.set(stateKey, []);
+    }
+  }
+
+  async getCurrentChatData({ chatId }: IChatSelect) {
+    this.setDefaultValueForChat();
+
+    this.getChatUsers({ chatId });
+    this.createWebSocket({ chatId });
+  }
+
+  async createWebSocket({ chatId }: IChatSelect) {
     const token = await this.getChatToken({ chatId });
     const { id } = store.getState('currentUser') as IUser;
 

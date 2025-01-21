@@ -55,7 +55,6 @@ class ChatList extends Block<IData> {
             click: (event) => {
               event.preventDefault();
               store.toggleCurrentChat(id);
-              store.set('messagesList', []);
 
               const list = document.querySelectorAll('.chat-item');
               const selectedItem = Array.from((list as NodeListOf<Element>))
@@ -65,6 +64,7 @@ class ChatList extends Block<IData> {
                 selectedItem.classList.remove('chat-item_selected');
 
                 if (selectedItem?.id === currentChatId) {
+                  ChatsController.setDefaultValueForChat();
                   return;
                 }
               }
@@ -75,7 +75,7 @@ class ChatList extends Block<IData> {
                 }
               });
 
-              ChatsController.createWebSocket(id);
+              ChatsController.getCurrentChatData({ chatId: id });
             }
           }
         });
