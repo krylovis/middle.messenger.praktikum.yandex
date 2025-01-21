@@ -41,12 +41,15 @@ class ChatList extends Block<IData> {
         const chatAvatar = new Avatar({ avatar });
         const currentChatId = `chat-${id}`;
 
+        const formatter = new Intl.DateTimeFormat('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' })
+        const formatTime = last_message?.time ? formatter.format(new Date(last_message?.time)) : '';
+
         return new ChatItem({
           Avatar: chatAvatar,
           title,
           lastMessage: last_message?.content,
           unreadCount: unread_count,
-          time: last_message?.time,
+          time: formatTime,
           attr: { id: currentChatId },
           events: {
             click: (event) => {
