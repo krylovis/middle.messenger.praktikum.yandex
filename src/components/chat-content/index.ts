@@ -18,7 +18,10 @@ export class ChatContent extends Block<IData> {
     const formatter = new Intl.DateTimeFormat('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' })
 
     if ((messagesList as IMessage[])?.length) {
-      this.lists.lists = [{ date: '', data: messagesList}].map(({ date, data }) => {
+      const sortedMessagesList: IMessage[] = ([...(messagesList as IMessage[])])
+        .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
+      this.lists.lists = [{ date: '', data: sortedMessagesList }].map(({ date, data }) => {
         const messageItemList = (data as IMessage[]).map(({
           chat_id, content, time, user_id,
         }) => {

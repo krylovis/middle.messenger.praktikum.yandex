@@ -82,6 +82,7 @@ export class Store extends EventBus {
   private state: IState = {
     [EDropdownMenuTriggers.HEADER_MENU]: false,
     messagesList: [],
+    chatUsers: [],
   };
 
   constructor() {
