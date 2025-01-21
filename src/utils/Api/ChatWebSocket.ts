@@ -1,5 +1,6 @@
 import EventBus from "@/utils/EventBus";
 import { BASE_WSS_URL, CHAT_ENDPOINT } from "@/utils/constants";
+import store, { Store} from '@/utils/Store';
 
 export enum WebSocketEvents {
   open = 'open',
@@ -30,6 +31,8 @@ export class ChatWebSocket extends EventBus {
   socket: WebSocket | null;
   pingIntervalId: number | null;
 
+  store: Store;
+
   handleOpenWS;
   handleCloseWS;
   handleMessageWS;
@@ -45,6 +48,8 @@ export class ChatWebSocket extends EventBus {
     this.userId = null;
     this.socket = null;
     this.pingIntervalId = null;
+
+    this.store = store;
 
     this.handleOpenWS = this.openWebSocket.bind(this);
     this.handleCloseWS = this.closeWebSocket.bind(this);
@@ -99,8 +104,19 @@ export class ChatWebSocket extends EventBus {
     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
   }
 
-  messageWebSocket(event: CompositionEventInit) {
-    console.log('Получены данные', event.data);
+  messageWebSocket(event: MessageEvent) {
+    if (event?.data) {
+      const data = JSON.parse(event.data);
+      console.log('Получены данные', data);
+
+      if (Array.isArray(data)) {
+        this.store.set('messagesList', data);
+      } else if (data.type === 'message') {
+        this.store.setMessage(data);
+      } else {
+        //
+      }
+    }
   }
 
   errorWebSocket(event: ErrorEventInit) {

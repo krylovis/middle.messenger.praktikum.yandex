@@ -38,8 +38,26 @@ export interface IChat {
   }
 }
 
+export interface IMessage {
+  "chat_id": number,
+  "time": string,
+  "type": string,
+  "user_id": string,
+  "content": string,
+  "file"?: {
+    "id": number,
+    "user_id": number,
+    "path": string,
+    "filename": string,
+    "content_type": string,
+    "content_size": number,
+    "upload_date": string,
+  }
+}
+
 export interface IState {
   chatsList?: IChat[];
+  messagesList: IMessage[];
   currentUser?: IUser;
   currentChat?: IChat | null;
   currentChatId?: number | null;
@@ -53,6 +71,7 @@ export interface IState {
 export class Store extends EventBus {
   private state: IState = {
     [EDropdownMenuTriggers.HEADER_MENU]: false,
+    messagesList: [],
   };
 
   constructor() {
@@ -63,6 +82,11 @@ export class Store extends EventBus {
   public set(path: string, value: unknown) {
     set(this.state, path, value);
 
+    this.emit(StoreEvents.Updated);
+  };
+
+  public setMessage(message: IMessage) {
+    set(this.state, 'messagesList', [message, ...this.state.messagesList]);
     this.emit(StoreEvents.Updated);
   };
 
@@ -98,7 +122,7 @@ export class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   }
 
-  public getState(key: string): IUser | boolean | null | IChat[] | IChat | string| number {
+  public getState(key: string): IUser | boolean | null | IChat[] | IChat | string | number | IMessage[]  {
     const state = this.state[key as keyof IState];
 
     if (state) {
