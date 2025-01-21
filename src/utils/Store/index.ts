@@ -122,7 +122,7 @@ export class Store extends EventBus {
     this.emit(StoreEvents.Updated);
   }
 
-  public getState(key: string): IUser | boolean | null | IChat[] | IChat | string | number | IMessage[]  {
+  public getState(key: string)  {
     const state = this.state[key as keyof IState];
 
     if (state) {
