@@ -1,10 +1,11 @@
+import { router } from '@/utils/Router';
 import { profile, PASSWORD_PATTERN } from '@/utils/constants';
 
 import {
   Input,
   InputError,
   Button,
-  ButtonArrow,
+  ButtonWithIcon,
   InputField,
   ProfileAvatar,
   ProfileForm
@@ -29,7 +30,7 @@ const oldPasswordError = new InputError({
   attr: { class: "password-error" }
 });
 
-const oldPasswordField = new InputField ({
+const oldPasswordField = new InputField({
   Input: oldPassword,
   InputError: oldPasswordError,
   id: "oldPassword",
@@ -53,7 +54,7 @@ const newPasswordError = new InputError({
   attr: { class: "password-error" }
 });
 
-const newPasswordField = new InputField ({
+const newPasswordField = new InputField({
   Input: newPassword,
   InputError: newPasswordError,
   id: "newPassword",
@@ -77,7 +78,7 @@ const repeatNewPasswordError = new InputError({
   attr: { class: "password-error" }
 });
 
-const repeatNewPasswordField = new InputField ({
+const repeatNewPasswordField = new InputField({
   Input: repeatNewPassword,
   InputError: repeatNewPasswordError,
   id: "repeatNewPassword",
@@ -86,14 +87,21 @@ const repeatNewPasswordField = new InputField ({
 });
 
 // controls
-const submitButton = new Button ({
+const submitButton = new Button({
   type: "submit",
   text: "Сохранить",
   attr: { class: "button_type_profile" },
 });
 
-const buttonArrow = new ButtonArrow ({
-  toPage: "",
+const buttonArrow = new ButtonWithIcon({
+  type: "button",
+  buttonSize: '28',
+  iconName: 'arrow-left',
+  events: {
+    click: () => {
+      router.go('/profile');
+    }
+  }
 });
 
 const profileForm = new ProfileForm({
@@ -108,7 +116,7 @@ const profileForm = new ProfileForm({
       event.preventDefault();
 
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
+      for (const [name, value] of formData.entries()) {
         console.log(`${name}: ${value}`);
       }
     }

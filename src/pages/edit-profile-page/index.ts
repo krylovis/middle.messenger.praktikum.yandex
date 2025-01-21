@@ -1,3 +1,8 @@
+import { router } from '@/utils/Router';
+import store from '@/utils/Store';
+import userController from '@/utils/controllers/UserController';
+import formDataToJson from '@/utils/formDataToJson';
+import { EPopupTriggers } from '@/utils/constants';
 import {
   profile,
   EMAIL_PATTERN,
@@ -9,7 +14,7 @@ import {
 import {
   Input,
   Button,
-  ButtonArrow,
+  ButtonWithIcon,
   InputField,
   InputError,
   ProfileAvatar,
@@ -20,8 +25,12 @@ import {
 import EditProfilePage from './EditProfilePage';
 
 const profileAvatar = new ProfileAvatar({
-  avatar: profile.avatar,
   isEditAvatar: true,
+  events: {
+    click: () => {
+      store.set(EPopupTriggers.AVATAR_CHANGE, true);
+    },
+  }
 });
 
 // email input
@@ -40,7 +49,7 @@ const inputEmailError = new InputError({
   attr: { class: "email-error" }
 });
 
-const profileEmailField = new InputField ({
+const profileEmailField = new InputField({
   Input: profileEmail,
   InputError: inputEmailError,
   id: "profileEmail",
@@ -64,7 +73,7 @@ const inputLoginError = new InputError({
   attr: { class: "login-error" }
 });
 
-const profileLoginField = new InputField ({
+const profileLoginField = new InputField({
   Input: profileLogin,
   InputError: inputLoginError,
   id: "profileLogin",
@@ -88,7 +97,7 @@ const inputFirstNameError = new InputError({
   attr: { class: "first-name-error" }
 });
 
-const profileFirstNameField = new InputField ({
+const profileFirstNameField = new InputField({
   Input: profileFirstName,
   InputError: inputFirstNameError,
   id: "profileFirstName",
@@ -112,7 +121,7 @@ const inputSecondNameError = new InputError({
   attr: { class: "second-name-error" }
 });
 
-const profileSecondNameField = new InputField ({
+const profileSecondNameField = new InputField({
   Input: profileSecondName,
   InputError: inputSecondNameError,
   id: "profileSecondName",
@@ -135,7 +144,7 @@ const inputDisplayNameError = new InputError({
   attr: { class: "display-name-error" }
 });
 
-const profileDisplayNameField = new InputField ({
+const profileDisplayNameField = new InputField({
   Input: profileDisplayName,
   InputError: inputDisplayNameError,
   id: "profileDisplayName",
@@ -159,7 +168,7 @@ const inputPhoneError = new InputError({
   attr: { class: "phone-error" }
 });
 
-const profilePhoneField = new InputField ({
+const profilePhoneField = new InputField({
   Input: profilePhone,
   InputError: inputPhoneError,
   id: "profilePhone",
@@ -168,14 +177,21 @@ const profilePhoneField = new InputField ({
 });
 
 // controls
-const submitButton = new Button ({
+const submitButton = new Button({
   type: "submit",
   text: "Сохранить",
-  attr: { class: "button_type_profile" }
+  attr: { class: "button_type_profile" },
 });
 
-const buttonArrow = new ButtonArrow ({
-  toPage: "",
+const buttonArrow = new ButtonWithIcon({
+  type: "button",
+  buttonSize: '28',
+  iconName: 'arrow-left',
+  events: {
+    click: () => {
+      router.go('/profile');
+    }
+  }
 });
 
 const profileForm = new ProfileForm({
@@ -193,9 +209,9 @@ const profileForm = new ProfileForm({
       event.preventDefault();
 
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
-        console.log(`${name}: ${value}`);
-      }
+      const data = formDataToJson(formData);
+
+      userController.updateProfile({ data });
     }
   }
 });

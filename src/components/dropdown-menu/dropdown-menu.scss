@@ -1,19 +1,32 @@
 .dropdown-menu {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 0;
-  z-index: 20;
+  z-index: 1;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
 
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.2s, opacity 0.2s linear;
+
+  &_active {
+  visibility: visible;
+  opacity: 1;
+  }
+
+  &__container {
+    position: relative;
+  }
+
   &_type_header {
-    top: 60px;
-    left: -190px;
+    top: 80px;
+    right: 10px;
   }
 
   &_type_footer {

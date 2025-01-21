@@ -1,7 +1,7 @@
 import './nav-link.scss';
 
 export const navLinkTemplate = `
-<a href="{{ href }}" page="{{ toPage }}" class="nav-link">
+<a href="{{ href }}" class="nav-link">
   {{ text }}
 </a>
 `;

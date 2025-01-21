@@ -1,9 +1,10 @@
-import { profile } from '@/utils/constants';
+import { router } from '@/utils/Router';
+import authController from '@/utils/controllers/AuthController';
 
 import {
   Input,
   NavLink,
-  ButtonArrow,
+  ButtonWithIcon,
   InputField,
   ProfileAvatar,
   ProfileForm,
@@ -11,10 +12,7 @@ import {
 
 import ProfilePage from './ProfilePage';
 
-const profileAvatar = new ProfileAvatar({
-  avatar: profile.avatar,
-  name: profile.first_name
-});
+const profileAvatar = new ProfileAvatar({ name: '', avatar: '' });
 
 // email input
 const profileEmail = new Input({
@@ -23,12 +21,11 @@ const profileEmail = new Input({
   type: "email",
   attr: {
     class: "input_type_profile",
-    value: profile.email,
     disabled: 'true',
   }
 });
 
-const profileEmailField = new InputField ({
+const profileEmailField = new InputField({
   Input: profileEmail,
   id: "profileEmail",
   label: "Почта",
@@ -42,12 +39,11 @@ const profileLogin = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.login,
     disabled: 'true',
   }
 });
 
-const profileLoginField = new InputField ({
+const profileLoginField = new InputField({
   Input: profileLogin,
   id: "profileLogin",
   label: "Логин",
@@ -61,12 +57,11 @@ const profileFirstName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.first_name,
     disabled: 'true',
   }
 });
 
-const profileFirstNameField = new InputField ({
+const profileFirstNameField = new InputField({
   Input: profileFirstName,
   id: "profileFirstName",
   label: "Имя",
@@ -80,12 +75,11 @@ const profileSecondName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.second_name,
     disabled: 'true',
   }
 });
 
-const profileSecondNameField = new InputField ({
+const profileSecondNameField = new InputField({
   Input: profileSecondName,
   id: "profileSecondName",
   label: "Фамилия",
@@ -99,12 +93,11 @@ const profileDisplayName = new Input({
   type: "text",
   attr: {
     class: "input_type_profile",
-    value: profile.display_name,
     disabled: 'true',
   }
 });
 
-const profileDisplayNameField = new InputField ({
+const profileDisplayNameField = new InputField({
   Input: profileDisplayName,
   id: "profileDisplayName",
   label: "Имя&nbsp;в&nbsp;чате",
@@ -118,12 +111,11 @@ const profilePhone = new Input({
   type: "phone",
   attr: {
     class: "input_type_profile",
-    value: profile.phone,
     disabled: 'true',
   }
 });
 
-const profilePhoneField = new InputField ({
+const profilePhoneField = new InputField({
   Input: profilePhone,
   id: "profilePhone",
   label: "Телефон",
@@ -131,26 +123,48 @@ const profilePhoneField = new InputField ({
 });
 
 // controls
-const navLinkEdit = new NavLink ({
-  toPage: "edit-profile-page",
+const navLinkEdit = new NavLink({
   text: "Изменить данные",
-  attr: { class: "nav-link_type_profile" }
+  attr: { class: "nav-link_type_profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/settings');
+    }
+  }
 });
 
-const navLinkPassword = new NavLink ({
-  toPage: "edit-profile-page",
+const navLinkPassword = new NavLink({
   text: "Изменить пароль",
-  attr: { class: "nav-link_type_profile" }
+  attr: { class: "nav-link_type_profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/change-password');
+    }
+  }
 });
 
-const navLinkLogout = new NavLink ({
-  toPage: "login",
+const navLinkLogout = new NavLink({
   text: "Выйти",
-  attr: { class: ["nav-link_type_profile", "nav-link_type_danger"]}
+  attr: { class: ["nav-link_type_profile", "nav-link_type_danger"] },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      authController.logout();
+    }
+  }
 });
 
-const buttonArrow = new ButtonArrow ({
-  toPage: "",
+const buttonArrow = new ButtonWithIcon({
+  type: "button",
+  buttonSize: '28',
+  iconName: 'arrow-left',
+  events: {
+    click: () => {
+      router.go('/messenger');
+    }
+  }
 });
 
 const profileForm = new ProfileForm({

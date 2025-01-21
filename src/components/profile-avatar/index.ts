@@ -1,8 +1,11 @@
 import Block, { IData } from '@/utils/Block';
 import { profileAvatarTemplate } from './template';
+import connectWithAvatar from '@/utils/connects/connectWithAvatar';
 
-export default class ProfileAvatar extends Block<IData> {
+class ProfileAvatar extends Block<IData> {
   render() {
     return profileAvatarTemplate;
   }
 }
+
+export default connectWithAvatar(ProfileAvatar);

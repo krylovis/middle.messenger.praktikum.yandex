@@ -1,10 +1,18 @@
+import store from '@/utils/Store';
+
+export interface IPopup {
+  element: HTMLElement,
+  popupTrigger: string,
+}
 export default class Popup {
   readonly _popup: HTMLElement | null;
+  readonly _popupTrigger: string = '';
   readonly _closeByEscape: (event: KeyboardEvent) => void;
   readonly _mousedownClose: (event: MouseEvent) => void;
 
-  constructor(selector: string) {
-    this._popup = document.querySelector(selector);
+  constructor({ element, popupTrigger }: IPopup) {
+    this._popup = element;
+    this._popupTrigger = popupTrigger;
     this._closeByEscape = this._handleCloseByEscape.bind(this);
     this._mousedownClose = this._handleMousedownClose.bind(this);
   }
@@ -15,6 +23,7 @@ export default class Popup {
   }
 
   close() {
+    store.set(this._popupTrigger, false);
     this._popup?.classList.remove('popup_opened');
     document.removeEventListener('keydown', this._closeByEscape);
   }
@@ -32,5 +41,9 @@ export default class Popup {
 
   setEventListeners() {
     this._popup?.addEventListener('mousedown', this._mousedownClose);
+  }
+
+  removeEventListeners() {
+    document.removeEventListener('mousedown', this._mousedownClose);
   }
 }
