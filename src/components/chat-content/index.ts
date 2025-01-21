@@ -15,13 +15,28 @@ export class ChatContent extends Block<IData> {
   public updateLists(): void {
     const { messagesList } = this.props;
     const currentUser = store.getState('currentUser');
-    const formatter = new Intl.DateTimeFormat('ru-RU', { year: 'numeric', month: 'numeric', day: 'numeric' })
+    const formatter = new Intl.DateTimeFormat('ru-RU', {
+      year: 'numeric', month: 'numeric', day: 'numeric'
+    })
 
     if ((messagesList as IMessage[])?.length) {
-      const sortedMessagesList: IMessage[] = ([...(messagesList as IMessage[])])
-        .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+      const dates = new Set();
+      const newData = [];
 
-      this.lists.lists = [{ date: '', data: sortedMessagesList }].map(({ date, data }) => {
+      for (const item of (messagesList as IMessage[])) {
+        const date = formatter.format(new Date(item.time));
+        dates.add(date);
+      }
+
+      for (const date of Array.from(dates).sort()) {
+        const data = (messagesList as IMessage[])
+        .filter((item) => formatter.format(new Date(item.time)) === date)
+        .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime())
+
+        newData.push({ date, data });
+      }
+
+      this.lists.lists = newData.map(({ date, data }) => {
         const messageItemList = (data as IMessage[]).map(({
           chat_id, content, time, user_id,
         }) => {
