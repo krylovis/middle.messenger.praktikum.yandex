@@ -22,8 +22,9 @@ export class ChatContent extends Block<IData> {
         const messageItemList = (data as IMessage[]).map(({
           chat_id, content, time, user_id,
         }) => {
-          const isOwner = (currentUser as IUser)?.id === user_id;
           const classList = [];
+          const messageId = `message-${chat_id}`;
+          const isOwner = (currentUser as IUser)?.id === user_id;
           const formatTime = time ? formatter.format(new Date(time)) : '';
 
           if (isOwner) {
@@ -34,7 +35,7 @@ export class ChatContent extends Block<IData> {
             owner: isOwner,
             message: content,
             sentedAt: formatTime,
-            attr: { class: classList },
+            attr: { id: messageId, class: classList },
           });
         });
 
