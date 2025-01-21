@@ -1,5 +1,5 @@
 import MainPage from './MainPage';
-import { messageData, EDropdownMenuTriggers } from '@/utils/constants';
+import { EDropdownMenuTriggers } from '@/utils/constants';
 import { router } from '@/utils/Router';
 import { headerMenu } from '@/utils/constants';
 import store from '@/utils/Store';
@@ -15,8 +15,6 @@ import {
   ChatHeader,
   ChatFooter,
   ChatContent,
-  MessagesForDate,
-  MessageItem,
   FormMessage,
   Input,
   ButtonWithIcon,
@@ -68,30 +66,8 @@ const chatHeader = new ChatHeader({
   DropdownMenu: dropdownMenu,
 });
 
-const messagesForDateList = messageData.map(({ date, data }) => {
-  const messagesList = data.map(({
-    owner, sentedAt, message, media, file
-  }) => {
-    const classList = [];
-    if (owner) {
-      classList.push('message-item_type_owner');
-    }
-
-    return new MessageItem({
-      owner,
-      sentedAt,
-      message,
-      media,
-      file,
-      attr: { class: classList }
-    });
-  });
-
-  return new MessagesForDate({ date, lists: messagesList });
-});
-
 const chatContent = new ChatContent({
-  lists: messagesForDateList,
+  lists: [],
 });
 
 const navLink = new NavLink({
