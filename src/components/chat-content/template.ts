@@ -2,7 +2,7 @@ import './chat-content.scss';
 
 export const chatContentTemplate = `
 <div class="chat-content">
-  {{#if lists}}
+  {{#if lists.length}}
     <ul class="chat-content__message-list">
       {{{ lists }}}
     </ul>
