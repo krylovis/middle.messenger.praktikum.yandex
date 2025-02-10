@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
-import EventBus from "@/utils/EventBus";
+import EventBus, { TListener } from "@/utils/EventBus";
 import { isEqual } from "@/utils/helpers";
 import FormValidator from '@/utils/FormValidator';
 
@@ -103,8 +103,8 @@ export default abstract class Block<Props extends IData = IData> {
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CBM, this._componentBeforeMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CBM, (this._componentBeforeMount as TListener).bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, (this._componentDidUpdate  as TListener).bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -130,8 +130,8 @@ export default abstract class Block<Props extends IData = IData> {
     this.componentBeforeMount(newElement);
   }
 
-  public componentBeforeMount(newElement: HTMLElement): void {
-    return;
+  public componentBeforeMount(_newElement: HTMLElement): void {
+    return
   }
 
   public dispatchComponentDidMount(): void {
@@ -235,7 +235,7 @@ export default abstract class Block<Props extends IData = IData> {
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
+    Object.entries(this.lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
@@ -251,7 +251,7 @@ export default abstract class Block<Props extends IData = IData> {
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]): void => {
+    Object.entries(this.lists).forEach(([, child]): void => {
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       (child as Block[]).forEach((item) => {
