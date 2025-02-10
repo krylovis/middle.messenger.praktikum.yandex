@@ -39,6 +39,7 @@ export class Route {
   render() {
     if (this._block) {
       render('#app', this._block);
+
       return;
     }
   }
