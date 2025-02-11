@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "vite build && vite preview",
+    "start": "PORT=3000 vite build && vite preview",
     "preview": "vite preview",
     "lint": "npx eslint ./",
     "typecheck": "tsc"
