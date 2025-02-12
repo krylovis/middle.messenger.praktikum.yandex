@@ -1,6 +1,7 @@
 import { authApi } from '@/utils/Api/AuthApi';
 import { IReqData } from '@/utils/Api/BaseApi';
 import { router } from '@/utils/Router';
+import chatsController from '@/utils/controllers/ChatsController';
 import store from '@/utils/Store';
 
 class AuthController {
@@ -32,9 +33,10 @@ class AuthController {
 
   async getUser() {
     await this.api.getUser()
-      .then((user) => {
+      .then(async (user) => {
         if (user) {
           store.set('currentUser', user);
+          await chatsController.getChats();
         }
       })
       .catch(console.error);
@@ -44,6 +46,7 @@ class AuthController {
     await this.api.logout()
       .then(() => {
         store.delete('currentUser');
+        store.delete('chatsList');
         router.go('/');
       })
       .catch(console.error);

@@ -43,6 +43,9 @@ class Router {
       route = this.getRoute('/404');
       this.currentRoute?.leave();
       this.currentRoute = null;
+    } else if (route._pathname === '/' && store.getState('currentUser')) {
+      route = this.getRoute('/messenger');
+      this.history.pushState({}, '', '/messenger');
     } else if (route._pathname !== '/sign-up' && !store.getState('currentUser')) {
       route = this.getRoute('/');
       this.history.pushState({}, '', pathname);
