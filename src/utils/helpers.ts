@@ -51,15 +51,15 @@ export function isEqual<T>(lhs: T, rhs: T) {
   return true;
 }
 
-export function merge(lhs: Indexed, rhs: Indexed): Indexed {
+export function merge(lhs: PlainObject, rhs: PlainObject): PlainObject {
   for (const p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
+    if (!Object.prototype.hasOwnProperty.call(rhs, p)) {
       continue;
     }
 
     try {
-      if (rhs[p].constructor === Object) {
-        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+      if (rhs[p]?.constructor === Object) {
+        rhs[p] = merge(lhs[p] as PlainObject, rhs[p] as PlainObject);
       } else {
         lhs[p] = rhs[p];
       }
