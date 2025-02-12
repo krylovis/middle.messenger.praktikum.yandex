@@ -20,6 +20,8 @@ class ChatsController {
     for (const stateKey of stateKeysList) {
       store.set(stateKey, []);
     }
+
+    chatWebSocket.closeConnect();
   }
 
   async getCurrentChatData({ chatId }: IChatSelect) {
