@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
 import { v4 as getID } from "uuid";
-import EventBus from "@/utils/EventBus";
+import EventBus, { TListener } from "@/utils/EventBus";
+import { isEqual } from "@/utils/helpers";
 import FormValidator from '@/utils/FormValidator';
 
 export type TPropsLists = Block<IData>[];
@@ -11,15 +13,16 @@ export type TEvent = Record<string, EventListener>;
 export type TAttr = Record<string, string | string[]>;
 
 export interface IData {
-	[key: string]: unknown,
-	lists?: TPropsLists,
-	events?: TEvent,
+  [key: string]: unknown,
+  lists?: TPropsLists,
+  events?: TEvent,
   attr?: TAttr,
 }
 export default abstract class Block<Props extends IData = IData> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
+    FLOW_CBM: "flow:component-before-mount",
     FLOW_CDU: "flow:component-did-update",
     FLOW_RENDER: "flow:render"
   };
@@ -32,26 +35,27 @@ export default abstract class Block<Props extends IData = IData> {
 
   _element: HTMLElement | null = null;
   _id: string = getID();
+  _isSetUpgate: boolean;
   eventBus: () => EventBus;
 
   constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
     const { props, children, lists } = this._getChildrenPropsAndProps(propsWithChildren);
-    this.props = this._makePropsProxy(this, { ...props });
+    this.props = this._makePropsProxy(this, props);
     this.children = children;
     this.lists = lists;
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
+    this._isSetUpgate = false;
     eventBus.emit(Block.EVENTS.INIT);
   }
 
   _addEvents(): void {
     this.addEvents();
-    if(this.props?.events) {
+    if (this.props?.events) {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
-        console.log('eventName', eventName);
         this._element?.addEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
@@ -68,7 +72,7 @@ export default abstract class Block<Props extends IData = IData> {
       const validator = new FormValidator({ formElement: form });
       const formName = (form as HTMLFormElement).getAttribute('name');
 
-      if(formName) {
+      if (formName) {
         this.formValidators[formName] = validator;
         validator.enableValidation();
       }
@@ -87,11 +91,10 @@ export default abstract class Block<Props extends IData = IData> {
 
   _removeEvents(): void {
     this.removeEvents();
-    if(this.props?.events) {
+    if (this.props?.events) {
       const { events } = this.props;
 
       Object.keys(events).forEach((eventName: string): void => {
-        console.log('eventName', eventName);
         this._element?.removeEventListener(eventName, (events as TEvent)[eventName]);
       });
     }
@@ -100,7 +103,8 @@ export default abstract class Block<Props extends IData = IData> {
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CBM, (this._componentBeforeMount as TListener).bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, (this._componentDidUpdate  as TListener).bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -108,37 +112,47 @@ export default abstract class Block<Props extends IData = IData> {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _componentDidMount(): void {
+  public _componentDidMount(): void {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child): void => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         child.dispatchComponentDidMount();
       }
     });
   }
 
   public componentDidMount(): void {
-    // return;
+    return;
+  }
+
+  public _componentBeforeMount(newElement: HTMLElement): void {
+    this.componentBeforeMount(newElement);
+  }
+
+  public componentBeforeMount(_newElement: HTMLElement): void {
+    return
   }
 
   public dispatchComponentDidMount(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate() {
-    const response = this.componentDidUpdate();
-    if (!response) {
+  public _componentDidUpdate(oldProps: TProps, newProps: TProps): void {
+    const isReRender = this.componentDidUpdate(oldProps, newProps);
+
+    if (isReRender) {
+      this._render();
+    } else {
       return;
     }
-    this._render();
   }
 
-  public componentDidUpdate(): boolean {
-    return true;
+  public componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
+    return isEqual(oldProps, newProps);
   }
 
-  private _getChildrenPropsAndProps(propsAndChildren: Props) {
+  public _getChildrenPropsAndProps(propsAndChildren: Props) {
     const children: TChildren = {};
     const props: TProps = {};
     const lists: TLists = {};
@@ -146,7 +160,7 @@ export default abstract class Block<Props extends IData = IData> {
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
-      } else if(Array.isArray(value)) {
+      } else if (Array.isArray(value)) {
         lists[key] = value;
       } else {
         props[key] = value;
@@ -157,66 +171,87 @@ export default abstract class Block<Props extends IData = IData> {
   }
 
   public addAttributes(): void {
+    //
+  }
+
+  public _addAttributes(): void {
     const { attr = {} } = this.props;
 
     Object.entries(attr as TAttr).forEach(([key, value]): void => {
-      if(key === 'class') {
+      if (key === 'class') {
         if (Array.isArray(value)) {
           this._element?.classList.add(...value);
-        } else if(typeof value === 'string') {
+        } else if (typeof value === 'string') {
           this._element?.classList.add(value);
         }
-      } else if(typeof value === 'string') {
+      } else if (typeof value === 'string') {
         this._element?.setAttribute(key, value);
       }
     });
+
+    this.addAttributes();
   }
 
-  public setProps = (nextProps: TProps) => {
-    if (!nextProps) {
+  public updateLists() {
+    //
+  }
+
+  public setProps = (newProps: TProps) => {
+    if (!newProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    this._isSetUpgate = false;
+    const oldValue = { ...this.props };
+
+    if (Object.values(newProps).length) {
+      Object.assign(this.props, newProps);
+    }
+
+    // if (Object.values(this.children).length) {
+    //   //
+    // }
+
+    if (this._isSetUpgate) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldValue, this.props);
+      this._isSetUpgate = false;
+    }
   }
 
   get element() {
     return this._element;
   }
 
-  private _render() {
-    console.log("Render");
-
-    this._element = null;
+  public _render() {
     this._removeEvents();
+    this.updateLists();
 
     const propsAndStubs = { ...this.props };
     const _tmpId = getID();
 
     Object.entries(this.children).forEach(([key, child]) => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
-        console.log('child', child);
-        propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
+    Object.entries(this.lists).forEach(([key]) => {
+      propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
-      if(child instanceof Block) {
+      if (child instanceof Block) {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
         const childContent = child.getContent() as HTMLElement;
+
         stub?.replaceWith(childContent);
       }
     });
 
-    Object.entries(this.lists).forEach(([key, child]): void => {
-      console.log('key', key);
+    Object.entries(this.lists).forEach(([, child]): void => {
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;
 
       (child as Block[]).forEach((item) => {
@@ -233,12 +268,15 @@ export default abstract class Block<Props extends IData = IData> {
     });
 
     const newElement = fragment.content.firstElementChild;
+
     if (this._element) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CBM, newElement);
       (this._element as HTMLElement).replaceWith(newElement as HTMLElement);
     }
+
     this._element = newElement as HTMLElement;
     this._addEvents();
-    this.addAttributes();
+    this._addAttributes();
   }
 
   render(): string {
@@ -249,7 +287,7 @@ export default abstract class Block<Props extends IData = IData> {
     return this.element;
   }
 
-  private _makePropsProxy(self: Block, props: TProps) {
+  public _makePropsProxy(self: Block, props: TProps | TChildren) {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
@@ -257,10 +295,10 @@ export default abstract class Block<Props extends IData = IData> {
       },
 
       set(target, prop, value) {
-        const oldTarget = {...target};
-
-        target[prop as string] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        if (target[prop as string] !== value) {
+          target[prop as string] = value;
+          self._isSetUpgate = true;
+        }
 
         return true;
       },
@@ -271,23 +309,7 @@ export default abstract class Block<Props extends IData = IData> {
     });
   }
 
-  private _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
+  public _createDocumentElement(tagName: string): Element | HTMLElement | HTMLMetaElement {
     return document.createElement(tagName);
-  }
-
-  public show() {
-    const element = this.getContent();
-
-    if(element) {
-      element.style.display = "block";
-    }
-  }
-
-  public hide() {
-    const element = this.getContent();
-
-    if(element) {
-      element.style.display = "none";
-    }
   }
 }

@@ -9,13 +9,13 @@ export const chatItemTemplate = `
 
     <div class="chat-item__content">
       <div class="chat-item__header">
-        <p class="chat-item__name">{{ name }}</p>
-        <span class="chat-item__updated">{{ updatedAt }}</span>
+        <p class="chat-item__name">{{ title }}</p>
+        {{#if time}}<span class="chat-item__updated">{{ time }}</span>{{/if}}
       </div>
 
       <div class="chat-item__body">
-        <p class="chat-item__message">{{ message }}</p>
-        <div class="chat-item__counter">{{ unread }}</div>
+        {{#if lastMessage}}<p class="chat-item__message">{{ lastMessage }}</p>{{/if}}
+        {{#if unreadCount}}<div class="chat-item__counter">{{ unreadCount }}</div>{{/if}}
       </div>
     </div>
   </div>

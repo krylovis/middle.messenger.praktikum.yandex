@@ -7,18 +7,19 @@ export const PHONE_PATTERN = '((\\+7|7|8)+([0-9]){10,15})';
 export const NAME_PATTERN = '^[A-ZА-ЯЁ]{1}[a-zа-яё]+$';
 export const LOGIN_PATTERN = '^[0-9a-zA-Z\\-_]{3,20}';
 
-export const BASE_URL = '';
-export const HEADERS = {
-  'Content-Type': 'application/json',
-};
+export const BASE_URL = 'https://ya-praktikum.tech/api/v2';
+export const HEADERS = {};
+
+export const BASE_WSS_URL = 'wss://ya-praktikum.tech';
+export const CHAT_ENDPOINT = 'ws/chats';
 
 export const profile = {
   login: 'captain-jack-sparrow',
   first_name: 'Jack',
   second_name: 'Sparrow',
-  display_name: 'Captain' ,
+  display_name: 'Captain',
   email: 'jack-sparrow@captain.ar',
-  phone: '+79099673030',
+  phone: '+79999999999',
   avatar: avatar,
 };
 
@@ -35,20 +36,20 @@ export const errors: Record<string, Record<string, string>> = {
 
 export const chatList = [
   { name: 'Опоссум', message: 'Изображение', unread: '2', updatedAt: '10:50', avatar },
-  { name: 'Енот', message:'Go на свалку!', unread: '2', updatedAt: '9:10', avatar },
-  { name: 'Барсук', message:'А у кого ключи от сарая?', unread: '4', updatedAt: '13:21', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Ср', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пн', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
-  { name: 'noName', message:'...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'Енот', message: 'Go на свалку!', unread: '2', updatedAt: '9:10', avatar },
+  { name: 'Барсук', message: 'А у кого ключи от сарая?', unread: '4', updatedAt: '13:21', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Ср', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пн', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
+  { name: 'noName', message: '...', unread: '1', updatedAt: 'Пт', avatar },
 ];
 
 export const messageData = [
@@ -80,16 +81,6 @@ export const messageData = [
   }
 ];
 
-export enum EPages {
-  LoginPage = 'login',
-  RegisterPage = 'register',
-  ProfilePage = 'profile-page',
-  EditProfilePage = 'edit-profile-page',
-  ChangePasswordPage = 'change-password-page',
-  MainPage = 'main-page',
-  ErrorPage = 'error-page',
-}
-
 export enum EFormSelectors {
   LABEL = '.input-field',
   INPUT = '.input',
@@ -98,6 +89,17 @@ export enum EFormSelectors {
   INPUT_ERROR_ACTIVE = 'input-error_active',
   SUBMIT_BTN = '.button',
   SUBMIT_BTN_INACTIVE = 'button_inactive',
+}
+
+export enum EPopupTriggers {
+  AVATAR_CHANGE = 'isPopupAvatarChangeOpen',
+  ADD_CHAT = 'isPopupAddChatOpen',
+  ADD_USER = 'isPopupAddUserOpen',
+  REMOVE_USER = 'isPopupRemoveUserOpen',
+}
+
+export enum EDropdownMenuTriggers {
+  HEADER_MENU = 'isHeaderMenuOpen',
 }
 
 export const formSelectors = {
@@ -109,3 +111,16 @@ export const formSelectors = {
   submitBtn: '.button',
   submitBtnInactive: 'button_inactive',
 };
+
+export const headerMenu = [
+  {
+    type: 'add-user',
+    text: 'Добавить пользователя',
+    trigger: EPopupTriggers.ADD_USER
+  },
+  {
+    type: 'remove-user',
+    text: 'Удалить пользователя',
+    trigger: EPopupTriggers.REMOVE_USER
+  }
+];

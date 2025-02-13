@@ -1,7 +1,8 @@
 import Popup from './Popup.js';
 
 interface TData {
-  selector: string,
+  element: HTMLElement,
+  popupTrigger: string,
   handleFormSubmit: (formData?: Record<string, string | number | boolean>) => void
 }
 
@@ -13,8 +14,8 @@ export default class PopupWithForm extends Popup {
   readonly _handleFormSubmit: (data: Record<string, string | number | boolean>) => void;
   readonly _handleSubmitBind: (event: SubmitEvent) => void;
 
-  constructor({ selector, handleFormSubmit }: TData) {
-    super(selector);
+  constructor({ element, popupTrigger, handleFormSubmit }: TData) {
+    super({ element, popupTrigger });
     this._formData = {};
     this._popupForm = this._popup?.querySelector('.popup__form');
     this._inputList = this._popup?.querySelectorAll('.popup__input');

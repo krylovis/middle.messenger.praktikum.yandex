@@ -1,79 +1,90 @@
 import MainPage from './MainPage';
-import { chatList as chatItems } from '@/utils/constants';
-import { messageData } from '@/utils/constants';
+import { EDropdownMenuTriggers } from '@/utils/constants';
+import { router } from '@/utils/Router';
+import { headerMenu } from '@/utils/constants';
+import store from '@/utils/Store';
+import { connectWithDropdownMenuHeader } from '@/utils/connects';
+import { connectWithCurrentChat } from '@/utils/connects';
+import ChatsController from '@/utils/controllers/ChatsController';
+import { IMessage } from '@/utils/Api/ChatWebSocket';
 
 import {
   NavLink,
   ChatList,
   Avatar,
-  ChatItem,
   ChatHeader,
   ChatFooter,
   ChatContent,
-  MessagesForDate,
-  MessageItem,
   FormMessage,
   Input,
   ButtonWithIcon,
+  popupAddChat,
+  popupAddUser,
+  popupRemoveUser,
+  DropdownMenu,
+  DropdownMenuItem,
 } from '@/components';
 
-const headerAvatar = new Avatar({ });
+const headerAvatar = new Avatar({});
 
-const chatHeader = new ChatHeader ({
-  Avatar: headerAvatar,
-});
-
-const messagesForDateList = messageData.map(({ date, data }) => {
-  const messagesList = data.map(({
-    owner, sentedAt, message, media, file
-  }) => {
-    const classList = [];
-    if (owner) {
-      classList.push('message-item_type_owner');
+const headerMenuLists = headerMenu.map(({ type, text, trigger }) => {
+  return new DropdownMenuItem({
+    type: type,
+    text: text,
+    events: {
+      click: (event) => {
+        event.preventDefault();
+        store.set(trigger, true);
+      }
     }
-
-    return new MessageItem({
-      owner,
-      sentedAt,
-      message,
-      media,
-      file,
-      attr: { class: classList}
-    });
   });
-
-  return new MessagesForDate({ date, lists: messagesList });
 });
 
-const chatContent = new ChatContent ({
-  lists: messagesForDateList,
+const editChatButtonMenu = new ButtonWithIcon({
+  id: "editChatButtonMenu",
+  type: "button",
+  buttonSize: '32',
+  iconName: 'menu',
+  events: {
+    click: () => {
+      store.toggle(EDropdownMenuTriggers.HEADER_MENU);
+    }
+  }
 });
 
-const navLink = new NavLink ({
-  toPage: "to-profile",
+const DropdownMenuHeader = connectWithDropdownMenuHeader(DropdownMenu);
+
+const dropdownMenu = new DropdownMenuHeader({
+  ButtonMenu: editChatButtonMenu,
+  menuTrigger: EDropdownMenuTriggers.HEADER_MENU,
+  lists: headerMenuLists,
+  type: 'header'
+});
+
+const chatHeader = new ChatHeader({
+  Avatar: headerAvatar,
+  DropdownMenu: dropdownMenu,
+});
+
+const chatContent = new ChatContent({
+  lists: [],
+});
+
+const navLink = new NavLink({
   text: "Профиль",
   icon: true,
-  attr: { class: "nav-link_type_to-profile" }
-});
-
-const chatList = chatItems.map(({
-  name, message, unread, updatedAt, avatar,
-}) => {
-  const itemAvatar = new Avatar({ avatar });
-
-  return new ChatItem({
-    Avatar: itemAvatar,
-    name,
-    message,
-    unread,
-    updatedAt
-  });
+  attr: { class: "nav-link_type_to-profile" },
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/profile');
+    }
+  }
 });
 
 // chat list
-const chatListComponent = new ChatList({
+const chatList = new ChatList({
   NavLink: navLink,
-  lists: chatList,
 });
 
 const inputMessage = new Input({
@@ -81,7 +92,7 @@ const inputMessage = new Input({
   name: "message",
   type: "text",
   placeholder: "Сообщение",
-  attr: { class: "input_type_message" }
+  attr: { class: "input_type_message", maxlength: '120', minlength: '1' }
 });
 
 const submitButton = new ButtonWithIcon({
@@ -98,7 +109,7 @@ const buttonMenu = new ButtonWithIcon({
   iconName: 'attach',
 });
 
-const formMessage = new FormMessage ({
+const formMessage = new FormMessage({
   SubmitButton: submitButton,
   formAction: "new-message-form",
   formName: "new-message-action",
@@ -107,25 +118,35 @@ const formMessage = new FormMessage ({
     submit: (event) => {
       event.preventDefault();
 
+      const { target } = event;
+      const data: IMessage = {};
       const formData = new FormData(event.target as HTMLFormElement);
-      for(const [name, value] of formData.entries()) {
-        console.log(`${name}: ${value}`);
+
+      for (const [name, value] of formData.entries()) {
+        data[name] = value as string;
       }
 
-      const { target } = event;
-      (target as HTMLFormElement)?.reset();
+      if (data.message) {
+        ChatsController.sendMessage(data as IMessage);
+        (target as HTMLFormElement)?.reset();
+      }
     }
   }
 });
 
-const chatFooter = new ChatFooter ({
+const chatFooter = new ChatFooter({
   ButtonMenu: buttonMenu,
   FormMessage: formMessage,
 });
 
-export const mainPage = new MainPage({
-  ChatList: chatListComponent,
+const ConnectMainPage = connectWithCurrentChat(MainPage);
+
+export const mainPage = new ConnectMainPage({
+  ChatList: chatList,
   ChatHeader: chatHeader,
   ChatContent: chatContent,
   ChatFooter: chatFooter,
+  PopupAddChat: popupAddChat,
+  PopupAddUser: popupAddUser,
+  PopupRemoveUser: popupRemoveUser,
 });

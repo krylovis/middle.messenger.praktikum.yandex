@@ -1,3 +1,6 @@
+import { router } from '@/utils/Router';
+import authController from '@/utils/controllers/AuthController';
+import formDataToJson from '@/utils/formDataToJson';
 import {
   EMAIL_PATTERN,
   PHONE_PATTERN,
@@ -32,7 +35,7 @@ const inputEmailError = new InputError({
   attr: { class: "email-error" }
 });
 
-const inputEmailField = new InputField ({
+const inputEmailField = new InputField({
   Input: inputEmail,
   InputError: inputEmailError,
   id: "inputEmail",
@@ -54,7 +57,7 @@ const inputLoginError = new InputError({
   attr: { class: "login-error" }
 });
 
-const loginField = new InputField ({
+const loginField = new InputField({
   Input: inputLogin,
   InputError: inputLoginError,
   id: "inputLogin",
@@ -76,7 +79,7 @@ const inputPasswordError = new InputError({
   attr: { class: "password-error" }
 });
 
-const inputPasswordField = new InputField ({
+const inputPasswordField = new InputField({
   Input: inputPassword,
   InputError: inputPasswordError,
   id: "inputPassword",
@@ -98,7 +101,7 @@ const inputFirstNameError = new InputError({
   attr: { class: "first_name-error" }
 });
 
-const inputFirstNameField = new InputField ({
+const inputFirstNameField = new InputField({
   Input: inputFirstName,
   InputError: inputFirstNameError,
   id: "firstName",
@@ -120,7 +123,7 @@ const inputSecondNameError = new InputError({
   attr: { class: "second_name-error" }
 });
 
-const inputSecondNameField = new InputField ({
+const inputSecondNameField = new InputField({
   Input: inputSecondName,
   InputError: inputSecondNameError,
   id: "secondName",
@@ -142,7 +145,7 @@ const inputPhoneError = new InputError({
   attr: { class: "password-error" }
 });
 
-const inputPhoneField = new InputField ({
+const inputPhoneField = new InputField({
   Input: inputPhone,
   InputError: inputPhoneError,
   id: "inputPhone",
@@ -164,7 +167,7 @@ const inputRepeatPasswordError = new InputError({
   attr: { class: "repeat_password-error" }
 });
 
-const inputRepeatPasswordField = new InputField ({
+const inputRepeatPasswordField = new InputField({
   Input: inputRepeatPassword,
   InputError: inputRepeatPasswordError,
   id: "inputRepeatPassword",
@@ -172,14 +175,19 @@ const inputRepeatPasswordField = new InputField ({
 });
 
 // controls
-const submitButton = new Button ({
+const submitButton = new Button({
   type: "submit",
   text: "Зарегистрироваться",
 });
 
-const navLink = new NavLink ({
-  toPage: "login",
+const navLink = new NavLink({
   text: "Войти",
+  events: {
+    click: (event) => {
+      event.preventDefault();
+      router.go('/');
+    }
+  }
 });
 
 // form container
@@ -197,7 +205,17 @@ const formContainer = new FormContainer({
     inputPhoneField,
     inputPasswordField,
     inputRepeatPasswordField,
-  ]
+  ],
+  events: {
+    submit: async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(event.target as HTMLFormElement);
+      const data = formDataToJson(formData);
+
+      authController.signUp({ data });
+    }
+  }
 });
 
 export const registerPage = new RegisterPage({

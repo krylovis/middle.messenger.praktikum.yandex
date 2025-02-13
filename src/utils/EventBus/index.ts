@@ -1,4 +1,4 @@
-type TListener = <T>(...args: T[]) => void;
+export type TListener = <T>(...args: T[]) => void;
 export default class EventBus {
   readonly listeners: Record<string, TListener[]>;
 
