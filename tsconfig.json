@@ -18,6 +18,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noEmit": true,
+    "types": ["node", "jest"],
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -28,7 +29,7 @@
     "declaration": true,
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src"
       ]
     }
   },
