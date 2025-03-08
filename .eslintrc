@@ -1,12 +1,7 @@
 {
   "extends": [
-    "airbnb",
     "airbnb-base",
     "airbnb-typescript/base"
-  ],
-  "plugins": [
-    "eslint-plugin-html",
-    "@typescript-eslint"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
