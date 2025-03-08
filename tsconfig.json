@@ -29,7 +29,7 @@
     "declaration": true,
     "paths": {
       "@/*": [
-        "./src"
+        "./src/*"
       ]
     }
   },
