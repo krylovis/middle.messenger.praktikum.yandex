@@ -5,7 +5,8 @@
     "airbnb-typescript/base"
   ],
   "plugins": [
-    "eslint-plugin-html"
+    "eslint-plugin-html",
+    "@typescript-eslint"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
