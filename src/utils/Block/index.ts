@@ -31,7 +31,8 @@ export default abstract class Block<Props extends IData = IData> {
   lists;
   children;
   attributes = {};
-  formValidators: Record<string, typeof FormValidator> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formValidators: Record<string, any> = {};
 
   _element: HTMLElement | null = null;
   _id: string = getID();
@@ -44,6 +45,7 @@ export default abstract class Block<Props extends IData = IData> {
     this.props = this._makePropsProxy(this, props);
     this.children = children;
     this.lists = lists;
+    this.formValidators = {};
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     this._isSetUpgate = false;
@@ -69,19 +71,25 @@ export default abstract class Block<Props extends IData = IData> {
     if (element) {
       const form = element.querySelector('.form');
 
-      const validator = new FormValidator({ formElement: form });
-      const formName = (form as HTMLFormElement).getAttribute('name');
+      if (form) {
+        const validator = new FormValidator({ formElement: (form as HTMLFormElement) });
+        const formName = (form as HTMLFormElement)?.getAttribute('name');
 
-      if (formName) {
-        this.formValidators[formName] = validator;
-        validator.enableValidation();
+        if (formName) {
+          if (validator instanceof FormValidator) {
+            this.formValidators[formName] = validator;
+            validator.enableValidation();
+          }
+        }
       }
     }
   };
 
   disableValidation = () => {
     Object.keys(this.formValidators).forEach((validatorName: string): void => {
-      this.formValidators[validatorName]?.disableValidation();
+      if (this.formValidators[validatorName] instanceof FormValidator) {
+        this.formValidators[validatorName]?.disableValidation();
+      }
     });
   };
 
