@@ -34,6 +34,7 @@
     }
   },
   "include": [
+    "./eslint.config.js",
     "./src/**/*",
     "types.d.ts"
   ]
