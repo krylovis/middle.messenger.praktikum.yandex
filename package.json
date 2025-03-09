@@ -20,11 +20,12 @@
     "lint": "npx eslint ./",
     "typecheck": "tsc",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "stylelint": "npx stylelint ./src/**/*.scss"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all lint test"
+      "pre-commit": "npm-run-all lint stylelint test"
     }
   },
   "keywords": [],
