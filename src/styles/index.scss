@@ -1,7 +1,7 @@
 @use 'variables';
 
 /* --------------- vendor --------------- */
-@import "./../../node_modules/normalize-scss/sass/normalize";
+@import url('./../../node_modules/normalize-scss/sass/normalize');
 
 /* --------------- fonts --------------- */
 @import url('../../static/fonts/index.scss');
