@@ -29,8 +29,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @use './src/styles/variables' as *;
-        @use 'node_modules/normalize-scss/sass/normalize' as *;
+        @use '@/styles/variables' as *;
         `
       },
     },
