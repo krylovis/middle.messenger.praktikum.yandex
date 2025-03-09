@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import Handlebars from "handlebars";
-import { v4 as getID } from "uuid";
-import EventBus, { TListener } from "@/utils/EventBus";
-import { isEqual } from "@/utils/helpers";
+/* eslint-disable no-unused-vars */
+import Handlebars from 'handlebars';
+import { v4 as getID } from 'uuid';
+import EventBus, { TListener } from '@/utils/EventBus';
+import { isEqual } from '@/utils/helpers';
 import FormValidator from '@/utils/FormValidator';
 
 export type TPropsLists = Block<IData>[];
@@ -20,18 +20,17 @@ export interface IData {
 }
 export default abstract class Block<Props extends IData = IData> {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CBM: "flow:component-before-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CBM: 'flow:component-before-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render'
   };
 
   props;
   lists;
   children;
   attributes = {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   formValidators: Record<string, any> = {};
 
   _element: HTMLElement | null = null;
@@ -299,7 +298,7 @@ export default abstract class Block<Props extends IData = IData> {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop as string];
-        return typeof value === "function" ? (value as EventListener).bind(target) : value;
+        return typeof value === 'function' ? (value as EventListener).bind(target) : value;
       },
 
       set(target, prop, value) {
