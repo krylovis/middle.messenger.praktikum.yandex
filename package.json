@@ -22,6 +22,11 @@
     "test": "jest",
     "prepare": "husky install"
   },
+  "husky": {
+   "hooks": {
+     "pre-commit": "npm-run-all lint test"
+   }
+},
   "keywords": [],
   "author": "Krylov Ivan",
   "devDependencies": {
