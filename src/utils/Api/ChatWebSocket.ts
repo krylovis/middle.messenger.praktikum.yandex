@@ -15,6 +15,7 @@ export interface IData {
 }
 
 export type IMessage = Record<string, string>;
+export type TTimeout = ReturnType<typeof setTimeout>;
 
 export interface ICreateData {
   userId: number | null,
@@ -29,7 +30,7 @@ export class ChatWebSocket extends EventBus {
   userId: number | null;
   chatId: number | null;
   socket: WebSocket | null;
-  pingIntervalId: number | null;
+  pingIntervalId: TTimeout | null;
 
   store: Store;
 
@@ -136,14 +137,14 @@ export class ChatWebSocket extends EventBus {
   }
 
   private setPingInterval() {
-    this.pingIntervalId = setInterval(() => {
+    this.pingIntervalId = (setInterval(() => {
       this.socket?.send(JSON.stringify({ type: 'ping', content: '' }));
-    }, 3000);
+    }, 3000));
   }
 
   private clearPingInterval() {
     if (this.pingIntervalId) {
-      clearInterval(this.pingIntervalId as number);
+      clearInterval(this.pingIntervalId as TTimeout);
     }
   }
 }
