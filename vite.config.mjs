@@ -14,6 +14,9 @@ export default defineConfig({
     strictPort: true,
     port: 3000
   },
+  preview: {
+    port: 8080,
+  },
   build: {
     outDir: resolve(__dirname, 'dist'),
     emptyOutDir: true,
@@ -29,8 +32,8 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @use './src/styles/variables' as *;
-        @use 'node_modules/normalize-scss/sass/normalize' as *;
+        @use '@/styles/variables' as *;
+        @use 'normalize-scss/sass/normalize' as *;
         `
       },
     },

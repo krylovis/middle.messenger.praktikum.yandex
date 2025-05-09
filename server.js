@@ -15,8 +15,7 @@ app.set('views', 'pages');
 
 
 app.get('/', (req, res) => {
-    res.sendFile(resolve(`${__dirname}/dist/index.html`));
-    // res.render('main-page');
+  res.sendFile(resolve(`${__dirname}/dist/index.html`));
 });
 
 app.listen(PORT, () => {
